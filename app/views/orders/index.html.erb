@@ -1,0 +1,21 @@
+<div class="container">
+  <table class="table">
+    <tr>
+      <th>Start</th>
+      <th>Finish</th>
+      <th>Price</th>
+      <th colspan="2"></th>
+    </tr>
+  <% @orders.each do |order| %>
+    <tr>
+      <td><%= order.start_point %></td>
+      <td><%= order.finish_point %></td>
+      <td><%= order.price %></td>
+      <td><%= link_to 'Show', order %></td>
+      <td><%= link_to 'Destroy', order_path(order), method: :delete,
+                                    data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+    <% end %>
+  </table>
+  <%= link_to "New order", new_order_path  %>
+</div>

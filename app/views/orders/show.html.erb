@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="jumbotron">
+    <p class="lead">Start: <%= @order.start_point %> - Finish: <%= @order.finish_point %></p>
+    <hr class="my-4">
+    <p>Price: <%= @order.price %></p>
+    <p>Weight: <%= @order.weight %></p>
+    <p>Comment: <%= @order.comment %></p>
+    <p class="lead">
+      <%= link_to 'Редактировать', edit_order_path(@order),
+            class: "btn btn-primary btn-lg" %>
+      <%= link_to 'Удалить', order_path(@order),
+                  method: :delete,
+                  data: { confirm: 'Вы уверены?' }, class: "btn btn-primary btn-lg" %>
+    </p>
+  </div>
+</div>
