@@ -6,16 +6,15 @@
       <th>Price</th>
       <th colspan="2"></th>
     </tr>
-  <% @orders.each do |order| %>
-    <tr>
-      <td><%= order.start_point %></td>
-      <td><%= order.finish_point %></td>
-      <td><%= order.price %></td>
-      <td><%= link_to 'Show', order %></td>
-      <td><%= link_to 'Destroy', order_path(order), method: :delete,
-                                    data: { confirm: 'Are you sure?' } %></td>
-    </tr>
+    <% if current_user.driver %>
+      <% @orders.each do |order| %>
+        <%= render 'orders', order: order %>
+      <% end %>
+    <% else %>
+      <% current_user.orders.each do |order| %>
+        <%= render 'orders', order: order %>
+      <% end %>
     <% end %>
   </table>
-  <%= link_to "New order", new_order_path  %>
+  <%= link_to "New order", new_order_path unless current_user.driver %>
 </div>

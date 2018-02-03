@@ -1,0 +1,8 @@
+<tr>
+  <td><%= order.start_point %></td>
+  <td><%= order.finish_point %></td>
+  <td><%= order.price %></td>
+  <td><%= link_to 'Show', order %></td>
+  <td><%= link_to 'Destroy', order_path(order), method: :delete,
+                                data: { confirm: 'Are you sure?' } %></td>
+</tr>

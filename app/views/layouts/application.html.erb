@@ -31,9 +31,9 @@
         </ul>
       </div>
     </nav>
-    <div class="flash">
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
+    <div class="container text-center">
+      <span class="notice"><%= notice if notice %></span>
+      <span class="alert"><%= alert if alert %></span>
     </div>
     <%= yield %>
   </body>
