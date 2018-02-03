@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :get_order, except: [:new, :index, :create]
+  before_action :order, except: %i[new index create]
   before_action :authenticate_user!
 
   def new
@@ -9,7 +9,7 @@ class OrdersController < ApplicationController
   def create
     @order = current_user.orders.new(order_params)
     if @order.save
-      flash[:notice] = "Order was succesfully created"
+      flash[:notice] = 'Order was succesfully created'
       redirect_to @order
     else
       render 'new'
@@ -39,16 +39,18 @@ class OrdersController < ApplicationController
 
   def destroy
     @order.destroy
-    flash[:alert] = "Order was succesfully deleted"
+    flash[:alert] = 'Order was succesfully deleted'
     redirect_to orders_path
   end
 
   private
-    def order_params
-      params.require(:order).permit(:start_point, :finish_point, :price, :weight, :comment, :status)
-    end
 
-    def get_order
-      @order = Order.find(params[:id])
-    end
+  def order_params
+    params.require(:order).permit(:start_point, :finish_point,
+                                  :price, :weight, :comment, :status)
+  end
+
+  def order
+    @order = Order.find(params[:id])
+  end
 end
