@@ -32,6 +32,11 @@ class OrdersController < ApplicationController
     end
   end
 
+  def change_status
+    @order.update(status: params[:status].to_i)
+    redirect_to orders_path
+  end
+
   def destroy
     @order.destroy
     flash[:alert] = "Order was succesfully deleted"
@@ -40,7 +45,7 @@ class OrdersController < ApplicationController
 
   private
     def order_params
-      params.require(:order).permit(:start_point, :finish_point, :price, :weight, :comment)
+      params.require(:order).permit(:start_point, :finish_point, :price, :weight, :comment, :status)
     end
 
     def get_order

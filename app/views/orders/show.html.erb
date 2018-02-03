@@ -4,13 +4,19 @@
     <hr class="my-4">
     <p>Price: <%= @order.price %></p>
     <p>Weight: <%= @order.weight %></p>
+    <p>Status: <%= @order.status %></p>
     <p>Comment: <%= @order.comment %></p>
     <p class="lead">
-      <%= link_to 'Редактировать', edit_order_path(@order),
-            class: "btn btn-primary btn-lg" %>
-      <%= link_to 'Удалить', order_path(@order),
-                  method: :delete,
-                  data: { confirm: 'Вы уверены?' }, class: "btn btn-primary btn-lg" %>
+      <% if current_user.driver %>
+        <%= link_to 'Принять заказ', change_status_path(id: @order, status: 1), class: "btn btn-primary btn-lg"  %>
+        <%= link_to 'Заказ доставлен', change_status_path(id: @order, status: 2), class: "btn btn-primary btn-lg"  %>
+      <% else %>
+        <%= link_to 'Редактировать', edit_order_path(@order),
+                                              class: "btn btn-primary btn-lg" %>
+        <%= link_to 'Удалить', order_path(@order),
+                    method: :delete,
+                    data: { confirm: 'Вы уверены?' }, class: "btn btn-primary btn-lg" %>
+      <% end %>
     </p>
   </div>
 </div>
