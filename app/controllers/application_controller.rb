@@ -4,11 +4,7 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   def profile
-    if params[:driver]
-      @user = User.find_by(id: params[:driver])
-    else
-      @user = current_user
-    end
+    @user = params[:driver] ? User.find_by(id: params[:driver]) : current_user
   end
 
   protected

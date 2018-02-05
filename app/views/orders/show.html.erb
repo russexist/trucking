@@ -9,12 +9,13 @@
     <p>Status: <%= @order.status %></p>
     <p>Comment: <%= @order.comment %></p>
     <% if @driver %>
-      <p>Заказ принял: <%= link_to "#{@driver.first_name} #{@driver.last_name}", profile_path(driver: @driver) %>
+      <p>
+        Заказ принял: <%= link_to "#{@driver.first_name} #{@driver.last_name}", profile_path(driver: @driver) %>
+      </p>
     <% end %>
-    </p>
     <p class="lead">
       <% if current_user.driver %>
-        <% if @order.status = 1 %>
+        <% if @order.status.match('Принят') %>
         <%= link_to 'Доставлено', change_status_path(
                                               id: @order,
                                               status: 2,
