@@ -8,9 +8,12 @@
       <th colspan="2"></th>
     </tr>
     <% if current_user.driver %>
-      <% @orders.each do |order| %>
-        <%= render 'orders', order: order %>
-      <% end %>
+        <% @orders.where(status: 0).each do |order| %>
+          <%= render 'orders', order: order %>
+        <% end %>
+        <% if @orders.where(status: 0).blank? %>
+          <h2>Нет доступных заявок</h2>
+        <% end %>
     <% else %>
       <% current_user.orders.each do |order| %>
         <%= render 'orders', order: order %>

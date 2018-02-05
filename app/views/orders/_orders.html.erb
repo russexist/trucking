@@ -5,5 +5,5 @@
   <td><%= order.status %></td>
   <td><%= link_to 'Show', order %></td>
   <td><%= link_to 'Destroy', order_path(order), method: :delete,
-                                data: { confirm: 'Are you sure?' } %></td>
+          data: { confirm: 'Are you sure?' } unless current_user.driver %></td>
 </tr>

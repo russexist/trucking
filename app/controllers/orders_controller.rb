@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :order, except: %i[new index create]
+  before_action :order, except: %i[new index create taken_orders]
   before_action :authenticate_user!
 
   def new
@@ -22,7 +22,9 @@ class OrdersController < ApplicationController
     @orders = Order.all
   end
 
-  def show; end
+  def show
+    @driver = User.find_by(id: @order.driver_id)
+  end
 
   def update
     if @order.update(order_params)
@@ -33,8 +35,12 @@ class OrdersController < ApplicationController
   end
 
   def change_status
-    @order.update(status: params[:status].to_i)
-    redirect_to orders_path
+    @order.update(status: params[:status].to_i, driver_id: params[:driver_id])
+    redirect_to taken_orders_path
+  end
+
+  def taken_orders
+    @taken_orders = Order.where(status: 1, driver_id: current_user)
   end
 
   def destroy
@@ -47,7 +53,7 @@ class OrdersController < ApplicationController
 
   def order_params
     params.require(:order).permit(:start_point, :finish_point,
-                                  :price, :weight, :comment, :status)
+                                  :price, :weight, :comment)
   end
 
   def order

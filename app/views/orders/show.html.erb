@@ -1,21 +1,36 @@
 <div class="container">
   <div class="jumbotron">
-    <p class="lead">Start: <%= @order.start_point %> - Finish: <%= @order.finish_point %></p>
+    <p class="lead">
+      Start: <%= @order.start_point %> - Finish: <%= @order.finish_point %>
+    </p>
     <hr class="my-4">
     <p>Price: <%= @order.price %></p>
     <p>Weight: <%= @order.weight %></p>
     <p>Status: <%= @order.status %></p>
     <p>Comment: <%= @order.comment %></p>
+    <p>Taken: <%= @driver.first_name if @driver %></p>
     <p class="lead">
       <% if current_user.driver %>
-        <%= link_to 'Принять заказ', change_status_path(id: @order, status: 1), class: "btn btn-primary btn-lg"  %>
-        <%= link_to 'Заказ доставлен', change_status_path(id: @order, status: 2), class: "btn btn-primary btn-lg"  %>
+        <% if @order.status = 1 %>
+        <%= link_to 'Доставлено', change_status_path(
+                                              id: @order,
+                                              status: 2,
+                                              driver_id: current_user),
+                                              class: "btn btn-primary btn-lg" %>
+        <% else %>
+          <%= link_to 'Принять заказ', change_status_path(
+                                              id: @order,
+                                              status: 1,
+                                              driver_id: current_user),
+                                              class: "btn btn-primary btn-lg" %>
+        <% end %>
       <% else %>
         <%= link_to 'Редактировать', edit_order_path(@order),
                                               class: "btn btn-primary btn-lg" %>
         <%= link_to 'Удалить', order_path(@order),
-                    method: :delete,
-                    data: { confirm: 'Вы уверены?' }, class: "btn btn-primary btn-lg" %>
+                                              method: :delete,
+                                              data: { confirm: 'Вы уверены?' },
+                                              class: "btn btn-primary btn-lg" %>
       <% end %>
     </p>
   </div>
