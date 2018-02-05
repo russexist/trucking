@@ -31,10 +31,18 @@
         </ul>
       </div>
     </nav>
-    <div class="container text-center">
-      <span class="notice"><%= notice if notice %></span>
-      <span class="alert"><%= alert if alert %></span>
-    </div>
+    <% if notice %>
+      <div class="text-center alert alert-success" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">&times;</button>
+         <%= notice %>
+      </div>
+    <% end %>
+    <% if alert %>
+      <div class="text-center alert alert-danger" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">&times;</button>
+         <%= alert %>
+      </div>
+    <% end %>
     <%= yield %>
   </body>
 </html>
