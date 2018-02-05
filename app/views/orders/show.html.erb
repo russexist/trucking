@@ -8,7 +8,10 @@
     <p>Weight: <%= @order.weight %></p>
     <p>Status: <%= @order.status %></p>
     <p>Comment: <%= @order.comment %></p>
-    <p>Taken: <%= @driver.first_name if @driver %></p>
+    <% if @driver %>
+      <p>Заказ принял: <%= link_to "#{@driver.first_name} #{@driver.last_name}", profile_path(driver: @driver) %>
+    <% end %>
+    </p>
     <p class="lead">
       <% if current_user.driver %>
         <% if @order.status = 1 %>

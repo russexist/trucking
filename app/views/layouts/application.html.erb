@@ -15,7 +15,10 @@
         <ul class="navbar-nav mr-auto">
           <% if user_signed_in? %>
             <li class="nav-item">
-              <%= link_to current_user.first_name, edit_user_registration_path, class: "nav-link" %>
+              <%= link_to current_user.first_name, profile_path, class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'Taken order', taken_orders_path, class: "nav-link" if current_user.driver %>
             </li>
             <li class="nav-item">
               <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: "nav-link" %>
