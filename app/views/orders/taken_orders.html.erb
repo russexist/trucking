@@ -1,0 +1,23 @@
+<div class="container">
+  <h2>Taken Orders</h2>
+  <table class="table">
+    <tr>
+      <th>Start</th>
+      <th>Finish</th>
+      <th>Price</th>
+      <th>Status</th>
+      <th colspan="2"></th>
+    </tr>
+    <tr>
+      <% @taken_orders.each do |order| %>
+        <td><%= order.start_point %></td>
+        <td><%= order.finish_point %></td>
+        <td><%= order.price %></td>
+        <td><%= order.status %></td>
+        <td><%= link_to 'Show', order %></td>
+        <td><%= link_to 'Destroy', order_path(order), method: :delete,
+                data: { confirm: 'Are you sure?' } unless current_user.driver %></td>
+      <% end %>
+    </tr>
+  </table>
+</div>

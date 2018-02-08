@@ -4,18 +4,21 @@
       <th>Start</th>
       <th>Finish</th>
       <th>Price</th>
+      <th>Status</th>
       <th colspan="2"></th>
     </tr>
-  <% @orders.each do |order| %>
-    <tr>
-      <td><%= order.start_point %></td>
-      <td><%= order.finish_point %></td>
-      <td><%= order.price %></td>
-      <td><%= link_to 'Show', order %></td>
-      <td><%= link_to 'Destroy', order_path(order), method: :delete,
-                                    data: { confirm: 'Are you sure?' } %></td>
-    </tr>
+    <% if current_user.driver %>
+        <% @orders.where(status: 0).each do |order| %>
+          <%= render 'orders', order: order %>
+        <% end %>
+        <% if @orders.where(status: 0).blank? %>
+          <h2>Нет доступных заявок</h2>
+        <% end %>
+    <% else %>
+      <% current_user.orders.each do |order| %>
+        <%= render 'orders', order: order %>
+      <% end %>
     <% end %>
   </table>
-  <%= link_to "New order", new_order_path  %>
+  <%= link_to "New order", new_order_path unless current_user.driver %>
 </div>
