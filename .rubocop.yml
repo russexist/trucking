@@ -1,15 +1,75 @@
 AllCops:
+  Exclude:
+    - 'bin/*'
+    - 'db/schema.rb'
+    - 'db/migrate/*'
+    - 'vendor/**/*'
+    - 'config/environments/*'
+    - 'config/environment.rb'
+  TargetRubyVersion: 2.4
 
-  Excludes:
-    - db/**
-    - config/**
-    - script/**
-    - Gemfile
-    - config.ru
-    - config/initializers/**
-    - config/environments/**
-    - bin/**
-    - Rakefile
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
 
-  Style/Documentation:
-    Enabled: false
+Metrics/LineLength:
+  Max: 100
+
+Metrics/MethodLength:
+  Enabled: false
+
+Rails:
+  Enabled: true
+
+Rails/InverseOf:
+  Enabled: false
+
+Layout/AlignParameters:
+  EnforcedStyle: with_fixed_indentation
+
+Style/BlockComments:
+  Exclude:
+    - 'spec/spec_helper.rb'
+
+Style/Documentation:
+  Enabled: false
+
+Layout/ExtraSpacing:
+  Exclude:
+    - 'bin/*'
+
+Layout/FirstParameterIndentation:
+  EnforcedStyle: consistent
+
+Style/GuardClause:
+  Enabled: false
+
+Style/HashSyntax:
+  Exclude:
+    - 'Rakefile'
+    - 'lib/tasks/*.rake'
+
+Style/IfUnlessModifier:
+  Enabled: false
+
+Layout/IndentArray:
+  EnforcedStyle: consistent
+
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+
+Style/PercentLiteralDelimiters:
+  PreferredDelimiters:
+    '%':  ()
+    '%i': '[]'
+    '%q': ()
+    '%Q': ()
+    '%r': '{}'
+    '%s': ()
+    '%w': '[]'
+    '%W': '[]'
+    '%x': ()
+
+Style/StringLiterals:
+  Exclude:
+    - 'bin/*'

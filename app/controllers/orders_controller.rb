@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class OrdersController < ApplicationController
   before_action :order, except: %i[new index create taken_orders]
   before_action :authenticate_user!
@@ -53,7 +55,7 @@ class OrdersController < ApplicationController
 
   def order_params
     params.require(:order).permit(:start_point, :finish_point,
-                                  :price, :weight, :comment)
+      :price, :weight, :comment)
   end
 
   def order
