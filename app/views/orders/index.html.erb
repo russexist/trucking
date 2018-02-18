@@ -1,24 +1,23 @@
-<div class="container">
-  <table class="table">
-    <tr>
-      <th>Start</th>
-      <th>Finish</th>
-      <th>Price</th>
-      <th>Status</th>
-      <th colspan="2"></th>
-    </tr>
-    <% if current_user.driver %>
-        <% @orders.where(status: 0).each do |order| %>
-          <%= render 'orders', order: order %>
-        <% end %>
-        <% if @orders.where(status: 0).blank? %>
-          <h2>Нет доступных заявок</h2>
-        <% end %>
-    <% else %>
-      <% current_user.orders.each do |order| %>
+<table class="table">
+  <tr>
+    <th>Start</th>
+    <th>Finish</th>
+    <th>Date</th>
+    <th>Price</th>
+    <th>Status</th>
+    <th colspan="2"></th>
+  </tr>
+  <% if current_user.driver %>
+      <% @orders.where(status: 0).each do |order| %>
         <%= render 'orders', order: order %>
       <% end %>
+      <% if @orders.where(status: 0).blank? %>
+        <h2>Нет доступных заявок</h2>
+      <% end %>
+  <% else %>
+    <% current_user.orders.each do |order| %>
+      <%= render 'orders', order: order %>
     <% end %>
-  </table>
-  <%= link_to "New order", new_order_path unless current_user.driver %>
-</div>
+  <% end %>
+</table>
+<%= link_to "New order", new_order_path unless current_user.driver %>

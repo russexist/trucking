@@ -1,13 +1,11 @@
-<div class="container">
-  <h2>User profile</h2>
-  <hr>
-  <% if @user.driver && current_user = @user %>
-    <h3>Driver</h3>
-  <% end %>
-  <h3>user image</h3>
-  <p>Name: <%= @user.first_name %></p>
-  <p>Last name: <%= @user.last_name %></p>
-  <p>Phone: <%= @user.phone %></p>
-  <p>Email: <%= @user.email %></p>
-  <%= link_to 'Edit', edit_user_registration_path unless params[:driver] %>
-</div>
+<h2>User profile</h2>
+<hr>
+<% if @user.driver && current_user = @user %>
+  <h3>Driver</h3>
+<% end %>
+<h3>user image</h3>
+<p>Name: <%= @user.first_name %></p>
+<p>Last name: <%= @user.last_name %></p>
+<p>Phone: <%= @user.phone %></p>
+<p>Email: <%= @user.email %></p>
+<%= link_to 'Edit', edit_user_registration_path unless params[:driver] %>
