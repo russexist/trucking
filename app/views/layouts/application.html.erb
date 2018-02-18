@@ -5,7 +5,9 @@
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    "//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag "https://code.jquery.com/ui/1.12.1/jquery-ui.js" %>
   </head>
 
   <body>
@@ -18,10 +20,10 @@
               <%= link_to current_user.first_name, profile_path, class: "nav-link" %>
             </li>
             <li class="nav-item">
-              <%= link_to 'Taken orders', taken_orders_path, class: "nav-link" if current_user.driver %>
+              <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: "nav-link" %>
             </li>
             <li class="nav-item">
-              <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: "nav-link" %>
+              <%= link_to 'Taken orders', taken_orders_path, class: "nav-link" if current_user.driver %>
             </li>
           <% else %>
             <li class="nav-item">
@@ -34,6 +36,7 @@
         </ul>
       </div>
     </nav>
+
     <div class="container">
       <% if notice %>
         <div class="text-center alert alert-success" role="alert">
@@ -47,7 +50,8 @@
            <%= alert %>
         </div>
       <% end %>
+
+      <%= yield %>
     </div>
-    <%= yield %>
   </body>
 </html>

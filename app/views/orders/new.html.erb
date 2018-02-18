@@ -1,26 +1,26 @@
-<div class="container">
-  <h1>New order</h1>
-  <%= form_for @order do |f| %>
-  <% if @order.errors.any? %>
-      <ul>
-        <% @order.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-          <% end %>
-      </ul>
-  <% end %>
-  <div class="form-group">
-    <%= f.label :start_point, class: "control-label" %>
-    <%= f.text_field :start_point, class: "form-control" %>
-    <%= f.label :finish_point, class: "control-label" %>
-    <%= f.text_field :finish_point, class: "form-control" %>
-    <%= f.label :price, class: "control-label" %>
-    <%= f.number_field :price, class: "form-control" %>
-    <%= f.label :weight, class: "control-label" %>
-    <%= f.number_field :weight, class: "form-control" %>
-    <%= f.label :comment, class: "control-label" %>
-    <%= f.text_area :comment, class: "form-control" %>
-  </div>
-  <%= f.submit 'Сохранить', class: "btn btn-success" %>
-  <%= link_to 'Назад', :back, class: "btn btn-default" %>
+<h1>New order</h1>
+<%= form_for @order do |f| %>
+<% if @order.errors.any? %>
+    <ul>
+      <% @order.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+        <% end %>
+    </ul>
 <% end %>
+<div class="form-group">
+  <%= f.label :start_point, class: "control-label" %>
+  <%= f.text_field :start_point, class: "form-control" %>
+  <%= f.label :finish_point, class: "control-label" %>
+  <%= f.text_field :finish_point, class: "form-control" %>
+  <%= f.label :date, class: "control-label" %>
+  <%= f.text_field :date, class: "form-control", id: "datepicker" %>
+  <%= f.label :price, class: "control-label" %>
+  <%= f.number_field :price, class: "form-control" %>
+  <%= f.label :weight, class: "control-label" %>
+  <%= f.number_field :weight, class: "form-control" %>
+  <%= f.label :comment, class: "control-label" %>
+  <%= f.text_area :comment, class: "form-control" %>
 </div>
+<%= f.submit 'Сохранить', class: "btn btn-success" %>
+<%= link_to 'Назад', :back, class: "btn btn-default" %>
+<% end %>

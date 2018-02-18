@@ -13,9 +13,13 @@
 //= require rails-ujs
 //= require turbolinks
 //= require jquery
-//= require jquery-ui
-//= require jquery3
 //= require jquery_ujs
 //= require bootstrap
 //= require bootstrap-sprockets
 //= require_tree .
+
+var ready;
+ready = function() {
+  $( "#datepicker" ).datepicker();
+}
+$(document).on('turbolinks:load', ready);

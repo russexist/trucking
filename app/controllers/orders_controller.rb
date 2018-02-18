@@ -54,8 +54,7 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:start_point, :finish_point,
-      :price, :weight, :comment)
+    params.require(:order).permit(:comment, :date, :finish_point, :price, :start_point, :weight)
   end
 
   def order

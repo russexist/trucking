@@ -1,13 +1,9 @@
 # frozen_string_literal: true
 
 class Order < ApplicationRecord
-  enum status: {
-    'Новый' => 0,
-    'Принят' => 1,
-    'Доставлен' => 2
-  }
+  enum status: ['Новый', 'Принят', 'Доставлен']
 
   belongs_to :user
 
-  validates :start_point, :finish_point, :price, :weight, presence: true
+  validates :date, :finish_point, :price, :start_point, :weight, presence: true
 end
