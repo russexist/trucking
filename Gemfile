@@ -7,20 +7,6 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-# my gems
-gem 'activeadmin'
-gem 'bootstrap'
-gem 'carrierwave'
-gem 'devise'
-gem 'faker', git: 'https://github.com/stympy/faker.git', branch: 'master'
-gem 'jquery'
-gem 'jquery-rails'
-gem 'rmagick'
-gem 'russian'
-gem 'will_paginate'
-gem 'rspec-rails', '~> 3.7'
-gem 'shoulda-matchers', '~> 3.1'
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
 # Use postgresql as the database for Active Record
@@ -71,3 +57,17 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+
+# my gems
+gem 'activeadmin'
+gem 'bootstrap'
+gem 'carrierwave'
+gem 'devise'
+gem 'faker', git: 'https://github.com/stympy/faker.git', branch: 'master'
+gem 'jquery'
+gem 'jquery-rails'
+gem 'rmagick'
+gem 'rspec-rails', '~> 3.7'
+gem 'russian'
+gem 'shoulda-matchers', '~> 3.1'
+gem 'will_paginate'

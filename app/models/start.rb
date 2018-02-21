@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Start < ApplicationRecord
   belongs_to :user
 

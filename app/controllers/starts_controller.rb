@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class StartsController < ApplicationController
   before_action :starting_point, except: %i[new create]
   before_action :authenticate_user!

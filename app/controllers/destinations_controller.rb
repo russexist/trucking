@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class DestinationsController < ApplicationController
   before_action :destination_point, except: %i[new create]
   before_action :authenticate_user!
@@ -29,7 +31,11 @@ class DestinationsController < ApplicationController
   private
 
   def destination_point_params
-    params.require(:destination).permit(:destination_latitude, :destination_longitude, :destination_point)
+    params.require(:destination).permit(
+      :destination_latitude,
+      :destination_longitude,
+      :destination_point
+    )
   end
 
   def destination_point
