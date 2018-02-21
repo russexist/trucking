@@ -1,6 +1,6 @@
 <div class="jumbotron">
   <p class="lead">
-    Start: <%= @order.start_point %> - Finish: <%= @order.finish_point %>
+    Start: <%= @order.starting_point %> - Destination: <%= @order.destination_point %>
   </p>
   <hr class="my-4">
   <p>Price: <%= @order.price %></p>
@@ -26,8 +26,11 @@
         <%= link_to 'Принять заказ', change_status_path( id: @order, status: 1, driver_id: current_user),class: "btn btn-info" %>
       <% end %>
     <% else %>
-      <%= link_to 'Редактировать', edit_order_path(@order), class: "btn btn-info" %>
-      <%= link_to 'Удалить', order_path(@order),method: :delete, data: { confirm: 'Вы уверены?' }, class: "btn btn-info" %>
+      <%= link_to 'Редактировать', edit_start_path(@order.start), class: "btn btn-info" %>
+      <%= link_to 'Удалить', start_path(@order.start), method: :delete, data: { confirm: 'Вы уверены?' }, class: "btn btn-info" %>
     <% end %>
   </p>
 </div>
+
+<h3>My Google Maps Demo</h3>
+<div id="map"></div>

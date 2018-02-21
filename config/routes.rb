@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :destinations
+  resources :starts
   resources :orders
   devise_for :users
 

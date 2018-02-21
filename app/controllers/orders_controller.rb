@@ -9,7 +9,11 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = current_user.orders.new(order_params)
+    @start = current_user.starts.last
+    @destination = current_user.destinations.last
+    @order = current_user.orders.new(order_params.merge(
+                                              start_id: @start.id,
+                                              destination_id: @destination.id))
     if @order.save
       flash[:notice] = 'Order was succesfully created'
       redirect_to @order
@@ -54,7 +58,7 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:comment, :date, :finish_point, :price, :start_point, :weight)
+    params.require(:order).permit(:comment, :date, :price, :weight)
   end
 
   def order

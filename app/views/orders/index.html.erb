@@ -1,7 +1,7 @@
 <table class="table">
   <tr>
     <th>Start</th>
-    <th>Finish</th>
+    <th>Destination</th>
     <th>Date</th>
     <th>Price</th>
     <th>Status</th>
@@ -20,4 +20,4 @@
     <% end %>
   <% end %>
 </table>
-<%= link_to "New order", new_order_path unless current_user.driver %>
+<%= link_to "New order", new_start_path, class: "btn btn-info" unless current_user.driver %>
