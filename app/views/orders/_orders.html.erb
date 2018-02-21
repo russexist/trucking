@@ -4,7 +4,7 @@
   <td><%= order.date %></td>
   <td><%= order.price %></td>
   <td><%= order.status %></td>
-  <td><%= link_to 'Show', order, class: "btn btn-light" %></td>
-  <td><%= link_to 'Destroy', start_path(order.start), method: :delete,
+  <td><%= link_to 'Просмотреть', order, class: "btn btn-light" %></td>
+  <td><%= link_to 'Удалить', start_path(order.start), method: :delete,
           data: { confirm: 'Are you sure?' }, class: "btn btn-light" unless current_user.driver %></td>
 </tr>

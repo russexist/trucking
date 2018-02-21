@@ -20,17 +20,17 @@
               <%= link_to current_user.first_name, profile_path, class: "nav-link" %>
             </li>
             <li class="nav-item">
-              <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: "nav-link" %>
+              <%= link_to 'Выйти', destroy_user_session_path, method: :delete, class: "nav-link" %>
             </li>
             <li class="nav-item">
-              <%= link_to 'Taken orders', taken_orders_path, class: "nav-link" if current_user.driver %>
+              <%= link_to 'Принятые заявки', taken_orders_path, class: "nav-link" if current_user.driver %>
             </li>
           <% else %>
             <li class="nav-item">
-              <%= link_to 'Sign In', new_user_session_path, class: "nav-link" %>
+              <%= link_to 'Войти', new_user_session_path, class: "nav-link" %>
             </li>
             <li class="nav-item">
-              <%= link_to 'Sign Up', new_user_registration_path, class: "nav-link" %>
+              <%= link_to 'Зарегистрироваться', new_user_registration_path, class: "nav-link" %>
             </li>
           <% end %>
         </ul>

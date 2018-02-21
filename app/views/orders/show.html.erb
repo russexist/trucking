@@ -1,13 +1,14 @@
 <div class="jumbotron">
   <p class="lead">
-    Start: <%= @order.starting_point %> - Destination: <%= @order.destination_point %>
+    <p><strong>Откуда: </strong> <%= @order.starting_point %></p>
+    <p><strong>Куда:</strong>  <%= @order.destination_point %></p>
   </p>
   <hr class="my-4">
-  <p>Price: <%= @order.price %></p>
-  <p>Date: <%= @order.date %></p>
-  <p>Weight: <%= @order.weight %></p>
-  <p id="status">Status: <%= @order.status %></p>
-  <p>Comment: <%= @order.comment %></p>
+  <p>Цена: <%= @order.price %></p>
+  <p>Дата: <%= @order.date %></p>
+  <p>Вес груза: <%= @order.weight %> кг</p>
+  <p id="status">Статус: <%= @order.status %></p>
+  <p>Комментарий: <%= @order.comment %></p>
 
   <% if @driver.present? %>
     <% if current_user.driver %>
@@ -30,7 +31,41 @@
       <%= link_to 'Удалить', start_path(@order.start), method: :delete, data: { confirm: 'Вы уверены?' }, class: "btn btn-info" %>
     <% end %>
   </p>
+  <h3>My Google Maps Demo</h3>
+  <div id="map"></div>
 </div>
 
-<h3>My Google Maps Demo</h3>
-<div id="map"></div>
+<script>
+      function initMap() {
+        var directionsService = new google.maps.DirectionsService;
+        var directionsDisplay = new google.maps.DirectionsRenderer;
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 9,
+          center: {lat: <%= @order.start.start_latitude %>, lng: <%= @order.start.start_longitude %>}
+        });
+        directionsDisplay.setMap(map);
+
+        var onChangeHandler = function() {
+          calculateAndDisplayRoute(directionsService, directionsDisplay);
+        };
+        onChangeHandler();
+      }
+
+      function calculateAndDisplayRoute(directionsService, directionsDisplay) {
+        directionsService.route({
+          origin: '<%= @order.starting_point %>',
+          destination: '<%= @order.destination_point %>',
+          travelMode: 'DRIVING'
+        }, function(response, status) {
+          if (status === 'OK') {
+            directionsDisplay.setDirections(response);
+          } else {
+            window.alert('Directions request failed due to ' + status);
+          }
+        });
+      }
+    </script>
+
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjgTe57M-Jmvs1PfRM-a5xHQy9XTrTUlw&callback=initMap">
+</script>

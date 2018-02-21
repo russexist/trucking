@@ -1,10 +1,10 @@
 <table class="table">
   <tr>
-    <th>Start</th>
-    <th>Destination</th>
-    <th>Date</th>
-    <th>Price</th>
-    <th>Status</th>
+    <th>Откуда</th>
+    <th>Куда</th>
+    <th>Дата</th>
+    <th>Цена</th>
+    <th>Статус</th>
     <th colspan="2"></th>
   </tr>
   <% if current_user.driver %>
@@ -20,4 +20,4 @@
     <% end %>
   <% end %>
 </table>
-<%= link_to "New order", new_start_path, class: "btn btn-info" unless current_user.driver %>
+<%= link_to "Новая заявка", new_start_path, class: "btn btn-info" unless current_user.driver %>

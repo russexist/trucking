@@ -1,23 +1,23 @@
-<h2>Taken Orders</h2>
+<h2>Принятые заявки</h2>
 <table class="table">
   <tr>
-    <!-- <th>Start</th>
-    <th>Finish</th> -->
-    <th>Date</th>
-    <th>Price</th>
-    <th>Status</th>
+    <th>Откуда</th>
+    <th>Куда</th>
+    <th>Дата</th>
+    <th>Цена</th>
+    <th>Статус</th>
     <th colspan="2"></th>
   </tr>
   <% @taken_orders.each do |order| %>
     <tr>
-      <!-- <td><%= order.start_point %></td>
-      <td><%= order.finish_point %></td> -->
+      <td><%= order.starting_point %></td>
+      <td><%= order.destination_point %></td>
       <td><%= order.date %></td>
       <td><%= order.price %></td>
       <td><%= order.status %></td>
-      <td><%= link_to 'Show', order %></td>
-      <td><%= link_to 'Destroy', order_path(order), method: :delete,
-              data: { confirm: 'Are you sure?' } unless current_user.driver %></td>
+      <td><%= link_to 'Просмотреть', order, class: "btn btn-light" %></td>
+      <td><%= link_to 'Удалить', order_path(order), method: :delete,
+              data: { confirm: 'Are you sure?' }, class: "btn btn-light" unless current_user.driver %></td>
     </tr>
   <% end %>
 </table>

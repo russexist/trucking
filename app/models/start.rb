@@ -7,9 +7,9 @@ class Start < ApplicationRecord
   has_one :destination, through: :order, dependent: :destroy
 
   geocoded_by :starting_point, latitude: :start_latitude, longitude: :start_longitude
-  after_validation :geocode, :if => lambda{ |obj| obj.starting_point_changed? }
+  after_validation :geocode, if: ->(obj) { obj.starting_point_changed? }
   reverse_geocoded_by :start_latitude, :start_longitude, address: :starting_point
   after_validation :reverse_geocode
 
-  validates :starting_point, presence: true
+  validates :starting_point, presence: true if :start_latitude.empty?
 end
