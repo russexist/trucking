@@ -11,5 +11,5 @@ class Start < ApplicationRecord
   reverse_geocoded_by :start_latitude, :start_longitude, address: :starting_point
   after_validation :reverse_geocode
 
-  validates :starting_point, presence: true if :start_latitude.empty?
+  validates :starting_point, presence: true, if: proc { |obj| obj.start_latitude.blank? }
 end

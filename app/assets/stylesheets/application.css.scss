@@ -28,8 +28,23 @@
 }
 
 .hiden{ display: none; }
+
 .navbar{ margin-bottom: 30px; }
+
 .form-container{
   width: 50%;
   margin: 0 auto;
 }
+
+.field_with_errors{
+  label{
+    color: #d01612;
+  }
+  input{
+    border-color: #d01612;
+  }
+}
+
+.next{ float: right; }
+
+.col-md{ width: 10%; }

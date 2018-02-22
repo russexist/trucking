@@ -30,6 +30,7 @@ ru:
       date: 'Дата'
       price: 'Цена'
       status: 'Статус'
+      no_orders: 'Нет доступных заявок'
     show:
       new_button: 'Новый заказ'
       starting_point: 'Начальная точка'
@@ -39,17 +40,21 @@ ru:
       status: 'Статус'
       comment: 'Комментарий'
       weight: 'Вес груза'
+    create: 'Заказ успешно создан'
+    delete: 'Заказ был успешно удален'
   starts:
     form:
-      submit: "%{action}"
+      submit: "Далее"
     new:
-      title: 'Начальный пункт'
+      title: 'Точка отправки'
     edit:
       title: 'Редактировать начальный пункт'
+    create: 'Точка отправки успешно создана'
   destinations:
     form:
-      submit: "%{action}"
+      submit: "Далее"
     new:
-      title: 'Пункт назначения'
+      title: 'Точка доставки'
     edit:
       title: 'Редактировать пункт назначения'
+    create: 'Точка доставки успешно создана'

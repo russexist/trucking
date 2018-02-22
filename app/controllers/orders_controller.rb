@@ -16,7 +16,7 @@ class OrdersController < ApplicationController
       destination_id: @destination.id
     ))
     if @order.save
-      flash[:notice] = 'Order was succesfully created'
+      flash[:notice] = t('orders.create')
       redirect_to @order
     else
       render 'new'
@@ -52,7 +52,6 @@ class OrdersController < ApplicationController
 
   def destroy
     @order.destroy
-    flash[:alert] = 'Order was succesfully deleted'
     redirect_to orders_path
   end
 

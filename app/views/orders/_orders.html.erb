@@ -2,8 +2,8 @@
   <td><%= order.starting_point %></td>
   <td><%= order.destination_point %></td>
   <td><%= order.date %></td>
-  <td><%= order.price %></td>
-  <td><%= order.status %></td>
+  <td class="col-md"><%= format_uah(order.price) %></td>
+  <td style="color: green"><%= order.status %></td>
   <td><%= link_to t('common.show'), order, class: "btn btn-light" %></td>
   <td><%= link_to t('common.delete'), start_path(order.start), method: :delete,
           data: { confirm: t('common.confirm') }, class: "btn btn-light" unless current_user.driver %></td>

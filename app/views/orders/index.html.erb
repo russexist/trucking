@@ -1,7 +1,5 @@
 <table class="table table-hover">
-  <% if @orders.where(status: 0).blank? %>
-    <h2 class="text-center">Нет доступных заявок</h2>
-  <% else %>
+  <% if current_user.driver ? @orders.status_new.present? : current_user.orders.present? %>
     <tr>
       <th><%= t('.starting_point') %></th>
       <th><%= t('.destination_point') %></th>
@@ -10,17 +8,19 @@
       <th><%= t('.status') %></th>
       <th colspan="2"></th>
     </tr>
-  <% end %>
-  <% if current_user.driver %>
-    <% @orders.where(status: 0).each do |order| %>
-      <%= render 'orders', order: order %>
+    <% if current_user.driver %>
+      <% @orders.status_new.each do |order| %>
+        <%= render 'orders', order: order %>
+      <% end %>
+    <% else %>
+      <% current_user.orders.each do |order| %>
+        <%= render 'orders', order: order %>
+      <% end %>
     <% end %>
   <% else %>
-    <% current_user.orders.each do |order| %>
-      <%= render 'orders', order: order %>
-    <% end %>
+    <h2 class="text-center"><%= t('.no_orders') %></h2>
   <% end %>
 </table>
 <div class="text-center">
-  <%= link_to t('.new_button'), new_start_path, class: "btn btn-info" unless current_user.driver %>
+  <%= link_to t('.new_button'), new_start_path, method: :get, class: "btn btn-info" unless current_user.driver %>
 </div>

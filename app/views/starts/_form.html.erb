@@ -1,27 +1,29 @@
-<%= form_for @starting_point do |f| %>
-  <% if @starting_point.errors.any? %>
-    <h5><%= t('common.errors') %></h5>
-    <ul>
-      <% @starting_point.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-        <% end %>
-    </ul>
+<div class="form-container">
+  <%= form_for @starting_point do |f| %>
+    <% if @starting_point.errors.any? %>
+      <div class="alert alert-danger">
+        <h5><%= t('common.errors') %></h5>
+        <ul>
+          <% @starting_point.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+            <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="form-group">
+      <%= f.label :starting_point, class: "control-label" %>
+      <%= f.text_field :starting_point, placeholder: "Улица и номер дома, город", id: "place_address", class: "form-control" %>
+      <input type="text" name="" value="" id="hiden_address" class="form-control hiden">
+    </div>
+    <div class="form-group">
+      <%= f.hidden_field :start_latitude, id: "place_latitude", class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.hidden_field :start_longitude, id: "place_longitude", class: "form-control" %>
+    </div>
+</div>
+    <div id="map"></div>
+    <%= f.submit t('.submit'), class: "btn btn-success next" %>
   <% end %>
-  <div class="form-group">
-    <%= f.label :starting_point, class: "control-label" %>
-    <%= f.text_field :starting_point, id: "place_address", class: "form-control" %>
-    <%= f.text_field :starting_point_was, id: "hiden_address", class: "form-control hiden" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :start_latitude, class: "control-label" %>
-    <%= f.text_field :start_latitude, id: "place_latitude", class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :start_longitude, class: "control-label" %>
-    <%= f.text_field :start_longitude, id: "place_longitude", class: "form-control" %>
-  </div>
-  <div id="map"></div>
-  <%= f.submit t('.submit', action: @starting_point.new_record? ? 'Далее' : 'Сохранить'), class: "btn btn-success" %>
-<% end %>
 
 <%= render 'map_script' %>

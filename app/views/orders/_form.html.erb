@@ -1,22 +1,25 @@
-<%= form_for @order do |f| %>
-  <% if @order.errors.any? %>
-    <h5><%= t('common.errors') %></h5>
-    <ul>
-      <% @order.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-        <% end %>
-    </ul>
+<div class="form-container">
+  <%= form_for @order do |f| %>
+    <% if @order.errors.any? %>
+      <div class="alert alert-danger">
+        <h5><%= t('common.errors') %></h5>
+        <ul>
+          <% @order.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+            <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="form-group">
+      <%= f.label :date, class: "control-label" %>
+      <%= f.text_field :date, autocomplete: "off", class: "form-control", id: "datepicker" %>
+      <%= f.label :price, class: "control-label" %>
+      <%= f.number_field :price, class: "form-control" %>
+      <%= f.label :weight, class: "control-label" %>
+      <%= f.number_field :weight, class: "form-control" %>
+      <%= f.label :comment, class: "control-label" %>
+      <%= f.text_area :comment, class: "form-control" %>
+    </div>
+    <%= f.submit t('common.save'), class: "btn btn-success next" %>
   <% end %>
-  <div class="form-group">
-    <%= f.label :date, class: "control-label" %>
-    <%= f.text_field :date, class: "form-control", id: "datepicker" %>
-    <%= f.label :price, class: "control-label" %>
-    <%= f.number_field :price, class: "form-control" %>
-    <%= f.label :weight, class: "control-label" %>
-    <%= f.number_field :weight, class: "form-control" %>
-    <%= f.label :comment, class: "control-label" %>
-    <%= f.text_area :comment, class: "form-control" %>
-  </div>
-  <%= f.submit t('common.save'), class: "btn btn-success" %>
-  <%= link_to t('common.back'), :back, class: "btn btn-default" %>
-<% end %>
+</div>

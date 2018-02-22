@@ -11,7 +11,7 @@ class DestinationsController < ApplicationController
   def create
     @destination_point = current_user.destinations.new(destination_point_params)
     if @destination_point.save
-      flash[:notice] = 'destination_point was succesfully created'
+      flash[:notice] = t('destinations.create')
       redirect_to new_order_path
     else
       render 'new'

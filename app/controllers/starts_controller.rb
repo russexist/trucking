@@ -11,7 +11,7 @@ class StartsController < ApplicationController
   def create
     @starting_point = current_user.starts.new(starting_point_params)
     if @starting_point.save
-      flash[:notice] = 'starting_point was succesfully created'
+      flash[:notice] = t('starts.create')
       redirect_to new_destination_path
     else
       render 'new'
@@ -31,7 +31,7 @@ class StartsController < ApplicationController
   def destroy
     @starting_point.destination.destroy
     @starting_point.destroy
-    flash[:alert] = 'Order was succesfully deleted'
+    flash[:alert] = t('orders.delete')
     redirect_to orders_path
   end
 

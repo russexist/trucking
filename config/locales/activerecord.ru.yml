@@ -5,18 +5,16 @@ ru:
     attributes:
       start:
         starting_point: 'Начальная точка'
-        start_latitude: 'Широта'
-        start_longitude: 'Долгота'
+
       destination: 'Пункт назначения'
     attributes:
       destination:
         destination_point: 'Конечная точка'
-        destination_latitude: 'Широта'
-        destination_longitude: 'Долгота'
+        
       order: 'Заказ'
     attributes:
       order:
-        price: 'Цена'
+        price: 'Предложите цену'
         weight: 'Вес груза'
         comment: 'Комментарий'
         date: 'Дата'

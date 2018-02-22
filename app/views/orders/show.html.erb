@@ -10,7 +10,7 @@
     </p>
   </p>
   <hr class="my-4">
-  <p><%= t('.price') %>: <%= @order.price %></p>
+  <p><%= t('.price') %>: <%= format_uah(@order.price) %></p>
   <p><%= t('.date') %>: <%= @order.date %></p>
   <p><%= t('.weight') %>: <%= @order.weight %> кг</p>
   <p><%= t('.status') %>: <%= @order.status %></p>

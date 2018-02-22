@@ -11,5 +11,5 @@ class Destination < ApplicationRecord
   reverse_geocoded_by :destination_latitude, :destination_longitude, address: :destination_point
   after_validation :reverse_geocode
 
-  validates :destination_point, presence: true if :destination_latitude.empty?
+  validates :destination_point, presence: true, if: proc { |obj| obj.destination_latitude.blank? }
 end
