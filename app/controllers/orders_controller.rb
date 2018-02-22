@@ -9,9 +9,14 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = current_user.orders.new(order_params)
+    @start = current_user.starts.last
+    @destination = current_user.destinations.last
+    @order = current_user.orders.new(order_params.merge(
+      start_id: @start.id,
+      destination_id: @destination.id
+    ))
     if @order.save
-      flash[:notice] = 'Order was succesfully created'
+      flash[:notice] = t('orders.create')
       redirect_to @order
     else
       render 'new'
@@ -47,14 +52,13 @@ class OrdersController < ApplicationController
 
   def destroy
     @order.destroy
-    flash[:alert] = 'Order was succesfully deleted'
     redirect_to orders_path
   end
 
   private
 
   def order_params
-    params.require(:order).permit(:comment, :date, :finish_point, :price, :start_point, :weight)
+    params.require(:order).permit(:comment, :date, :price, :weight)
   end
 
   def order

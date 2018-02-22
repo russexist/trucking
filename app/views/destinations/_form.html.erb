@@ -1,0 +1,29 @@
+<div class="form-container">
+  <%= form_for @destination_point do |f| %>
+    <% if @destination_point.errors.any? %>
+      <div class="alert alert-danger">
+        <h5><%= t('common.errors') %></h5>
+        <ul>
+          <% @destination_point.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="form-group">
+      <%= f.label :destination_point, class: "control-label" %>
+      <%= f.text_field :destination_point, placeholder: "Улица и номер дома, город", id: "place_address", class: "form-control" %>
+      <input type="text" name="" value="" id="hiden_address" class="form-control hiden">
+    </div>
+    <div class="form-group">
+      <%= f.hidden_field :destination_latitude, id: "place_latitude", class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.hidden_field :destination_longitude, id: "place_longitude", class: "form-control" %>
+    </div>
+</div>
+    <div id="map"></div>
+    <%= f.submit t('.submit'), class: "btn btn-success next" %>
+  <% end %>
+
+<%= render 'starts/map_script' %>

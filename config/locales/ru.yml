@@ -1,0 +1,68 @@
+ru:
+  common:
+    errors: 'При заполении формы возникли ошибки'
+    back: 'Назад'
+    show: 'Просмотреть'
+    delete: 'Удалить'
+    confirm: 'Вы уверенны?'
+    edit: 'Редактировать'
+    save: 'Сохранить'
+    delivered: 'Доставлено'
+    refuse: 'Отказаться'
+    take_order: 'Принять заказ'
+    taken_orders: 'Принятые заказы'
+    accepted_order_driver: 'Вы приняли заказ'
+    accepted_order_user: 'Заказ принял'
+    sign_out: 'Выйти'
+    sign_in: 'Зарегистрироваться'
+    log_in: 'Войти'
+    edit_profile: 'Редактировать профиль'
+    profile_title: 'Профиль пользователя'
+  orders:
+    new:
+      title: 'Новый заказ'
+    edit:
+      title: 'Редактировать заказ'
+    index:
+      new_button: 'Новый заказ'
+      starting_point: 'Начальная точка'
+      destination_point: 'Конечная точка'
+      date: 'Дата'
+      price: 'Цена'
+      status: 'Статус'
+      no_orders: 'Нет доступных заказов'
+    taken_orders:
+      new_button: 'Новый заказ'
+      starting_point: 'Начальная точка'
+      destination_point: 'Конечная точка'
+      date: 'Дата'
+      price: 'Цена'
+      status: 'Статус'
+      no_orders: 'Нет доступных заказов'
+    show:
+      new_button: 'Новый заказ'
+      starting_point: 'Начальная точка'
+      destination_point: 'Конечная точка'
+      date: 'Дата'
+      price: 'Цена'
+      status: 'Статус'
+      comment: 'Комментарий'
+      weight: 'Вес груза'
+    create: 'Заказ успешно создан'
+    delete: 'Заказ был успешно удален'
+  starts:
+    form:
+      submit: "Далее"
+    new:
+      title: 'Точка отправки'
+    edit:
+      title: 'Редактировать начальный пункт'
+    create: 'Точка отправки успешно создана'
+  destinations:
+    form:
+      submit: "Далее"
+    new:
+      title: 'Точка доставки'
+    edit:
+      title: 'Редактировать пункт назначения'
+    create: 'Точка доставки успешно создана'

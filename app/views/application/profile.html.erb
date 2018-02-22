@@ -1,6 +1,6 @@
-<h2>User profile</h2>
+<h2><%= t('common.profile_title') %></h2>
 <hr>
-<% if @user.driver && current_user = @user %>
+<% if @user.driver %>
   <h3>Driver</h3>
 <% end %>
 <h3>user image</h3>
@@ -8,4 +8,4 @@
 <p>Last name: <%= @user.last_name %></p>
 <p>Phone: <%= @user.phone %></p>
 <p>Email: <%= @user.email %></p>
-<%= link_to 'Edit', edit_user_registration_path unless params[:driver] %>
+<%= link_to t('common.edit_profile'), edit_user_registration_path, class: "btn btn-info" %>

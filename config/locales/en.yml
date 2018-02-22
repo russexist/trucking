@@ -30,4 +30,8 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  starts:
+    edit:
+      title: 'Edit order'
+    new:
+      title: 'New order'

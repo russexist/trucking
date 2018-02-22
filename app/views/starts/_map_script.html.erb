@@ -1,0 +1,152 @@
+<script>
+  function initMap() {
+    var inputLatLng = {}
+    inputLatLng['lat'] = parseFloat($('#place_latitude').val());
+    inputLatLng['lng'] = parseFloat($('#place_longitude').val());
+    var markersArray = [];
+    var geocoder = new google.maps.Geocoder;
+    var infowindow = new google.maps.InfoWindow;
+
+    if ($('#place_latitude').val() == 0) {
+      var map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: 49.0, lng: 32.0},
+        zoom: 8
+      });
+      // Try HTML5 geolocation.
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+          var pos = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          };
+
+          var map = new google.maps.Map(document.getElementById('map'), {
+            center: pos,
+            zoom: 16
+          });
+
+          var infowindow = new google.maps.InfoWindow({
+            content: 'Your current location'
+          });
+
+          var marker = new google.maps.Marker({
+            position: pos,
+            map: map
+          });
+          markersArray.push(marker);
+          infowindow.open(map, marker);
+
+          map.addListener('click', function(event) {
+            if (markersArray.length != 0){
+              deleteMarkers();
+            }
+            geocodeLatLng(geocoder, map, event.latLng);
+            var marker = new google.maps.Marker({
+              position: event.latLng,
+              map: map
+            });
+            $('#place_latitude').val(event.latLng.lat);
+            $('#place_longitude').val(event.latLng.lng);
+            markersArray.push(marker);
+          });
+        }, function() {
+          var infoWindow = new google.maps.InfoWindow({map: map});
+          handleLocationError(true, infoWindow, map.getCenter());
+        });
+      }
+      else {
+          // Browser doesn't support Geolocation
+          handleLocationError(false, infoWindow, map.getCenter());
+        }
+      console.log('empty');
+    }
+    else {
+      var map = new google.maps.Map(document.getElementById('map'), {
+        center: inputLatLng,
+        zoom: 16
+      });
+
+      var infowindow = new google.maps.InfoWindow({
+        content: $('#place_address').val()
+      });
+
+      var marker = new google.maps.Marker({
+        position: inputLatLng,
+        map: map
+      });
+      markersArray.push(marker);
+
+      marker.addListener('click', function() {
+        infowindow.open(map, marker);
+        map.setZoom(17);
+        map.setCenter(marker.getPosition());
+      });
+      console.log('fill');
+    }
+
+    map.addListener('click', function(event) {
+      if (markersArray.length != 0){
+        deleteMarkers();
+      }
+      geocodeLatLng(geocoder, map, event.latLng);
+      addMarker(event.latLng);
+    });
+
+
+    // functions
+    function geocodeLatLng(geocoder, map, location) {
+      var valueLat = location.toString().split('(');
+      var valueLng = location.toString().split(', ');
+      var latlng = {lat: parseFloat(valueLat[1]), lng: parseFloat(valueLng[1])};
+      geocoder.geocode({'location': latlng}, function(results, status) {
+        if (status === 'OK') {
+          if (results[1]) {
+            $('#hiden_address').removeClass("hiden");
+            $('#place_address').addClass("hiden");
+            $('#hiden_address').val(results[1].formatted_address);
+            console.log('good');
+          } else {
+            window.alert('No results found');
+          }
+        } else {
+          window.alert('Geocoder failed due to: ' + status);
+        }
+      });
+    }
+
+    function addMarker(location) {
+      var marker = new google.maps.Marker({
+        position: location,
+        map: map
+      });
+      markersArray.push(marker);
+      $('#place_latitude').val(location.lat);
+      $('#place_longitude').val(location.lng);
+      console.log('marker');
+    }
+
+    function setMapOnAll(map) {
+      for (var i = 0; i < markersArray.length; i++) {
+        markersArray[i].setMap(map);
+      }
+    }
+
+    function clearMarkers() {
+       setMapOnAll(null);
+     }
+
+    function deleteMarkers() {
+      clearMarkers();
+      markersArray = [];
+    }
+
+    function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+      infoWindow.setPosition(pos);
+      infoWindow.setContent(browserHasGeolocation ? 'Error: The Geolocation service failed.' : 'Error: Your browser doesn\'t support geolocation.');
+    }
+  }
+</script>
+
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjgTe57M-Jmvs1PfRM-a5xHQy9XTrTUlw&callback=initMap">
+</script>
