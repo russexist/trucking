@@ -1,11 +1,11 @@
-<h2>Принятые заявки</h2>
+<h2 class="text-center"><%= t('common.taken_orders') %></h2>
 <table class="table">
   <tr>
-    <th>Откуда</th>
-    <th>Куда</th>
-    <th>Дата</th>
-    <th>Цена</th>
-    <th>Статус</th>
+    <th><%= t('.starting_point') %></th>
+    <th><%= t('.destination_point') %></th>
+    <th><%= t('.date') %></th>
+    <th><%= t('.price') %></th>
+    <th><%= t('.status') %></th>
     <th colspan="2"></th>
   </tr>
   <% @taken_orders.each do |order| %>
@@ -15,8 +15,8 @@
       <td><%= order.date %></td>
       <td><%= order.price %></td>
       <td><%= order.status %></td>
-      <td><%= link_to 'Просмотреть', order, class: "btn btn-light" %></td>
-      <td><%= link_to 'Удалить', order_path(order), method: :delete,
+      <td><%= link_to t('common.show'), order, class: "btn btn-light" %></td>
+      <td><%= link_to t('common.delete'), order_path(order), method: :delete,
               data: { confirm: 'Are you sure?' }, class: "btn btn-light" unless current_user.driver %></td>
     </tr>
   <% end %>

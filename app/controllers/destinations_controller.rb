@@ -22,7 +22,7 @@ class DestinationsController < ApplicationController
 
   def update
     if @destination_point.update(destination_point_params)
-      redirect_to edit_order_path(@destination_point.order)
+      redirect_to order_path(@destination_point.order)
     else
       render 'edit'
     end

@@ -11,26 +11,33 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <%= link_to "Trucking", root_url, class: "navbar-brand" %>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse navbar-right" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
+          <% if user_signed_in? && current_user.driver %>
+            <li class="nav-item">
+              <%= link_to t('common.taken_orders'), taken_orders_path, class: "nav-link" %>
+            </li>
+          <% end %>
+        </ul>
+        <ul class="navbar-nav mr-right">
           <% if user_signed_in? %>
             <li class="nav-item">
-              <%= link_to current_user.first_name, profile_path, class: "nav-link" %>
+              <%= link_to current_user.first_name, profile_path, class: "nav-link mr-sm-2" %>
             </li>
             <li class="nav-item">
-              <%= link_to 'Выйти', destroy_user_session_path, method: :delete, class: "nav-link" %>
-            </li>
-            <li class="nav-item">
-              <%= link_to 'Принятые заявки', taken_orders_path, class: "nav-link" if current_user.driver %>
+              <%= link_to t('common.sign_out'), destroy_user_session_path, method: :delete, class: "btn btn-outline-danger" %>
             </li>
           <% else %>
             <li class="nav-item">
-              <%= link_to 'Войти', new_user_session_path, class: "nav-link" %>
+              <%= link_to t('common.log_in'), new_user_session_path, class: "btn btn-outline-warning mr-sm-2" %>
             </li>
             <li class="nav-item">
-              <%= link_to 'Зарегистрироваться', new_user_registration_path, class: "nav-link" %>
+              <%= link_to t('common.sign_in'), new_user_registration_path, class: "btn btn-outline-success" %>
             </li>
           <% end %>
         </ul>

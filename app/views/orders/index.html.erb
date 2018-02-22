@@ -1,23 +1,26 @@
-<table class="table">
-  <tr>
-    <th>Откуда</th>
-    <th>Куда</th>
-    <th>Дата</th>
-    <th>Цена</th>
-    <th>Статус</th>
-    <th colspan="2"></th>
-  </tr>
+<table class="table table-hover">
+  <% if @orders.where(status: 0).blank? %>
+    <h2 class="text-center">Нет доступных заявок</h2>
+  <% else %>
+    <tr>
+      <th><%= t('.starting_point') %></th>
+      <th><%= t('.destination_point') %></th>
+      <th><%= t('.date') %></th>
+      <th><%= t('.price') %></th>
+      <th><%= t('.status') %></th>
+      <th colspan="2"></th>
+    </tr>
+  <% end %>
   <% if current_user.driver %>
-      <% @orders.where(status: 0).each do |order| %>
-        <%= render 'orders', order: order %>
-      <% end %>
-      <% if @orders.where(status: 0).blank? %>
-        <h2>Нет доступных заявок</h2>
-      <% end %>
+    <% @orders.where(status: 0).each do |order| %>
+      <%= render 'orders', order: order %>
+    <% end %>
   <% else %>
     <% current_user.orders.each do |order| %>
       <%= render 'orders', order: order %>
     <% end %>
   <% end %>
 </table>
-<%= link_to "Новая заявка", new_start_path, class: "btn btn-info" unless current_user.driver %>
+<div class="text-center">
+  <%= link_to t('.new_button'), new_start_path, class: "btn btn-info" unless current_user.driver %>
+</div>

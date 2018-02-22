@@ -1,37 +1,42 @@
 <div class="jumbotron">
   <p class="lead">
-    <p><strong>Откуда: </strong> <%= @order.starting_point %></p>
-    <p><strong>Куда:</strong>  <%= @order.destination_point %></p>
+    <p>
+      <strong><%= t('.starting_point') %>:</strong> <%= @order.starting_point %>
+      <%= link_to t('common.edit'), edit_start_path(@order.start), class: "btn btn-info" unless current_user.driver  %>
+    </p>
+    <p>
+      <strong><%= t('.destination_point') %>:</strong>  <%= @order.destination_point %>
+      <%= link_to t('common.edit'), edit_destination_path(@order.destination), class: "btn btn-info" unless current_user.driver  %>
+    </p>
   </p>
   <hr class="my-4">
-  <p>Цена: <%= @order.price %></p>
-  <p>Дата: <%= @order.date %></p>
-  <p>Вес груза: <%= @order.weight %> кг</p>
-  <p id="status">Статус: <%= @order.status %></p>
-  <p>Комментарий: <%= @order.comment %></p>
+  <p><%= t('.price') %>: <%= @order.price %></p>
+  <p><%= t('.date') %>: <%= @order.date %></p>
+  <p><%= t('.weight') %>: <%= @order.weight %> кг</p>
+  <p><%= t('.status') %>: <%= @order.status %></p>
+  <p><%= t('.comment') %>: <%= @order.comment %></p>
 
   <% if @driver.present? %>
     <% if current_user.driver %>
-      <p>Вы приняли заказ</p>
+      <p><%= t('common.accepted_order_driver') %></p>
     <% else %>
-      <p>Заказ принял: <%= link_to "#{@driver.first_name} #{@driver.last_name}", profile_path(driver: @driver) %></p>
+      <p><%= t('common.accepted_order_user') %>: <%= link_to "#{@driver.first_name} #{@driver.last_name}", profile_path(driver: @driver) %></p>
     <% end %>
   <% end %>
 
   <p class="lead">
     <% if current_user.driver %>
       <% if @order.status.match('Принят') %>
-        <%= link_to 'Доставлен', change_status_path(id: @order, status: 2, driver_id: current_user), class: "btn btn-info" %>
-        <%= link_to 'Отказаться', change_status_path(id: @order, status: 0, driver_id: nil), class: "btn btn-info" %>
+        <%= link_to t('common.delivered'), change_status_path(id: @order, status: 2, driver_id: current_user), class: "btn btn-info" %>
+        <%= link_to t('common.refuse'), change_status_path(id: @order, status: 0, driver_id: nil), class: "btn btn-info" %>
       <% else %>
-        <%= link_to 'Принять заказ', change_status_path( id: @order, status: 1, driver_id: current_user),class: "btn btn-info" %>
+        <%= link_to t('common.take_order'), change_status_path(id: @order, status: 1, driver_id: current_user), class: "btn btn-info" %>
       <% end %>
     <% else %>
-      <%= link_to 'Редактировать', edit_start_path(@order.start), class: "btn btn-info" %>
-      <%= link_to 'Удалить', start_path(@order.start), method: :delete, data: { confirm: 'Вы уверены?' }, class: "btn btn-info" %>
+      <%= link_to t('common.edit'), edit_order_path(@order), class: "btn btn-info" %>
+      <%= link_to t('common.delete'), start_path(@order.start), method: :delete, data: { confirm: 'Вы уверены?' }, class: "btn btn-info" %>
     <% end %>
   </p>
-  <h3>My Google Maps Demo</h3>
   <div id="map"></div>
 </div>
 

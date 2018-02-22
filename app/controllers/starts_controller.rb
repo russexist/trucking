@@ -22,7 +22,7 @@ class StartsController < ApplicationController
 
   def update
     if @starting_point.update(starting_point_params)
-      redirect_to edit_destination_path(@starting_point.destination)
+      redirect_to order_path(@starting_point.order)
     else
       render 'edit'
     end

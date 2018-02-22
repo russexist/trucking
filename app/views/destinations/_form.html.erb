@@ -20,8 +20,7 @@
     <%= f.text_field :destination_longitude, id: "place_longitude", class: "form-control" %>
   </div>
   <div id="map"></div>
-  <%= f.submit 'Сохранить', class: "btn btn-success" %>
-  <%= link_to 'Назад', :back, class: "btn btn-default" %>
+  <%= f.submit t('.submit', action: @destination_point.new_record? ? 'Далее' : 'Сохранить'), class: "btn btn-success" %>
 <% end %>
 
 <%= render 'starts/map_script' %>

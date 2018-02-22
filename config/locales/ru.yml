@@ -1,0 +1,55 @@
+ru:
+  common:
+    errors: 'При заполении формы возникли ошибки'
+    back: 'Назад'
+    show: 'Просмотреть'
+    delete: 'Удалить'
+    confirm: 'Вы уверенны?'
+    edit: 'Редактировать'
+    save: 'Сохранить'
+    delivered: 'Доставлено'
+    refuse: 'Отказаться'
+    take_order: 'Принять заказ'
+    taken_orders: 'Принятые заявки'
+    accepted_order_driver: 'Вы приняли заказ'
+    accepted_order_user: 'Заказ принял'
+    sign_out: 'Выйти'
+    sign_in: 'Зарегистрироваться'
+    log_in: 'Войти'
+    edit_profile: 'Редактировать профиль'
+    profile_title: 'Профиль пользователя'
+  orders:
+    new:
+      title: 'Новый заказ'
+    edit:
+      title: 'Редактировать заказ'
+    index:
+      new_button: 'Новый заказ'
+      starting_point: 'Начальная точка'
+      destination_point: 'Конечная точка'
+      date: 'Дата'
+      price: 'Цена'
+      status: 'Статус'
+    show:
+      new_button: 'Новый заказ'
+      starting_point: 'Начальная точка'
+      destination_point: 'Конечная точка'
+      date: 'Дата'
+      price: 'Цена'
+      status: 'Статус'
+      comment: 'Комментарий'
+      weight: 'Вес груза'
+  starts:
+    form:
+      submit: "%{action}"
+    new:
+      title: 'Начальный пункт'
+    edit:
+      title: 'Редактировать начальный пункт'
+  destinations:
+    form:
+      submit: "%{action}"
+    new:
+      title: 'Пункт назначения'
+    edit:
+      title: 'Редактировать пункт назначения'

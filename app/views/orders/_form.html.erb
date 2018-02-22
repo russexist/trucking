@@ -1,10 +1,11 @@
 <%= form_for @order do |f| %>
   <% if @order.errors.any? %>
-      <ul>
-        <% @order.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-          <% end %>
-      </ul>
+    <h5><%= t('common.errors') %></h5>
+    <ul>
+      <% @order.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+        <% end %>
+    </ul>
   <% end %>
   <div class="form-group">
     <%= f.label :date, class: "control-label" %>
@@ -16,6 +17,6 @@
     <%= f.label :comment, class: "control-label" %>
     <%= f.text_area :comment, class: "form-control" %>
   </div>
-  <%= f.submit 'Сохранить', class: "btn btn-success" %>
-  <%= link_to 'Назад', :back, class: "btn btn-default" %>
+  <%= f.submit t('common.save'), class: "btn btn-success" %>
+  <%= link_to t('common.back'), :back, class: "btn btn-default" %>
 <% end %>

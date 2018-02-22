@@ -1,10 +1,11 @@
 <%= form_for @starting_point do |f| %>
   <% if @starting_point.errors.any? %>
-      <ul>
-        <% @starting_point.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-          <% end %>
-      </ul>
+    <h5><%= t('common.errors') %></h5>
+    <ul>
+      <% @starting_point.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+        <% end %>
+    </ul>
   <% end %>
   <div class="form-group">
     <%= f.label :starting_point, class: "control-label" %>
@@ -20,8 +21,7 @@
     <%= f.text_field :start_longitude, id: "place_longitude", class: "form-control" %>
   </div>
   <div id="map"></div>
-  <%= f.submit 'Сохранить', class: "btn btn-success" %>
-  <%= link_to 'Назад', :back, class: "btn btn-default" %>
+  <%= f.submit t('.submit', action: @starting_point.new_record? ? 'Далее' : 'Сохранить'), class: "btn btn-success" %>
 <% end %>
 
 <%= render 'map_script' %>

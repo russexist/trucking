@@ -33,15 +33,8 @@
             position: pos,
             map: map
           });
-          $('#place_latitude').val(pos.lat);
-          $('#place_longitude').val(pos.lng);
           markersArray.push(marker);
-
-          marker.addListener('click', function() {
-            infowindow.open(map, marker);
-            map.setZoom(17);
-            map.setCenter(marker.getPosition());
-          });
+          infowindow.open(map, marker);
 
           map.addListener('click', function(event) {
             if (markersArray.length != 0){
@@ -65,7 +58,7 @@
           // Browser doesn't support Geolocation
           handleLocationError(false, infoWindow, map.getCenter());
         }
-      alert('empty');
+      console.log('empty');
     }
     else {
       var map = new google.maps.Map(document.getElementById('map'), {
@@ -88,7 +81,7 @@
         map.setZoom(17);
         map.setCenter(marker.getPosition());
       });
-      alert('fill');
+      console.log('fill');
     }
 
     map.addListener('click', function(event) {
