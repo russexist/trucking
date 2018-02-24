@@ -85,3 +85,7 @@ ru:
     new: Новый
     accepted: Принят
     delivered: Доставлен
+
+  will_paginate:
+    next_label: '>'
+    previous_label: '<'

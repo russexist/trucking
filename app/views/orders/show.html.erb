@@ -2,11 +2,11 @@
   <p class="lead">
     <p>
       <strong><%= t('.starting_point') %>:</strong> <%= @order.starting_point %>
-      <%= link_to t('common.edit'), edit_start_path(@order.start), class: "btn btn-info" unless current_user.driver  %>
+      <%= button_to t('common.edit'), edit_start_path(@order.start), method: :get, class: "btn btn-info" unless current_user.driver  %>
     </p>
     <p>
       <strong><%= t('.destination_point') %>:</strong>  <%= @order.destination_point %>
-      <%= link_to t('common.edit'), edit_destination_path(@order.destination), class: "btn btn-info" unless current_user.driver  %>
+      <%= button_to t('common.edit'), edit_destination_path(@order.destination), method: :get, class: "btn btn-info" unless current_user.driver  %>
     </p>
   </p>
   <hr class="my-4">

@@ -10,6 +10,7 @@ class Order < ApplicationRecord
 
   enum status: [I18n.t('status.new'), I18n.t('status.accepted'), I18n.t('status.delivered')]
 
+  self.per_page = 8
   scope :status_new, -> { where(status: 0) }
 
   validates :date, :price, :weight, presence: true

@@ -18,7 +18,7 @@
         <%= render 'orders', order: order %>
       <% end %>
     <% else %>
-      <% current_user.orders.each do |order| %>
+      <% @user_orders.each do |order| %>
         <%= render 'orders', order: order %>
       <% end %>
     <% end %>
@@ -29,3 +29,4 @@
 <div class="text-center">
   <%= link_to t('.new_button'), new_start_path, method: :get, class: "btn btn-info" unless current_user.driver %>
 </div>
+<%= will_paginate current_user.driver ? @orders.status_new : @user_orders %>
