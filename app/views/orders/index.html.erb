@@ -1,5 +1,10 @@
 <table class="table table-hover">
   <% if current_user.driver ? @orders.status_new.present? : current_user.orders.present? %>
+    <% if current_user.driver %>
+      <h2 class="text-center"><%= t('.available') %></h2>
+    <% else %>
+      <h2 class="text-center"><%= t('.your_orders') %></h2>
+    <% end %>
     <tr>
       <th><%= t('.starting_point') %></th>
       <th><%= t('.destination_point') %></th>

@@ -8,7 +8,7 @@ class Order < ApplicationRecord
   delegate :destination_point, to: :destination
   delegate :starting_point, to: :start
 
-  enum status: %w[Новый Принят Доставлен]
+  enum status: [I18n.t('status.new'), I18n.t('status.accepted'), I18n.t('status.delivered')]
 
   scope :status_new, -> { where(status: 0) }
 

@@ -1,3 +1,4 @@
+<h5 class="text-center"><%= t('.from') %></h5>
 <div class="form-container">
   <%= form_for @starting_point do |f| %>
     <% if @starting_point.errors.any? %>
@@ -11,8 +12,7 @@
       </div>
     <% end %>
     <div class="form-group">
-      <%= f.label :starting_point, class: "control-label" %>
-      <%= f.text_field :starting_point, placeholder: "Улица и номер дома, город", id: "place_address", class: "form-control" %>
+      <%= f.text_field :starting_point, placeholder: t('.placeholder'), id: "place_address", class: "form-control" %>
       <input type="text" name="" value="" id="hiden_address" class="form-control hiden">
     </div>
     <div class="form-group">
