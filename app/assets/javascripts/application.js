@@ -22,6 +22,12 @@
 
 var ready;
 ready = function() {
-  $( "#datepicker" ).datepicker();
+  $("#datepicker").datepicker({
+    minDate: 0,
+    dateFormat: "dd/mm/yy",
+    showAnim: "drop",
+    showOtherMonths: true
+  });
+  datepickerRu();
 }
 $(document).on('turbolinks:load', ready);

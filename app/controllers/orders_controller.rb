@@ -26,7 +26,8 @@ class OrdersController < ApplicationController
   def edit; end
 
   def index
-    @orders = Order.all
+    @orders = Order.all.paginate(page: params[:page])
+    @user_orders = current_user.orders.paginate(page: params[:page])
   end
 
   def show

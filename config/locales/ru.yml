@@ -1,68 +1,96 @@
 ru:
   common:
-    errors: 'При заполении формы возникли ошибки'
-    back: 'Назад'
-    show: 'Просмотреть'
-    delete: 'Удалить'
-    confirm: 'Вы уверенны?'
-    edit: 'Редактировать'
-    save: 'Сохранить'
-    delivered: 'Доставлено'
-    refuse: 'Отказаться'
-    take_order: 'Принять заказ'
-    taken_orders: 'Принятые заказы'
-    accepted_order_driver: 'Вы приняли заказ'
-    accepted_order_user: 'Заказ принял'
-    sign_out: 'Выйти'
-    sign_in: 'Зарегистрироваться'
-    log_in: 'Войти'
-    edit_profile: 'Редактировать профиль'
-    profile_title: 'Профиль пользователя'
-  orders:
-    new:
-      title: 'Новый заказ'
-    edit:
-      title: 'Редактировать заказ'
-    index:
-      new_button: 'Новый заказ'
-      starting_point: 'Начальная точка'
-      destination_point: 'Конечная точка'
-      date: 'Дата'
-      price: 'Цена'
-      status: 'Статус'
-      no_orders: 'Нет доступных заказов'
-    taken_orders:
-      new_button: 'Новый заказ'
-      starting_point: 'Начальная точка'
-      destination_point: 'Конечная точка'
-      date: 'Дата'
-      price: 'Цена'
-      status: 'Статус'
-      no_orders: 'Нет доступных заказов'
-    show:
-      new_button: 'Новый заказ'
-      starting_point: 'Начальная точка'
-      destination_point: 'Конечная точка'
-      date: 'Дата'
-      price: 'Цена'
-      status: 'Статус'
-      comment: 'Комментарий'
-      weight: 'Вес груза'
-    create: 'Заказ успешно создан'
-    delete: 'Заказ был успешно удален'
-  starts:
-    form:
-      submit: "Далее"
-    new:
-      title: 'Точка отправки'
-    edit:
-      title: 'Редактировать начальный пункт'
-    create: 'Точка отправки успешно создана'
+    accepted_order_driver: Вы приняли заказ
+    accepted_order_user: Заказ принял
+    back: Назад
+    confirm: Вы уверенны?
+    delete: Удалить
+    delivered: Доставлено
+    edit: Редактировать
+    edit_profile: Редактировать профиль
+    errors: При заполении формы возникли ошибки
+    history: История заказов
+    log_in: Войти
+    profile_title: Профиль пользователя
+    refuse: Отказаться
+    save: Сохранить
+    show: Просмотреть
+    sign_in: Зарегистрироваться
+    sign_out: Выйти
+    take_order: Принять заказ
+    taken_orders: Принятые заказы
+
   destinations:
-    form:
-      submit: "Далее"
-    new:
-      title: 'Точка доставки'
+    create: Точка доставки успешно создана
     edit:
-      title: 'Редактировать пункт назначения'
-    create: 'Точка доставки успешно создана'
+      title: Редактировать пункт назначения
+    form:
+      placeholder: Например, Хрещатик 208, Киев
+      submit: Далее
+      to: Введите или выберите на карте КУДА следует доставить груз
+    new:
+      title: Точка доставки
+
+  helpers:
+    uah: ' грн.'
+
+  orders:
+    create: Заказ успешно создан
+    delete: Заказ был успешно удален
+    edit:
+      title: Редактировать заказ
+    form:
+      comment: Здесь вы можете оставить свой комментарий (необязательно)
+      date: ДД/ММ/РРРР
+      detail: Детали заказа
+      price: Предложите свою цену
+      weight: Примерный вес груза
+    index:
+      available: Доступные заказы
+      date: Дата
+      destination_point: Конечная точка
+      new_button: Новый заказ
+      no_orders: Нет доступных заказов
+      price: Цена
+      starting_point: Начальная точка
+      status: Статус
+      your_orders: Ваши заказы
+    new:
+      title: Новый заказ
+    show:
+      comment: Комментарий
+      date: Дата
+      destination_point: Конечная точка
+      new_button: Новый заказ
+      price: Цена
+      starting_point: Начальная точка
+      status: Статус
+      weight: Вес груза
+    taken_orders:
+      date: Дата
+      destination_point: Конечная точка
+      new_button: Новый заказ
+      no_orders: Нет доступных заказов
+      starting_point: Начальная точка
+      status: Статус
+      price: Цена
+
+  starts:
+    create: Точка отправки успешно создана
+    edit:
+      title: Редактировать начальный пункт
+    form:
+      from: Введите или выберите на карте ОТКУДА следует забрать груз
+      placeholder: Например, Енгельса 162, Черкаси
+      submit: Далее
+    new:
+      title: Точка отправки
+
+  status:
+    new: Новый
+    accepted: Принят
+    delivered: Доставлен
+
+  will_paginate:
+    next_label: '>'
+    previous_label: '<'
