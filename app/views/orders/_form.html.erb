@@ -13,13 +13,13 @@
     <% end %>
     <div class="form-group">
       <%= f.label :date, class: "control-label" %>
-      <%= f.text_field :date, autocomplete: "off", class: "form-control", id: "datepicker" %>
+      <%= f.text_field :date, autocomplete: "off", class: "form-control", id: "datepicker", placeholder: t('.date') %>
       <%= f.label :price, class: "control-label" %>
-      <%= f.number_field :price, class: "form-control" %>
+      <%= f.number_field :price, class: "form-control", placeholder: t('.price') %>
       <%= f.label :weight, class: "control-label" %>
-      <%= f.number_field :weight, class: "form-control" %>
+      <%= f.number_field :weight, class: "form-control", placeholder: t('.weight') %>
       <%= f.label :comment, class: "control-label" %>
-      <%= f.text_area :comment, class: "form-control" %>
+      <%= f.text_area :comment, class: "form-control", placeholder: t('.comment') %>
     </div>
     <%= f.submit t('common.save'), class: "btn btn-success next" %>
   <% end %>

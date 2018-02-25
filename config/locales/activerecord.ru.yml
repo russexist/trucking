@@ -10,11 +10,11 @@ ru:
     attributes:
       destination:
         destination_point: 'Конечная точка'
-        
+
       order: 'Заказ'
     attributes:
       order:
-        price: 'Предложите цену'
+        price: 'Цена'
         weight: 'Вес груза'
         comment: 'Комментарий'
         date: 'Дата'
