@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class StartsController < ApplicationController
-  before_action :starting_point, except: %i[new create]
+  before_action :set_starting_point, except: %i[new create]
   before_action :authenticate_user!
 
   def new
@@ -41,7 +41,7 @@ class StartsController < ApplicationController
     params.require(:start).permit(:start_latitude, :start_longitude, :starting_point)
   end
 
-  def starting_point
+  def set_starting_point
     @starting_point = Start.find(params[:id])
   end
 end
