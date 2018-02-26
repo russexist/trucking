@@ -8,9 +8,6 @@
     <%= stylesheet_link_tag    "//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag "https://code.jquery.com/ui/1.12.1/jquery-ui.js" %>
-    <script async defer
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjgTe57M-Jmvs1PfRM-a5xHQy9XTrTUlw&callback=initMap">
-    </script>
   </head>
 
   <body>
@@ -31,6 +28,17 @@
           <% end %>
         </ul>
         <ul class="navbar-nav mr-right">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Выберите язык
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </li>
           <% if user_signed_in? %>
             <li class="nav-item">
               <%= link_to current_user.first_name, profile_path, class: "nav-link mr-sm-2" %>

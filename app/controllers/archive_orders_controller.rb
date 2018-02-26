@@ -20,7 +20,7 @@ class ArchiveOrdersController < ApplicationController
   end
 
   def index
-    @archive_orders = ArchiveOrder.all.paginate(page: params[:page])
+    @archive_orders = current_user.archive_orders.paginate(page: params[:page])
   end
 
   def show; end

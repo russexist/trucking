@@ -11,7 +11,6 @@
   <p><%= t('orders.show.status') %>: <%= @archive_order.status %></p>
   <p><%= t('orders.show.comment') %>: <%= @archive_order.comment %></p>
 
-  <p class="lead">
   <div id="map"></div>
 </div>
 
@@ -44,4 +43,7 @@
       }
     });
   }
+</script>
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjgTe57M-Jmvs1PfRM-a5xHQy9XTrTUlw&callback=initMap">
 </script>
