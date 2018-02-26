@@ -8,6 +8,9 @@
     <%= stylesheet_link_tag    "//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag "https://code.jquery.com/ui/1.12.1/jquery-ui.js" %>
+    <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjgTe57M-Jmvs1PfRM-a5xHQy9XTrTUlw&callback=initMap">
+    </script>
   </head>
 
   <body>
@@ -23,7 +26,7 @@
               <%= link_to t('common.taken_orders'), taken_orders_path, class: "nav-link" %>
             </li>
             <li class="nav-item">
-              <%= link_to t('common.archive'), taken_orders_path, class: "nav-link" %>
+              <%= link_to t('common.archive'), archive_orders_path, class: "nav-link" %>
             </li>
           <% end %>
         </ul>

@@ -1,0 +1,28 @@
+<% if @archive_orders.present? %>
+  <h2 class="text-center"><%= t('.archive') %></h2>
+  <table class="table">
+    <tr>
+      <th><%= t('orders.index.starting_point') %></th>
+      <th><%= t('orders.index.destination_point') %></th>
+      <th><%= t('orders.index.date') %></th>
+      <th class="col-md"><%= t('orders.index.price') %></th>
+      <th><%= t('orders.index.status') %></th>
+      <th colspan="2"></th>
+    </tr>
+<% else %>
+  <h2 class="text-center"><%= t('.no_orders') %></h2>
+<% end %>
+
+  <% @archive_orders.each do |order| %>
+    <tr>
+      <td><%= order.start_point %></td>
+      <td><%= order.destination_point %></td>
+      <td><%= order.date %></td>
+      <td><%= order.price %></td>
+      <td style="color: green"><%= order.status %></td>
+      <td><%= link_to t('common.show'), order, class: "btn btn-light" %></td>
+      <td><%= link_to t('common.delete'), archive_order_path(order), method: :delete,
+              data: { confirm: 'Are you sure?' }, class: "btn btn-light" if current_user.driver %></td>
+    </tr>
+  <% end %>
+</table>

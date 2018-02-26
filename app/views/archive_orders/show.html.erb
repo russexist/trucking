@@ -1,0 +1,47 @@
+<h1 class="text-center"><%= t('.archive') %></h1>
+<div class="jumbotron">
+  <p class="lead">
+    <p><strong><%= t('orders.show.starting_point') %>:</strong> <%= @archive_order.start_point %></p>
+    <p><strong><%= t('orders.show.destination_point') %>:</strong> <%= @archive_order.destination_point %></p>
+  </p>
+  <hr class="my-4">
+  <p><%= t('orders.show.price') %>: <%= format_uah(@archive_order.price) %></p>
+  <p><%= t('orders.show.date') %>: <%= @archive_order.date %></p>
+  <p><%= t('orders.show.weight') %>: <%= format_weight(@archive_order.weight) %></p>
+  <p><%= t('orders.show.status') %>: <%= @archive_order.status %></p>
+  <p><%= t('orders.show.comment') %>: <%= @archive_order.comment %></p>
+
+  <p class="lead">
+  <div id="map"></div>
+</div>
+
+<script>
+  function initMap() {
+    var directionsService = new google.maps.DirectionsService;
+    var directionsDisplay = new google.maps.DirectionsRenderer;
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 9,
+      center: {lat: 49.0, lng: 32.0}
+    });
+    directionsDisplay.setMap(map);
+
+    var onChangeHandler = function() {
+      calculateAndDisplayRoute(directionsService, directionsDisplay);
+    };
+    onChangeHandler();
+  }
+
+  function calculateAndDisplayRoute(directionsService, directionsDisplay) {
+    directionsService.route({
+      origin: '<%= @archive_order.start_point %>',
+      destination: '<%= @archive_order.destination_point %>',
+      travelMode: 'DRIVING'
+    }, function(response, status) {
+      if (status === 'OK') {
+        directionsDisplay.setDirections(response);
+      } else {
+        window.alert('Directions request failed due to ' + status);
+      }
+    });
+  }
+</script>

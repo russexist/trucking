@@ -10,10 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180221160644) do
+ActiveRecord::Schema.define(version: 20180225200249) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "archive_orders", force: :cascade do |t|
+    t.integer "price"
+    t.integer "weight"
+    t.text "comment"
+    t.integer "user_id"
+    t.integer "status"
+    t.integer "driver_id"
+    t.string "date"
+    t.string "start_point"
+    t.string "destination_point"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "destinations", force: :cascade do |t|
     t.string "destination_point"

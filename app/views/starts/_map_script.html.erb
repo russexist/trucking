@@ -1,4 +1,4 @@
-<script>
+<script type="text/javascript">
   function initMap() {
     var inputLatLng = {}
     inputLatLng['lat'] = parseFloat($('#place_latitude').val());
@@ -145,8 +145,4 @@
       infoWindow.setContent(browserHasGeolocation ? 'Error: The Geolocation service failed.' : 'Error: Your browser doesn\'t support geolocation.');
     }
   }
-</script>
-
-<script async defer
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjgTe57M-Jmvs1PfRM-a5xHQy9XTrTUlw&callback=initMap">
 </script>
