@@ -12,6 +12,9 @@ class Order < ApplicationRecord
 
   self.per_page = 8
   scope :status_new, -> { where(status: 0) }
+  scope :status_taken, -> { where(status: 1) }
+  scope :taken_with_driver, -> { where(status: 1, driver_id: current_user) }
+  scope :delivered, -> { where(status: 2) }
 
   validates :date, :price, :weight, presence: true
 end

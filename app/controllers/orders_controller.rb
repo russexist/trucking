@@ -47,7 +47,7 @@ class OrdersController < ApplicationController
   end
 
   def taken_orders
-    @taken_orders = Order.where(status: 1, driver_id: current_user)
+    @taken_orders = Order.taken_with_driver.paginate(page: params[:page])
   end
 
   def destroy
