@@ -1,5 +1,5 @@
 <table class="table table-hover">
-  <% if current_user.driver ? @orders.status_new.present? : current_user.orders.present? %>
+  <% if current_user.driver ? @orders.status_new.present? : @user_orders.present? %>
     <% if current_user.driver %>
       <h2 class="text-center"><%= t('.available') %></h2>
     <% else %>

@@ -8,4 +8,4 @@
 <p>Last name: <%= @user.last_name %></p>
 <p>Phone: <%= @user.phone %></p>
 <p>Email: <%= @user.email %></p>
-<%= link_to t('common.edit_profile'), edit_user_registration_path, class: "btn btn-info" %>
+<%= link_to t('common.edit_profile'), edit_user_registration_path, class: "btn btn-info" if @user == current_user %>

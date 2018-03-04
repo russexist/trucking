@@ -20,7 +20,7 @@
     <% if current_user.driver %>
       <p><%= t('common.accepted_order_driver') %></p>
     <% else %>
-      <p><%= t('common.accepted_order_user') %>: <%= link_to "#{@driver.first_name} #{@driver.last_name}", profile_path(driver: @driver) %></p>
+      <p><%= t('common.accepted_order_user') %>: <%= link_to "#{@driver.first_name} #{@driver.last_name}", profile_path(id: @driver) %></p>
     <% end %>
   <% end %>
 

@@ -1,0 +1,16 @@
+// Place all the styles related to the Conversations controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.msg{
+  border: 2px solid red;
+  margin: 5px 0;
+}
+
+.read{
+  background-color: yellow;
+}
+
+.unread{
+  background-color: grey;
+}

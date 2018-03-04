@@ -8,9 +8,12 @@ Rails.application.routes.draw do
   get '/profile', to: 'application#profile'
 
   resources :archive_orders, only: %i[index create show destroy]
+  resources :conversations do
+    resources :messages
+  end
   resources :destinations
-  resources :starts
   resources :orders
+  resources :starts
 
   root 'orders#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

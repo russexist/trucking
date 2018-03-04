@@ -98,8 +98,8 @@ ru:
 
   status:
     new: Новый
-    accepted: Принят
     delivered: Доставлен
+    taken: Принят
 
   will_paginate:
     next_label: '>'

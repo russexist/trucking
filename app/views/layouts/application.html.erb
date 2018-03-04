@@ -26,6 +26,11 @@
               <%= link_to t('common.archive'), archive_orders_path, class: "nav-link" %>
             </li>
           <% end %>
+          <% if user_signed_in? %>
+          <li class="nav-item">
+            <%= link_to 'Диалоги', conversations_path, class: "nav-link" %>
+          </li>
+          <% end %>
         </ul>
         <ul class="navbar-nav mr-right">
           <li class="nav-item dropdown">
