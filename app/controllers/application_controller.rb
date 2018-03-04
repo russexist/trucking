@@ -4,10 +4,18 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :set_locale
+
+  def default_url_options(options = {})
+    { locale: I18n.locale }.merge options
+  end
 
   def profile
-    # @user = params[:driver] ? User.find_by(id: params[:driver]) : current_user
     @user = params[:id] ? User.find_by(id: params[:id]) : current_user
+  end
+
+  def set_locale
+    I18n.locale = params[:locale] || I18n.default_locale
   end
 
   protected

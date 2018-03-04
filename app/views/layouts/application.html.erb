@@ -3,7 +3,8 @@
   <head>
     <title>Trucking</title>
     <%= csrf_meta_tags %>
-
+    
+    <link href="<%= image_path("favicon.ico") %>" rel="shortcut icon" />
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_link_tag    "//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -35,13 +36,15 @@
         <ul class="navbar-nav mr-right">
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Выберите язык
+              <%= I18n.locale.upcase %>
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
+              <%= link_to 'en', locale: :en %>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Something else here</a>
+              <%= link_to 'ru', locale: :ru %>
+              <div class="dropdown-divider"></div>
+              <%= link_to 'ua', locale: :ua %>
             </div>
           </li>
           <% if user_signed_in? %>

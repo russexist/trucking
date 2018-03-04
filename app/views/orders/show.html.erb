@@ -25,8 +25,8 @@
   <% end %>
 
   <p class="lead">
-    <% if current_user.driver %>
-      <% if @order.status.match(t('status.accepted')) %>
+    <% if current_user.driver.present? %>
+      <% if @order.status.match(t('status.taken')) %>
         <%= link_to t('common.delivered'), archive_orders_path(id: @order, status: 2, driver_id: current_user), method: :post, class: "btn btn-info" %>
         <%= link_to t('common.refuse'), change_status_path(id: @order, status: 0, driver_id: nil), class: "btn btn-info" %>
       <% else %>
