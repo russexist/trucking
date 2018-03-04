@@ -1,7 +1,16 @@
 ru:
+  archive_orders:
+    add_to_archive: Заказ добавлен в архив
+    delete: Заказ был удален
+    show:
+      archive: Архив
+    index:
+      archive: Архив
+      no_orders: Архив пуст
   common:
     accepted_order_driver: Вы приняли заказ
     accepted_order_user: Заказ принял
+    archive: Архив заказов
     back: Назад
     confirm: Вы уверенны?
     delete: Удалить
@@ -32,11 +41,12 @@ ru:
       title: Точка доставки
 
   helpers:
-    uah: ' грн.'
+    weight: ' кг'
+    uah: ' грн'
 
   orders:
     create: Заказ успешно создан
-    delete: Заказ был успешно удален
+    delete: Заказ был удален
     edit:
       title: Редактировать заказ
     form:
@@ -70,7 +80,7 @@ ru:
       date: Дата
       destination_point: Конечная точка
       new_button: Новый заказ
-      no_orders: Нет доступных заказов
+      no_orders: Нет принятых заказов
       starting_point: Начальная точка
       status: Статус
       price: Цена
@@ -88,8 +98,8 @@ ru:
 
   status:
     new: Новый
-    accepted: Принят
     delivered: Доставлен
+    taken: Принят
 
   will_paginate:
     next_label: '>'

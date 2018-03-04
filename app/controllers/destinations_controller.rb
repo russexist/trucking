@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class DestinationsController < ApplicationController
-  before_action :destination_point, except: %i[new create]
+  before_action :set_destination_point, except: %i[new create]
   before_action :authenticate_user!
 
   def new
@@ -38,7 +38,7 @@ class DestinationsController < ApplicationController
     )
   end
 
-  def destination_point
+  def set_destination_point
     @destination_point = Destination.find(params[:id])
   end
 end

@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class OrdersController < ApplicationController
-  before_action :order, except: %i[new index create taken_orders]
+  before_action :set_order, except: %i[new index create taken_orders]
+  before_action :set_points, only: :create
   before_action :authenticate_user!
 
   def new
@@ -9,8 +10,6 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @start = current_user.starts.last
-    @destination = current_user.destinations.last
     @order = current_user.orders.new(order_params.merge(
       start_id: @start.id,
       destination_id: @destination.id
@@ -48,7 +47,7 @@ class OrdersController < ApplicationController
   end
 
   def taken_orders
-    @taken_orders = Order.where(status: 1, driver_id: current_user)
+    @taken_orders = Order.taken_for_driver(current_user).paginate(page: params[:page])
   end
 
   def destroy
@@ -62,7 +61,12 @@ class OrdersController < ApplicationController
     params.require(:order).permit(:comment, :date, :price, :weight)
   end
 
-  def order
+  def set_order
     @order = Order.find(params[:id])
+  end
+
+  def set_points
+    @start = current_user.starts.last
+    @destination = current_user.destinations.last
   end
 end

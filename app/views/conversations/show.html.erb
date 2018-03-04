@@ -1,0 +1,22 @@
+<h1>
+  Conversation with
+  <%= link_to "#{msg_recipient(@conversation).first_name} #{msg_recipient(@conversation).last_name}", profile_path(id: msg_recipient(@conversation)) %>
+</h1>
+<% @conversation.receipts_for(current_user).order(:created_at).each do |receipt| %>
+  <div class="">
+    <% if receipt.message.sender ==  current_user %>
+      <span>Вы: </span> 
+    <% else %>
+      <%= receipt.message.sender.first_name %>:
+    <% end %>
+    <%= receipt.message.body %>
+    <hr>
+  </div>
+<% end %>
+
+<%= form_tag conversation_messages_path(@conversation), method: :post, class: "navbar-form navbar-left search-form" do %>
+  <div class="form-group">
+    <%= text_area_tag :body, nil, placeholder: "Type your message...", class: "form-control" %>
+  </div>
+  <%= submit_tag 'Send', class: "btn btn-success"%>
+<% end %>

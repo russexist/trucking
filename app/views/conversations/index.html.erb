@@ -1,0 +1,22 @@
+<h1>All conversations</h1>
+
+<% @conversations.each do |conversation| %>
+  <div class="msg">
+    <%= conversation.is_deleted?(current_user) %><br> <!-- delete this -->
+    <% if conversation.is_deleted?(current_user) == false %>
+      <span> Conversation with: </span>
+      <%= link_to msg_recipient(conversation).first_name, conversation_path(conversation) %>
+      <% if conversation.last_message.sender == current_user %>
+        <p>Вы: <%= link_to conversation.last_message.body, conversation_path(conversation) %></p>
+      <% else %>
+        <p>
+          <%= conversation.last_message.sender.first_name %>:
+          <%= link_to conversation.last_message.body, conversation_path(conversation) %>
+        </p>
+      <% end %>
+      <%= link_to 'Delete', conversation_path(conversation), method: :delete, data: { confirm: 'Are you sure?' } %>
+    <% end %>
+  </div>
+<% end %>
+
+<%= link_to "New conversation", new_conversation_path %>
