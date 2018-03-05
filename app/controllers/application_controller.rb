@@ -14,6 +14,12 @@ class ApplicationController < ActionController::Base
     @user = params[:id] ? User.find_by(id: params[:id]) : current_user
   end
 
+  def delete_avatar
+    current_user.remove_avatar!
+    current_user.save
+    redirect_back(fallback_location: root_path)
+  end
+
   def set_locale
     I18n.locale = params[:locale] || I18n.default_locale
   end
@@ -22,15 +28,14 @@ class ApplicationController < ActionController::Base
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up) do |user_params|
-      user_params.permit(:email, :password,
-        :password_confirmation, :remember_me, :first_name,
-        :last_name, :phone, :driver)
+      user_params.permit(:avatar, :current_password, :driver, :email,
+          :first_name, :last_name, :password, :password_confirmation, :phone,
+          :remember_me)
     end
 
     devise_parameter_sanitizer.permit(:account_update) do |user_params|
-      user_params.permit(:email, :password,
-        :password_confirmation, :current_password,
-        :first_name, :last_name, :phone, :driver)
+      user_params.permit(:avatar, :current_password, :driver, :email,
+          :first_name, :last_name, :password, :password_confirmation, :phone)
     end
   end
 end
