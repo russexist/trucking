@@ -12,5 +12,7 @@ class User < ApplicationRecord
   has_many :orders, dependent: :destroy
   has_many :starts, dependent: :destroy
 
+  mount_uploader :avatar, UserAvatarUploader
+
   def mailboxer_email(oject); end
 end

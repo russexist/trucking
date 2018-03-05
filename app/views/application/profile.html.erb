@@ -3,7 +3,15 @@
 <% if @user.driver %>
   <h3>Driver</h3>
 <% end %>
-<h3>user image</h3>
+<% if @user.avatar.present? %>
+  <p>
+    <%= image_tag @user.avatar.url(:thumb) %>
+    <%= link_to 'delete avatar', delete_avatar_path %>
+  </p>
+<% else %>
+  <p><%= image_tag "user.png", width: '250' %></p>
+<% end %>
+
 <p>Name: <%= @user.first_name %></p>
 <p>Last name: <%= @user.last_name %></p>
 <p>Phone: <%= @user.phone %></p>
