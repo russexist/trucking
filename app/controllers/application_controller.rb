@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
-  protect_from_forgery with: :exception
+  protect_from_forgery
 
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :set_locale
@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   end
 
   def profile
-    @user = params[:id] ? User.find_by(id: params[:id]) : current_user
+    @user = User.find_by(id: params[:id]) || current_user
   end
 
   def delete_avatar
