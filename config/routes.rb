@@ -11,9 +11,7 @@ Rails.application.routes.draw do
     resources :conversations do
       resources :messages
     end
-    resources :destinations
     resources :orders
-    resources :starts
     root 'orders#index'
   end
 end

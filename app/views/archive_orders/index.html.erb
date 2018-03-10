@@ -18,7 +18,7 @@
       <td><%= order.start_point %></td>
       <td><%= order.destination_point %></td>
       <td><%= order.date %></td>
-      <td><%= order.price %></td>
+      <td><%= format_uah(order.price) %></td>
       <td style="color: green"><%= order.status %></td>
       <td><%= link_to t('common.show'), order, class: "btn btn-light" %></td>
       <td><%= link_to t('common.delete'), archive_order_path(order), method: :delete,

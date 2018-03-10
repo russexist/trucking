@@ -15,14 +15,13 @@
 
   <% @taken_orders.each do |order| %>
     <tr>
-      <td><%= order.starting_point %></td>
-      <td><%= order.destination_point %></td>
+      <td><%= order.start %></td>
+      <td><%= order.destination %></td>
       <td><%= order.date %></td>
       <td><%= order.price %></td>
-      <td style="color: green"><%= order.status %></td>
+      <td style="color: green"><%= status_i18n(order.status) %></td>
       <td><%= link_to t('common.show'), order, class: "btn btn-light" %></td>
-      <td><%= link_to t('common.delete'), order_path(order), method: :delete,
-              data: { confirm: 'Are you sure?' }, class: "btn btn-light" unless current_user.driver %></td>
+      <td><%= link_to t('common.refuse'), change_status_path(id: order, status: 0, driver_id: nil), class: "btn btn-light" %></td>
     </tr>
   <% end %>
 </table>

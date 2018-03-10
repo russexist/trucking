@@ -31,15 +31,15 @@ class ArchiveOrdersController < ApplicationController
       price: @order.price,
       weight: @order.weight,
       comment: @order.comment,
-      status: @order.status,
+      status: 2,
       date: @order.date,
-      start_point: @order.starting_point,
-      destination_point: @order.destination_point
+      start_point: @order.start,
+      destination_point: @order.destination
     }
   end
 
   def set_order
-    @order = Order.find(params[:id])
+    @order = Order.find(params[:order_id])
   end
 
   def set_archive_order

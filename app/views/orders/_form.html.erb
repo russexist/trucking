@@ -1,6 +1,6 @@
-<h5 class="text-center"><%= t('.detail') %></h5>
-<div class="form-container">
-  <%= form_for @order do |f| %>
+
+  <%= form_for @order, html: { id: "msform" } do |f| %>
+  <div class="form-container">
     <% if @order.errors.any? %>
       <div class="alert alert-danger">
         <h5><%= t('common.errors') %></h5>
@@ -11,16 +11,46 @@
         </ul>
       </div>
     <% end %>
-    <div class="form-group">
-      <%= f.label :date, class: "control-label" %>
-      <%= f.text_field :date, autocomplete: "off", class: "form-control", id: "datepicker", placeholder: t('.date') %>
-      <%= f.label :price, class: "control-label" %>
-      <%= f.number_field :price, class: "form-control", placeholder: t('.price') %>
-      <%= f.label :weight, class: "control-label" %>
-      <%= f.number_field :weight, class: "form-control", placeholder: t('.weight') %>
-      <%= f.label :comment, class: "control-label" %>
-      <%= f.text_area :comment, class: "form-control", placeholder: t('.comment') %>
-    </div>
-    <%= f.submit t('common.save'), class: "btn btn-success next" %>
+  </div>
+
+  <div class="form-group">
+    <fieldset>
+      <h2 class="fs-title"><%= t('.from') %></h2>
+      <div id="locationField" class="form-container">
+        <%= f.text_field :start, placeholder: t('.start'), id: "autocompleteFrom", class: "form-control" %>
+      </div>
+      <div id="mapFrom"></div>
+      <input type="button" name="next" class="next action-button btn btn-success nxt_button" value='<%= t('.next') %>'/>
+    </fieldset>
+
+    <fieldset>
+      <h2 class="fs-title"><%= t('.to') %></h2>
+      <div id="locationField" class="form-container">
+        <%= f.text_field :destination, placeholder: t('.destination'), id: "autocompleteTo", class: "form-control" %>
+      </div>
+      <div id="mapTo"></div>
+      <input type="button" name="previous" class="previous btn btn-outline-success action-button prev_button" value='<%= t('.back') %>' />
+      <input type="button" name="next" class="next btn btn-success action-button nxt_button" value='<%= t('.next') %>' />
+    </fieldset>
+
+    <fieldset>
+      <h2 class="fs-title"><%= t('.detail') %></h2>
+      <div class="form-container fieldset">
+        <%= f.text_field :date, autocomplete: "off", class: "form-control", id: "datepicker", placeholder: t('.date') %>
+        <%= f.number_field :price, class: "form-control", placeholder: t('.price') %>
+        <%= f.number_field :weight, class: "form-control", placeholder: t('.weight') %>
+        <%= f.text_area :comment, class: "form-control", placeholder: t('.comment') %>
+      </div>
+        <input type="button" name="previous" class="previous btn btn-outline-success action-button prev" value='<%= t('.back') %>' />
+        <%= f.submit t('common.save'), class: "submit btn btn-success action-button next nxt" %>
+    </fieldset>
   <% end %>
-</div>
+  </div>
+
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjgTe57M-Jmvs1PfRM-a5xHQy9XTrTUlw&libraries=places&callback=initAutocomplete">
+</script>
+
+  <!-- <script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjgTe57M-Jmvs1PfRM-a5xHQy9XTrTUlw&callback=initMap">
+  </script> -->

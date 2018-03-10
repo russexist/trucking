@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180304193326) do
+ActiveRecord::Schema.define(version: 20180308144028) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,15 +27,6 @@ ActiveRecord::Schema.define(version: 20180304193326) do
     t.string "destination_point"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "destinations", force: :cascade do |t|
-    t.string "destination_point"
-    t.float "destination_latitude"
-    t.float "destination_longitude"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "user_id"
   end
 
   create_table "mailboxer_conversation_opt_outs", id: :serial, force: :cascade do |t|
@@ -93,26 +84,17 @@ ActiveRecord::Schema.define(version: 20180304193326) do
   end
 
   create_table "orders", force: :cascade do |t|
+    t.string "start"
+    t.string "destination"
     t.integer "price"
     t.integer "weight"
     t.text "comment"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "status", default: 0
     t.integer "driver_id"
     t.string "date"
-    t.integer "start_id"
-    t.integer "destination_id"
-  end
-
-  create_table "starts", force: :cascade do |t|
-    t.string "starting_point"
-    t.float "start_latitude"
-    t.float "start_longitude"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "user_id"
+    t.integer "status", default: 0
   end
 
   create_table "users", force: :cascade do |t|

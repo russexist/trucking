@@ -2,7 +2,6 @@
 
 class OrdersController < ApplicationController
   before_action :set_order, except: %i[new index create taken_orders]
-  before_action :set_points, only: :create
   before_action :authenticate_user!
 
   def new
@@ -10,10 +9,7 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = current_user.orders.new(order_params.merge(
-      start_id: @start.id,
-      destination_id: @destination.id
-    ))
+    @order = current_user.orders.new(order_params)
     if @order.save
       flash[:notice] = t('orders.create')
       redirect_to @order
@@ -58,15 +54,10 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:comment, :date, :price, :weight)
+    params.require(:order).permit(:comment, :destination, :date, :price, :start, :weight)
   end
 
   def set_order
     @order = Order.find(params[:id])
-  end
-
-  def set_points
-    @start = current_user.starts.last
-    @destination = current_user.destinations.last
   end
 end
