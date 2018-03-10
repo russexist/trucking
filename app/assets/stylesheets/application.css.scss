@@ -20,7 +20,7 @@
   margin-top: 25px;
 }
 
-#map {
+#mapFrom, #mapTo, #map{
   width: 100%;
   height: 400px;
   background-color: grey;
@@ -45,10 +45,15 @@
   }
 }
 
-.next{ float: right; }
+.nxt_button{ float: right; }
+.prev_button{ float: left; }
+.nxt{ margin: 0 15.75%; }
+.prev{ margin: 0 15.75%; }
 
 .col-md{ width: 10%; }
 
+
+// pagination
 .pagination{
   justify-content: center;
   margin: 15px 0;

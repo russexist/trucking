@@ -1,18 +1,21 @@
 ru:
   archive_orders:
-    add_to_archive: Заказ добавлен в архив
+    add_to_archive: Заказ перемещен в архив
     delete: Заказ был удален
     show:
       archive: Архив
     index:
       archive: Архив
       no_orders: Архив пуст
+
   common:
     accepted_order_driver: Вы приняли заказ
     accepted_order_user: Заказ принял
     archive: Архив заказов
     back: Назад
     confirm: Вы уверенны?
+    conversations: Диалоги
+    current_location: Ваше текущее местоположение
     delete: Удалить
     delivered: Доставлено
     edit: Редактировать
@@ -29,17 +32,6 @@ ru:
     take_order: Принять заказ
     taken_orders: Принятые заказы
 
-  destinations:
-    create: Точка доставки успешно создана
-    edit:
-      title: Редактировать пункт назначения
-    form:
-      placeholder: Например, Хрещатик 208, Киев
-      submit: Далее
-      to: Введите или выберите на карте КУДА следует доставить груз
-    new:
-      title: Точка доставки
-
   helpers:
     weight: ' кг'
     uah: ' грн'
@@ -50,10 +42,16 @@ ru:
     edit:
       title: Редактировать заказ
     form:
+      back: Назад
       comment: Здесь вы можете оставить свой комментарий (необязательно)
       date: ДД/ММ/РРРР
+      destination: Например, Хрещатик 208, Киев
       detail: Детали заказа
+      from: Укажите ОТКУДА следует забрать груз
+      next: Далее
       price: Предложите свою цену
+      start: Например, Енгельса 162, Черкаси
+      to: Укажите КУДА следует доставить груз
       weight: Примерный вес груза
     index:
       available: Доступные заказы
@@ -71,10 +69,12 @@ ru:
       comment: Комментарий
       date: Дата
       destination_point: Конечная точка
+      distance: Расстояние
       new_button: Новый заказ
       price: Цена
       starting_point: Начальная точка
       status: Статус
+      time_in_road: Примерное время в пути
       weight: Вес груза
     taken_orders:
       date: Дата
@@ -84,17 +84,6 @@ ru:
       starting_point: Начальная точка
       status: Статус
       price: Цена
-
-  starts:
-    create: Точка отправки успешно создана
-    edit:
-      title: Редактировать начальный пункт
-    form:
-      from: Введите или выберите на карте ОТКУДА следует забрать груз
-      placeholder: Например, Енгельса 162, Черкаси
-      submit: Далее
-    new:
-      title: Точка отправки
 
   status:
     new: Новый

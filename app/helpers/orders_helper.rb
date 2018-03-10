@@ -8,4 +8,15 @@ module OrdersHelper
   def format_weight(value)
     number_to_currency(value, unit: t('helpers.weight'), format: '%n%u', precision: 0)
   end
+
+  def status_i18n(status)
+    case status
+    when 'new_order'
+      t('status.new')
+    when 'taken_order'
+      t('status.taken')
+    when 'delivered_order'
+      t('status.delivered')
+    end
+  end
 end
