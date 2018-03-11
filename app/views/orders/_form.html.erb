@@ -1,5 +1,4 @@
-
-  <%= form_for @order, html: { id: "msform" } do |f| %>
+<%= form_for @order, html: { id: "msform" } do |f| %>
   <div class="form-container">
     <% if @order.errors.any? %>
       <div class="alert alert-danger">
@@ -14,6 +13,13 @@
   </div>
 
   <div class="form-group">
+    <!-- progressbar -->
+    <ul id="progressbar">
+      <li class="first active"><%= t('common.from') %></li>
+      <li class="second"><%= t('common.to') %></li>
+      <li class="last"><%= t('common.detail') %></li>
+    </ul>
+
     <fieldset>
       <h2 class="fs-title"><%= t('.from') %></h2>
       <div id="locationField" class="form-container">
@@ -44,8 +50,8 @@
         <input type="button" name="previous" class="previous btn btn-outline-success action-button prev" value='<%= t('.back') %>' />
         <%= f.submit t('common.save'), class: "submit btn btn-success action-button next nxt" %>
     </fieldset>
-  <% end %>
   </div>
+<% end %>
 
 <script async defer
   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjgTe57M-Jmvs1PfRM-a5xHQy9XTrTUlw&libraries=places&callback=initAutocomplete">
