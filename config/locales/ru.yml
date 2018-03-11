@@ -18,9 +18,11 @@ ru:
     current_location: Ваше текущее местоположение
     delete: Удалить
     delivered: Доставлено
+    detail: Детали
     edit: Редактировать
     edit_profile: Редактировать профиль
     errors: При заполении формы возникли ошибки
+    from: Откуда
     history: История заказов
     log_in: Войти
     profile_title: Профиль пользователя
@@ -31,6 +33,7 @@ ru:
     sign_out: Выйти
     take_order: Принять заказ
     taken_orders: Принятые заказы
+    to: Куда
 
   helpers:
     weight: ' кг'

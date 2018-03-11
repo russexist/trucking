@@ -30,7 +30,7 @@ ready = function() {
   datepickerRu();
 
   // MultiStepForm
-  var current_fs, next_fs, previous_fs, previous_fs2; //fieldsets
+  var current_fs, next_fs, previous_fs; //fieldsets
   var left, opacity, scale; //fieldset properties which we will animate
   var animating; //flag to prevent quick multi-click glitches
 
@@ -43,6 +43,8 @@ ready = function() {
 
     //show the next fieldset
     next_fs.show();
+    $('.active').next().addClass('active');
+
     //hide the current fieldset with style
     current_fs.animate({opacity: 0}, {
       step: function(now, mx) {
@@ -72,8 +74,17 @@ ready = function() {
 
     current_fs = $(this).parent();
     previous_fs = $(this).parent().prev();
+
     //show the previous fieldset
     previous_fs.show();
+
+    if ($('.last').hasClass('active')){
+      $('.last').removeClass('active');
+    }
+    else {
+      $('.second').removeClass('active');
+    }
+
     //hide the current fieldset with style
     current_fs.animate({opacity: 0}, {
       step: function(now, mx) {
