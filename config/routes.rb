@@ -5,8 +5,8 @@ Rails.application.routes.draw do
     devise_for :users
     get '/change_status', to: 'orders#change_status'
     get '/delete_avatar', to: 'application#delete_avatar'
-    get '/profile', to: 'application#profile'
-    get '/taken_orders', to: 'orders#taken_orders'
+    get '/profile', 	    to: 'application#profile'
+    get '/taken_orders',  to: 'orders#taken_orders'
     resources :archive_orders, only: %i[index create show destroy]
     resources :conversations do
       resources :messages
