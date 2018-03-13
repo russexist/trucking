@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20180308144028) do
     t.integer "user_id"
     t.integer "status"
     t.integer "driver_id"
-    t.string "date"
+    t.datetime "date"
     t.string "start_point"
     t.string "destination_point"
     t.datetime "created_at", null: false
@@ -93,7 +93,7 @@ ActiveRecord::Schema.define(version: 20180308144028) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "driver_id"
-    t.string "date"
+    t.datetime "date"
     t.integer "status", default: 0
   end
 

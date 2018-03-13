@@ -9,5 +9,5 @@ class Order < ApplicationRecord
 
   scope :taken_for_driver, ->(current_user) { where(status: 1, driver_id: current_user) }
 
-  validates :date, :price, :weight, presence: true
+  validates :date, :destination, :price, :start, :weight, presence: true
 end
