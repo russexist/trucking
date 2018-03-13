@@ -1,21 +1,13 @@
 ru:
   activerecord:
     models:
-      start: 'Начальный пункт'
-    attributes:
-      start:
-        starting_point: 'Начальная точка'
-
-      destination: 'Пункт назначения'
-    attributes:
-      destination:
-        destination_point: 'Конечная точка'
-
-      order: 'Заказ'
+      order: Заказ
     attributes:
       order:
-        price: 'Цена'
-        weight: 'Вес груза'
-        comment: 'Комментарий'
-        date: 'Дата'
-        status: 'Статус заказа'
+        comment: Комментарий
+        date: Дата
+        destination: Куда
+        start: Откуда
+        status: Статус заказа
+        price: Цена
+        weight: Вес груза
