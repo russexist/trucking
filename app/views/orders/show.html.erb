@@ -5,7 +5,7 @@
   </p>
   <hr class="my-4">
   <p><%= t('.price') %>: <%= format_uah(@order.price) %></p>
-  <p><%= t('.date') %>: <%= @order.date %></p>
+  <p><%= t('.date') %>: <%= @order.date.strftime("%d/%m/%Y") %></p>
   <p><%= t('.weight') %>: <%= format_weight(@order.weight) %></p>
   <p><%= t('.status') %>: <%= status_i18n(@order.status) %></p>
   <p><%= t('.comment') %>: <%= @order.comment %></p>

@@ -1,7 +1,7 @@
 <tr>
   <td><%= order.start %></td>
   <td><%= order.destination %></td>
-  <td><%= order.date %></td>
+  <td><%= order.date.strftime("%d/%m/%Y") %></td>
   <td class="col-md"><%= format_uah(order.price) %></td>
   <td style="color: green"><%= status_i18n(order.status) %></td>
   <td><%= link_to t('common.show'), order, class: "btn btn-light" %></td>

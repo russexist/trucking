@@ -6,7 +6,7 @@
   </p>
   <hr class="my-4">
   <p><%= t('orders.show.price') %>: <%= format_uah(@archive_order.price) %></p>
-  <p><%= t('orders.show.date') %>: <%= @archive_order.date %></p>
+  <p><%= t('orders.show.date') %>: <%= @archive_order.date.strftime("%d/%m/%Y") %></p>
   <p><%= t('orders.show.weight') %>: <%= format_weight(@archive_order.weight) %></p>
   <p><%= t('orders.show.status') %>: <%= @archive_order.status %></p>
   <p><%= t('orders.show.comment') %>: <%= @archive_order.comment %></p>

@@ -7,7 +7,7 @@ class CreateArchiveOrders < ActiveRecord::Migration[5.1]
       t.integer :user_id
       t.integer :status
       t.integer :driver_id
-      t.string :date
+      t.datetime :date
       t.string :start_point
       t.string :destination_point
 
