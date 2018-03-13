@@ -3,7 +3,7 @@
     <% if @order.errors.any? %>
       <div class="alert alert-danger">
         <h5><%= t('common.errors') %></h5>
-        <ul>
+        <ul class="text-left">
           <% @order.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
             <% end %>

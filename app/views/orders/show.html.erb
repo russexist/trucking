@@ -9,7 +9,6 @@
   <p><%= t('.weight') %>: <%= format_weight(@order.weight) %></p>
   <p><%= t('.status') %>: <%= status_i18n(@order.status) %></p>
   <p><%= t('.comment') %>: <%= @order.comment %></p>
-  <div id="output"></div>
 
   <% if @driver.present? %>
     <% if current_user.driver %>
@@ -33,7 +32,11 @@
     <% end %>
   </p>
 
-  <div id="map"></div>
+  <div class="map-panel">
+    <div id="output"></div>
+    <hr>
+    <div id="map"></div>
+  </div>
 </div>
 
 <script>
@@ -75,8 +78,8 @@
           var results = response.rows[i].elements;
           distance = results[0].distance.text;
           time = results[0].duration.text;
-          outputDiv.innerHTML += '<p>' + '<%= t('.distance') %>: ' + results[0].distance.text + '</p>' +
-          '<p>' + '<%= t('.time_in_road') %>: ' +  results[0].duration.text + '</p>';
+          outputDiv.innerHTML += '<span>' + '<%= t('.distance') %>: ' + results[0].distance.text + '</span>' +
+          '<span>' + '<%= t('.time_in_road') %>: ' +  results[0].duration.text + '</span>';
         }
       }
     });

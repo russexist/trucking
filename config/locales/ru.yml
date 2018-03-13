@@ -71,11 +71,11 @@ ru:
     show:
       comment: Комментарий
       date: Дата
-      destination_point: Конечная точка
+      destination_point: Куда
       distance: Расстояние
       new_button: Новый заказ
       price: Цена
-      starting_point: Начальная точка
+      starting_point: Откуда
       status: Статус
       time_in_road: Примерное время в пути
       weight: Вес груза
