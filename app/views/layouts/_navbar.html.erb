@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <%= link_to root_url, title: t('common.home_page'), class: "navbar-brand" do %>
-    <%= (image_tag "logo.png", width: "45") %>
+    <%= (image_tag "logo.png", width: "50") %>
     Trucking
   <% end %>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -22,17 +22,27 @@
       </li>
       <% end %>
     </ul>
+
     <ul class="navbar-nav mr-right">
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <%= I18n.locale.upcase %>
+          <%= I18n.locale.upcase %> <%= image_tag "#{I18n.locale}.png", width: '20' if  File.file? "app/assets/images/#{I18n.locale}.png" %>
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <%= link_to 'en', locale: :en %>
+          <%= link_to locale: :en do %>
+            Eng
+            <%= image_tag "en.png", width: '20' if  File.file? "app/assets/images/en.png" %>
+          <% end %>
           <div class="dropdown-divider"></div>
-          <%= link_to 'ru', locale: :ru %>
+          <%= link_to locale: :ua do %>
+            Укр
+            <%= image_tag "ua.png", width: '20' if  File.file? "app/assets/images/ua.png" %>
+          <% end %>
           <div class="dropdown-divider"></div>
-          <%= link_to 'ua', locale: :ua %>
+          <%= link_to locale: :ru do %>
+            Рус
+            <%= image_tag "ru.png", width: '20' if  File.file? "app/assets/images/ru.png" %>
+          <% end %>
         </div>
       </li>
       <% if user_signed_in? %>

@@ -1,3 +1,46 @@
 // Place all the styles related to the Orders controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+// pagination
+.pagination{
+  justify-content: center;
+  margin: 15px 0;
+}
+
+.pagination a, .previous_page, .next_page, .current {
+  position: relative;
+  display: inline-block;
+  color: #2c3e50;
+  text-decoration: none;
+  font-size: 0.8rem;
+  padding: 8px 15px 8px;
+}
+.pagination a:before {
+  z-index: -1;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  content: "";
+  top: 0;
+  left: 0;
+  background-color: #2c3e50;
+  border-radius: 24px;
+  -webkit-transform: scale(0);
+          transform: scale(0);
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
+.pagination a:hover, .pagination a .current {
+  color: #fff;
+}
+.pagination a:hover:before, .pagination a .current:before {
+  -webkit-transform: scale(1);
+          transform: scale(1);
+}
+.current{
+  border-radius: 24px;
+  color: #fff;
+  background-color: #2c3e50;
+}
