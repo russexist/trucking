@@ -1,0 +1,18 @@
+<h1 class="text-center"><%= t('.title') %></h1>
+
+<div class="cropbox">
+  <%= image_tag @avatar.image.url(:large), id: "cropbox" %>
+</div>
+
+<div class="preview">
+  <%= image_tag @avatar.image.url(:large), id: "preview" %>
+</div>
+
+<%= form_for @avatar do |f| %>
+  <% %w[x y w h].each do |attribute| %>
+    <%= f.hidden_field "crop_#{attribute}" %>
+  <% end %>
+  <div class="form-actions">
+    <%= f.submit t('.save'), class: "btn btn-success" %>
+  </div>
+<% end %>

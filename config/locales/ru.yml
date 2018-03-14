@@ -8,6 +8,17 @@ ru:
       archive: Архив
       no_orders: Архив пуст
 
+  avatars:
+    crop:
+      save: Сохранить
+      title: Обрежьте фотографию
+    edit:
+      title: Измените свою фотографию
+    form:
+      continue: Продолжить
+    new:
+      title: Загрузите свою фотографию
+
   common:
     accepted_order_driver: Вы приняли заказ
     accepted_order_user: Заказ принял
@@ -24,6 +35,7 @@ ru:
     errors: При заполении формы возникли ошибки
     from: Откуда
     history: История заказов
+    home_page: На главную
     log_in: Войти
     profile_title: Профиль пользователя
     refuse: Отказаться

@@ -3,14 +3,18 @@
 <% if @user.driver %>
   <h3>Driver</h3>
 <% end %>
+
 <% if @user.avatar.present? %>
   <p>
-    <%= image_tag @user.avatar.url(:thumb) %>
-    <%= link_to 'delete avatar', delete_avatar_path %>
+    <%= image_tag @user.avatar.image.url(:thumb), class: "img-thumbnail" %><br>
+    <%= link_to 'delete avatar', avatar_path(@user.avatar), method: :delete %> |
+    <%= link_to 'change avatar', edit_avatar_path(@user.avatar) %>
   </p>
 <% else %>
-  <p><%= image_tag "user.png", width: '250' %></p>
+  <p><%= image_tag "noavatar.png", width: '250', class: "img-thumbnail" %></p>
+  <%= link_to 'add avatar', new_avatar_path %>
 <% end %>
+
 
 <p>Name: <%= @user.first_name %></p>
 <p>Last name: <%= @user.last_name %></p>

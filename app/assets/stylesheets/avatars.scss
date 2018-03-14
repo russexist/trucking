@@ -1,0 +1,15 @@
+// Place all the styles related to the Avatars controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.preview{
+  width: 150px;
+  height: 150px;
+  overflow:hidden;
+  margin: 18px 0;
+}
+
+.cropbox{
+  margin: 10px 40px;
+  float: left;
+}
