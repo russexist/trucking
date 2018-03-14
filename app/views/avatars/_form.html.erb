@@ -1,0 +1,20 @@
+<div class="form-container text-center">
+  <%= form_for @avatar do |f| %>
+    <div class="form-container">
+      <% if @avatar.errors.any? %>
+        <div class="alert alert-danger">
+          <h5><%= t('common.errors') %></h5>
+          <ul class="text-left">
+            <% @avatar.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+              <% end %>
+          </ul>
+        </div>
+      <% end %>
+    </div>
+    
+    <%= f.file_field :image %>
+    <hr>
+    <%= f.submit t('.continue') %>
+  <% end %>
+</div>

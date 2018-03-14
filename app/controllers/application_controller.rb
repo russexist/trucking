@@ -14,12 +14,6 @@ class ApplicationController < ActionController::Base
     @user = User.find_by(id: params[:id]) || current_user
   end
 
-  def delete_avatar
-    current_user.remove_avatar!
-    current_user.save
-    redirect_back(fallback_location: root_path)
-  end
-
   def set_locale
     I18n.locale = params[:locale] || I18n.default_locale
   end

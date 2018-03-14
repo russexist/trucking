@@ -16,6 +16,7 @@
 //= require jquery-ui
 //= require jquery3
 //= require jquery_ujs
+//= require jcrop
 //= require bootstrap
 //= require_tree .
 
@@ -30,7 +31,7 @@ ready = function() {
   datepickerRu();
 
   var currentFs, nextFs, previousFs;
-  var left, opacity, scale; 
+  var left, opacity, scale;
   var animating;
 
   $(".next").click(function(){

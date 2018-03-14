@@ -12,63 +12,8 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <%= link_to root_url, class: "navbar-brand" do %>
-        <%= (image_tag "logo.png", width: "45") %>
-        Trucking
-      <% end %>
-      <!-- <%= link_to "Trucking", root_url, class: "navbar-brand" %> -->
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse navbar-right" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <% if user_signed_in? && current_user.driver %>
-            <li class="nav-item">
-              <%= link_to t('common.taken_orders'), taken_orders_path, class: "nav-link" %>
-            </li>
-            <li class="nav-item">
-              <%= link_to t('common.archive'), archive_orders_path, class: "nav-link" %>
-            </li>
-          <% end %>
-          <% if user_signed_in? %>
-          <li class="nav-item">
-            <%= link_to t('common.conversations'), conversations_path, class: "nav-link" %>
-          </li>
-          <% end %>
-        </ul>
-        <ul class="navbar-nav mr-right">
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <%= I18n.locale.upcase %>
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <%= link_to 'en', locale: :en %>
-              <div class="dropdown-divider"></div>
-              <%= link_to 'ru', locale: :ru %>
-              <div class="dropdown-divider"></div>
-              <%= link_to 'ua', locale: :ua %>
-            </div>
-          </li>
-          <% if user_signed_in? %>
-            <li class="nav-item">
-              <%= link_to current_user.first_name, profile_path, class: "nav-link mr-sm-2" %>
-            </li>
-            <li class="nav-item">
-              <%= link_to t('common.sign_out'), destroy_user_session_path, method: :delete, class: "btn btn-outline-danger" %>
-            </li>
-          <% else %>
-            <li class="nav-item">
-              <%= link_to t('common.log_in'), new_user_session_path, class: "btn btn-outline-warning mr-sm-2" %>
-            </li>
-            <li class="nav-item">
-              <%= link_to t('common.sign_in'), new_user_registration_path, class: "btn btn-outline-success" %>
-            </li>
-          <% end %>
-        </ul>
-      </div>
-    </nav>
-
+    <%= render 'layouts/navbar' %>
+    
     <div class="container">
       <% if notice %>
         <div class="text-center alert alert-success" role="alert">
