@@ -1,0 +1,20 @@
+<h4 class="heading">
+  <div style="float:left; margin: 5px;">
+    <% if user.avatar %>
+      <%= image_tag user.avatar.image.url(:thumb), width: "66", class: "img-thumbnail" %>
+    <% else %>
+      <%= image_tag "noavatar.png", width: "66", class: "img-thumbnail" %>
+    <% end %>
+  </div>
+  <b><%= user.first_name %> <%= user.last_name %></b>
+  <small class="pull-right" style="font-size: 12px">
+    <%=  conversation.last_message.created_at.strftime("%b %d, %Y, %I:%M %P") %>
+  </small>
+</h4>
+<% unless conversation.last_message.sender == user %>
+  <% if conversation.last_message.sender.avatar %>
+    <%= image_tag conversation.last_message.sender.avatar.image.url(:thumb), width: "35", class: "img-thumbnail" %>
+  <% else %>
+    <%= image_tag "noavatar.png", width: "35", class: "img-thumbnail" %>
+  <% end %>
+<% end %>

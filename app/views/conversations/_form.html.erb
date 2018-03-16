@@ -1,12 +1,12 @@
 <%= form_for :conversation, url: conversations_path do |f| %>
   <div class="form-group">
     <%= f.label :recipients %>
-    <%= f.select(:recipients, User.all.collect { |user| [user.first_name, user.id] }, {}, { multiple: true, class: "chosen-select form-control" }) %>
+    <%= f.select(:recipients, @recipients.collect { |user| ["#{user.first_name} #{user.last_name}", user.id] }, {}, { multiple: true, class: "chosen-select form-control" }) %>
   </div>
 
   <div class="form-group">
     <%= f.label :message %>
-    <%= f.text_area :body, placeholder: 'Type your message...', class: "form-control", rows: 4 %>
+    <%= f.text_area :body, placeholder: 'Type your message...', class: "form-control" %>
   </div>
 
   <%= f.submit 'Send Message', class: "btn btn-success" %>

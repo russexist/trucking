@@ -11,7 +11,7 @@
         </div>
         <b><%= link_to receipt.message.sender.first_name, profile_path(id: receipt.message.sender) %></b><br>
         <small><b>Subject: </b><%= receipt.message.subject %></small><br>
-        <small><b>Date: </b><%= receipt.message.created_at.strftime("%A, %b %d, %Y at %I:%M%p") %></small>
+        <small><b>Date: </b><%= receipt.message.created_at.strftime("%b %d, %Y at %I:%M%p") %></small>
       </div>
       <hr>
       <%= receipt.message.body %>
