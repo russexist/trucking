@@ -6,6 +6,8 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :set_locale
 
+  helper_method :mailbox, :conversation
+
   def default_url_options(options = {})
     { locale: I18n.locale }.merge options
   end
@@ -16,6 +18,16 @@ class ApplicationController < ActionController::Base
 
   def set_locale
     I18n.locale = params[:locale] || I18n.default_locale
+  end
+
+  private
+
+  def conversation
+    @conversation ||= mailbox.conversations.find(params[:id])
+  end
+
+  def mailbox
+    @mailbox ||= current_user.mailbox
   end
 
   protected

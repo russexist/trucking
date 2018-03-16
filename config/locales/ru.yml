@@ -73,7 +73,8 @@ ru:
       date: Дата
       destination_point: Конечная точка
       new_button: Новый заказ
-      no_orders: Нет доступных заказов
+      no_driver_orders: Нет доступных заказов
+      no_user_orders: У вас еще нет заказов, но никогда не поздно это исправить :)
       price: Цена
       starting_point: Начальная точка
       status: Статус

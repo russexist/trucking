@@ -1,22 +1,37 @@
-<h1>
-  Conversation with
-  <%= link_to "#{msg_recipient(@conversation).first_name} #{msg_recipient(@conversation).last_name}", profile_path(id: msg_recipient(@conversation)) %>
-</h1>
-<% @conversation.receipts_for(current_user).order(:created_at).each do |receipt| %>
-  <div class="">
-    <% if receipt.message.sender ==  current_user %>
-      <span>Вы: </span> 
-    <% else %>
-      <%= receipt.message.sender.first_name %>:
-    <% end %>
-    <%= receipt.message.body %>
-    <hr>
+<div class="row">
+  <div class="col-md-12">
+    <%= link_to 'Compose', new_conversation_path, class: "btn btn-success" %>
+    <div class="col-md-12 text-right">
+      <% if conversation.is_trashed?(current_user) %>
+        <%= link_to 'Untrash', untrash_conversation_path(conversation), method: :post, class: "btn btn-info" %>
+      <% else %>
+        <%= link_to 'Move to trash', trash_conversation_path(conversation), method: :post, data: { confirm: 'Sure?' }, class: "btn btn-danger" %>
+      <% end %>
+    </div>
   </div>
-<% end %>
 
-<%= form_tag conversation_messages_path(@conversation), method: :post, class: "navbar-form navbar-left search-form" do %>
-  <div class="form-group">
-    <%= text_area_tag :body, nil, placeholder: "Type your message...", class: "form-control" %>
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-body">
+        <%= render 'mailbox/folders' %>
+      </div>
+    </div>
   </div>
-  <%= submit_tag 'Send', class: "btn btn-success"%>
-<% end %>
+
+  <div class="col-md-8">
+    <div class="card">
+      <div class="card-body">
+        <%= render partial: 'messages' %>
+      </div>
+      <div class="card-footer">
+        <%= form_for :message, url: reply_conversation_path(conversation) do |f| %>
+          <div class="form-group mb-2">
+            <%= f.text_area :body, placeholder: 'Reply message', class: "form-control" %>
+          </div>
+          <%= f.submit 'Reply', class: "btn btn-success pull-right  mb-2" %>
+        <% end %>
+        <div class="clearfix"></div>
+      </div>
+    </div>
+  </div>
+</div>

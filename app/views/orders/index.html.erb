@@ -23,7 +23,11 @@
       <% end %>
     <% end %>
   <% else %>
-    <h2 class="text-center"><%= t('.no_orders') %></h2>
+    <% if current_user.driver %>
+      <h2 class="text-center"><%= t('.no_driver_orders') %></h2>
+    <% else %>
+      <h2 class="text-center"><%= t('.no_user_orders') %></h2>
+    <% end %>
   <% end %>
 </table>
 <div class="text-center">

@@ -12,9 +12,11 @@
  *
  *= require_tree .
  *= require jcrop
+ *= require chosen
  *= require_self
  */
  @import "bootstrap";
+ @import "font-awesome";
 
 .jumbotron{
   border-radius: 8px;

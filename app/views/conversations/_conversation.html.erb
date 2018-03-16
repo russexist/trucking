@@ -1,0 +1,21 @@
+<div id="list-example" class="list-group conversations">
+  <%= link_to conversation_path(conversation), class: "list-group-item list-group-item-action" do %>
+    <h4 class="heading">
+      <div style="float:left; margin: 5px;">
+        <% if conversation.originator.avatar %>
+          <%= image_tag conversation.originator.avatar.image.url(:thumb), width: "66", class: "img-thumbnail" %>
+        <% else %>
+          <%= image_tag "noavatar.png", width: "66", class: "img-thumbnail" %>
+        <% end %>
+      </div>
+      <b><%= conversation.originator.first_name %> <%= conversation.originator.last_name %></b>
+      <small class="pull-right" style="font-size: 12px"><%=  conversation.last_message.created_at.strftime("%b %d, %Y at %I:%M %P") %></small>
+    </h4>
+      <% if conversation.last_message.sender.avatar %>
+        <%= image_tag conversation.last_message.sender.avatar.image.url(:thumb), width: "35", class: "img-thumbnail" %>
+      <% else %>
+        <%= image_tag "noavatar.png", width: "35", class: "img-thumbnail" %>
+      <% end %>
+      <%= (truncate conversation.last_message.body, length: 145) %>
+  <% end %>
+</div>

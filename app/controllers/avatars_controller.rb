@@ -1,5 +1,6 @@
 class AvatarsController < ApplicationController
   before_action :set_avatar, except: %i[new create]
+  before_action :authenticate_user!
 
   def new
     @avatar = Avatar.new

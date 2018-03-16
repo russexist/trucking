@@ -62,8 +62,10 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'activeadmin'
 gem 'bootstrap'
 gem 'carrierwave'
+gem 'chosen-rails'
 gem 'devise'
 gem 'faker', git: 'https://github.com/stympy/faker.git', branch: 'master'
+gem "font-awesome-rails"
 gem 'jquery'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'

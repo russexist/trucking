@@ -1,5 +1,8 @@
 <div class="jumbotron">
   <p class="lead">
+    <% if current_user.driver %>
+      <p class="text-center">Профиль заказчика: <%= link_to "#{@order.user.first_name} #{@order.user.last_name}", profile_path(id: @order.user) %></p>
+    <% end %>
     <p><strong><%= t('.starting_point') %>:</strong> <%= @order.start %></p>
     <p><strong><%= t('.destination_point') %>:</strong>  <%= @order.destination %></p>
   </p>
@@ -67,19 +70,19 @@
       unitSystem: google.maps.UnitSystem.METRIC
     }, function(response, status) {
       if (status !== 'OK') {
-        alert('Error was: ' + status);
+        alert('Error was: '  status);
       } else {
         var originList = response.originAddresses;
         var destinationList = response.destinationAddresses;
         var outputDiv = document.getElementById('output');
         outputDiv.innerHTML = '';
         deleteMarkersDistance(markersArray);
-        for (var i = 0; i < originList.length; i++) {
+        for (var i = 0; i < originList.length; i) {
           var results = response.rows[i].elements;
           distance = results[0].distance.text;
           time = results[0].duration.text;
-          outputDiv.innerHTML += '<span>' + '<%= t('.distance') %>: ' + results[0].distance.text + '</span>' +
-          '<span>' + '<%= t('.time_in_road') %>: ' +  results[0].duration.text + '</span>';
+          outputDiv.innerHTML = '<span>'  '<%= t('.distance') %>: '  results[0].distance.text  '</span>'
+          '<span>'  '<%= t('.time_in_road') %>: '   results[0].duration.text  '</span>';
         }
       }
     });
@@ -94,13 +97,13 @@
       if (status === 'OK') {
         directionsDisplay.setDirections(response);
       } else {
-        window.alert('Directions request failed due to ' + status);
+        window.alert('Directions request failed due to '  status);
       }
     });
   }
 
   function deleteMarkersDistance(markersArray) {
-    for (var i = 0; i < markersArray.length; i++) {
+    for (var i = 0; i < markersArray.length; i) {
       markersArray[i].setMap(null);
     }
     markersArray = [];

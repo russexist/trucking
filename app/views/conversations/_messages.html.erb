@@ -1,0 +1,20 @@
+<% @receipts.each do |receipt| %>
+  <div class="card" style="margin: 5px 0;">
+    <div class="card-body">
+      <div class="heading">
+        <div style="float:left; margin: 5px;">
+          <% if receipt.message.sender.avatar %>
+            <%= image_tag receipt.message.sender.avatar.image.url(:thumb), width: "66", class: "img-thumbnail" %>
+          <% else %>
+            <%= image_tag "noavatar.png", width: "66", class: "img-thumbnail" %>
+          <% end %>
+        </div>
+        <b><%= link_to receipt.message.sender.first_name, profile_path(id: receipt.message.sender) %></b><br>
+        <small><b>Subject: </b><%= receipt.message.subject %></small><br>
+        <small><b>Date: </b><%= receipt.message.created_at.strftime("%A, %b %d, %Y at %I:%M%p") %></small>
+      </div>
+      <hr>
+      <%= receipt.message.body %>
+    </div>
+  </div>
+<% end %>
