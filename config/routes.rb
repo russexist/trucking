@@ -5,18 +5,15 @@ Rails.application.routes.draw do
     devise_for :users
 
     get '/change_status', to: 'orders#change_status'
-    get '/delete_avatar', to: 'application#delete_avatar'
-    get '/profile', 	    to: 'application#profile'
-    get '/taken_orders',  to: 'orders#taken_orders'
-
     get 'mailbox/inbox',  to: 'mailbox#inbox', as: :mailbox_inbox
     get 'mailbox/sent',   to: 'mailbox#sent',  as: :mailbox_sent
     get 'mailbox/trash',  to: 'mailbox#trash', as: :mailbox_trash
+    get '/profile',       to: 'application#profile'
+    get '/taken_orders',  to: 'orders#taken_orders'
 
-    resources :avatars
-    resources :archive_orders, only: %i[index create show destroy]
+    resources :avatars, except: %i[index show]
+    resources :archive_orders, only: %i[create destroy index show]
     resources :conversations do
-      # resources :messages
       member do
         post :reply
         post :trash

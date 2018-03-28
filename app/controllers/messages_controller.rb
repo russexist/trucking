@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class MessagesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_conversation
 
   def create

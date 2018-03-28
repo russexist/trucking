@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module OrdersHelper
-  def format_uah(value)
+  def format_price(value)
     number_to_currency(value, unit: t('helpers.uah'), format: '%n%u', precision: 0)
   end
 
@@ -13,9 +13,9 @@ module OrdersHelper
     case status
     when 'new_order'
       t('status.new')
-    when 'taken_order'
+    when 'taken'
       t('status.taken')
-    when 'delivered_order'
+    when 'delivered'
       t('status.delivered')
     end
   end

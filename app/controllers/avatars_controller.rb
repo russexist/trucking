@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AvatarsController < ApplicationController
   before_action :set_avatar, except: %i[new create]
   before_action :authenticate_user!
@@ -7,8 +9,7 @@ class AvatarsController < ApplicationController
   end
 
   def create
-    @avatar = Avatar.new(avatar_params)
-    @avatar.user = current_user
+    @avatar = Avatar.new(avatar_params.merge(user: current_user))
 
     if @avatar.save
       if params[:avatar][:image].present?

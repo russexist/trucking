@@ -1,29 +1,30 @@
 <div class="jumbotron">
   <p class="lead">
     <% if current_user.driver %>
-      <p class="text-center">Профиль заказчика: <%= link_to "#{@order.user.first_name} #{@order.user.last_name}", profile_path(id: @order.user) %></p>
+      <p class="text-center">
+        <b>Заказчик: <%= link_to @order.user.full_name, profile_path(id: @order.user) %></b><hr>
+      </p>
     <% end %>
-    <p><strong><%= t('.starting_point') %>:</strong> <%= @order.start %></p>
-    <p><strong><%= t('.destination_point') %>:</strong>  <%= @order.destination %></p>
+    <p><b><%= t('.starting_point') %>: </b><%= @order.start %></p>
+    <p><b><%= t('.destination_point') %>: </b><%= @order.destination %></p>
   </p>
   <hr class="my-4">
-  <p><%= t('.price') %>: <%= format_uah(@order.price) %></p>
-  <p><%= t('.date') %>: <%= @order.date.strftime("%d/%m/%Y") %></p>
+  <p><%= t('.price') %>: <%= format_price(@order.price) %></p>
+  <p><%= t('.date') %>: <%= @order.format_date %></p>
   <p><%= t('.weight') %>: <%= format_weight(@order.weight) %></p>
   <p><%= t('.status') %>: <%= status_i18n(@order.status) %></p>
   <p><%= t('.comment') %>: <%= @order.comment %></p>
 
-  <% if @driver.present? %>
-    <% if current_user.driver %>
-      <p><%= t('common.accepted_order_driver') %></p>
-    <% else %>
-      <p><%= t('common.accepted_order_user') %>: <%= link_to "#{@driver.first_name} #{@driver.last_name}", profile_path(id: @driver) %></p>
-    <% end %>
+  <% if @order_driver.present? && current_user.driver.eql?(false) %>
+    <p>
+      <%= t('common.user_taken_order') %>:
+      <%= link_to @order_driver.full_name, profile_path(id: @order_driver) %>
+    </p>
   <% end %>
 
   <p class="lead">
-    <% if current_user.driver.present? %>
-      <% if @order.taken_order? %>
+    <% if current_user.driver %>
+      <% if @order.taken? %>
         <%= link_to t('common.delivered'), archive_orders_path(order_id: @order, status: 2, driver_id: current_user), method: :post, class: "btn btn-info" %>
         <%= link_to t('common.refuse'), change_status_path(id: @order, status: 0, driver_id: nil), class: "btn btn-info" %>
       <% else %>
@@ -31,7 +32,7 @@
       <% end %>
     <% else %>
       <%= link_to t('common.edit'), edit_order_path(@order), class: "btn btn-info" %>
-      <%= link_to t('common.delete'), order_path(@order), method: :delete, data: { confirm: 'Вы уверены?' }, class: "btn btn-info" %>
+      <%= link_to t('common.delete'), order_path(@order), method: :delete, data: { confirm: t('common.confirm') }, class: "btn btn-info" %>
     <% end %>
   </p>
 
@@ -70,19 +71,19 @@
       unitSystem: google.maps.UnitSystem.METRIC
     }, function(response, status) {
       if (status !== 'OK') {
-        alert('Error was: '  status);
+        alert('Error was: ' +  status);
       } else {
         var originList = response.originAddresses;
         var destinationList = response.destinationAddresses;
         var outputDiv = document.getElementById('output');
         outputDiv.innerHTML = '';
         deleteMarkersDistance(markersArray);
-        for (var i = 0; i < originList.length; i) {
+        for (var i = 0; i < originList.length; i++) {
           var results = response.rows[i].elements;
           distance = results[0].distance.text;
           time = results[0].duration.text;
-          outputDiv.innerHTML = '<span>'  '<%= t('.distance') %>: '  results[0].distance.text  '</span>'
-          '<span>'  '<%= t('.time_in_road') %>: '   results[0].duration.text  '</span>';
+          outputDiv.innerHTML += '<span>' + '<%= t('.distance') %>: ' + results[0].distance.text + '</span>' +
+          '<span>' + '<%= t('.time_in_road') %>: ' +  results[0].duration.text + '</span>';
         }
       }
     });
@@ -97,13 +98,13 @@
       if (status === 'OK') {
         directionsDisplay.setDirections(response);
       } else {
-        window.alert('Directions request failed due to '  status);
+        window.alert('Directions request failed due to ' +  status);
       }
     });
   }
 
   function deleteMarkersDistance(markersArray) {
-    for (var i = 0; i < markersArray.length; i) {
+    for (var i = 0; i < markersArray.length; i++) {
       markersArray[i].setMap(null);
     }
     markersArray = [];

@@ -1,27 +1,14 @@
 <table class="table table-hover">
   <% if current_user.driver ? @orders.new_order.present? : @user_orders.present? %>
+
     <% if current_user.driver %>
       <h2 class="text-center"><%= t('.available') %></h2>
+      <%= render 'orders', orders: @orders.new_order %>
     <% else %>
       <h2 class="text-center"><%= t('.your_orders') %></h2>
+      <%= render 'orders', orders: @user_orders %>
     <% end %>
-    <tr>
-      <th><%= t('.starting_point') %></th>
-      <th><%= t('.destination_point') %></th>
-      <th><%= t('.date') %></th>
-      <th><%= t('.price') %></th>
-      <th><%= t('.status') %></th>
-      <th colspan="2"></th>
-    </tr>
-    <% if current_user.driver %>
-      <% @orders.new_order.each do |order| %>
-        <%= render 'orders', order: order %>
-      <% end %>
-    <% else %>
-      <% @user_orders.each do |order| %>
-        <%= render 'orders', order: order %>
-      <% end %>
-    <% end %>
+
   <% else %>
     <% if current_user.driver %>
       <h2 class="text-center"><%= t('.no_driver_orders') %></h2>
@@ -31,6 +18,6 @@
   <% end %>
 </table>
 <div class="text-center">
-  <%= link_to t('.new_button'), new_order_path, method: :get, class: "btn btn-info" unless current_user.driver %>
+  <%= link_to t('.new_order'), new_order_path, method: :get, class: "btn btn-info" unless current_user.driver %>
 </div>
 <%= will_paginate current_user.driver ? @orders.new_order : @user_orders %>

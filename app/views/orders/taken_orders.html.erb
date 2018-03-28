@@ -9,20 +9,20 @@
       <th><%= t('.status') %></th>
       <th colspan="2"></th>
     </tr>
+    <% @taken_orders.each do |order| %>
+      <tr>
+        <td><%= order.start %></td>
+        <td><%= order.destination %></td>
+        <td><%= order.format_date %></td>
+        <td><%= format_price(order.price) %></td>
+        <td style="color: green"><%= status_i18n(order.status) %></td>
+        <td><%= link_to t('common.show'), order, class: "btn btn-light" %></td>
+        <td><%= link_to t('common.refuse'), change_status_path(id: order, status: 0, driver_id: nil), class: "btn btn-light" %></td>
+      </tr>
+    <% end %>
+  </table>
 <% else %>
   <h2 class="text-center"><%= t('.no_orders') %></h2>
 <% end %>
 
-  <% @taken_orders.each do |order| %>
-    <tr>
-      <td><%= order.start %></td>
-      <td><%= order.destination %></td>
-      <td><%= order.date.strftime("%d/%m/%Y") %></td>
-      <td><%= order.price %></td>
-      <td style="color: green"><%= status_i18n(order.status) %></td>
-      <td><%= link_to t('common.show'), order, class: "btn btn-light" %></td>
-      <td><%= link_to t('common.refuse'), change_status_path(id: order, status: 0, driver_id: nil), class: "btn btn-light" %></td>
-    </tr>
-  <% end %>
-</table>
 <%= will_paginate @taken_orders %>

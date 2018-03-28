@@ -2,6 +2,12 @@
 
 class ArchiveOrder < ApplicationRecord
   belongs_to :user
-  enum status: [I18n.t('status.new'), I18n.t('status.accepted'), I18n.t('status.delivered')]
+
+  enum status: { new_order: 0, taken_order: 1, delivered_order: 2 }
+
   self.per_page = 8
+
+  def format_date
+    date.strftime('%d/%m/%Y')
+  end
 end

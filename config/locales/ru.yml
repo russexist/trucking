@@ -20,8 +20,6 @@ ru:
       title: Загрузите свою фотографию
 
   common:
-    accepted_order_driver: Вы приняли заказ
-    accepted_order_user: Заказ принял
     archive: Архив заказов
     back: Назад
     confirm: Вы уверенны?
@@ -46,6 +44,9 @@ ru:
     take_order: Принять заказ
     taken_orders: Принятые заказы
     to: Куда
+    user_taken_order: Заказ принял
+    you_taken_order: Вы приняли заказ
+    you_refused_order: Вы отказались от заказа
 
   helpers:
     weight: ' кг'
@@ -64,15 +65,15 @@ ru:
       detail: Детали заказа
       from: Укажите ОТКУДА следует забрать груз
       next: Далее
-      price: Предложите свою цену
+      price: Предложите свою цену (грн)
       start: Например, Енгельса 162, Черкаси
       to: Укажите КУДА следует доставить груз
-      weight: Примерный вес груза
+      weight: Примерный вес груза (кг)
     index:
       available: Доступные заказы
       date: Дата
       destination_point: Конечная точка
-      new_button: Новый заказ
+      new_order: Новый заказ
       no_driver_orders: Нет доступных заказов
       no_user_orders: У вас еще нет заказов, но никогда не поздно это исправить :)
       price: Цена

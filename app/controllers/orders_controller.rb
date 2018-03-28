@@ -21,12 +21,13 @@ class OrdersController < ApplicationController
   def edit; end
 
   def index
-    @orders = Order.all.paginate(page: params[:page])
-    @user_orders = current_user.orders.paginate(page: params[:page])
+    @orders = Order.all.order(created_at: :desc).paginate(page: params[:page])
+    @user_orders = current_user.orders.order(created_at: :desc)
+      .paginate(page: params[:page])
   end
 
   def show
-    @driver = User.find_by(id: @order.driver_id)
+    @order_driver = User.find_by(id: @order.driver_id)
   end
 
   def update
@@ -39,11 +40,17 @@ class OrdersController < ApplicationController
 
   def change_status
     @order.update(status: params[:status].to_i, driver_id: params[:driver_id])
-    redirect_to taken_orders_path
+    if params[:status] == '0'
+      flash[:warning] = I18n.t('common.you_refused_order')
+    else
+      flash[:notice] = I18n.t('common.you_taken_order')
+    end
+    redirect_back(fallback_location: root_path)
   end
 
   def taken_orders
-    @taken_orders = Order.taken_for_driver(current_user).paginate(page: params[:page])
+    @taken_orders = Order.taken_for_driver(current_user)
+      .order(date: :asc).paginate(page: params[:page])
   end
 
   def destroy

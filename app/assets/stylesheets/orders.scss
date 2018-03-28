@@ -34,6 +34,7 @@
 }
 .pagination a:hover, .pagination a .current {
   color: #fff;
+  text-decoration: none;
 }
 .pagination a:hover:before, .pagination a .current:before {
   -webkit-transform: scale(1);
