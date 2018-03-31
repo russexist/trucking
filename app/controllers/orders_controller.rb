@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class OrdersController < ApplicationController
-  before_action :set_order, except: %i[new index create taken_orders]
+  before_action :set_order, except: %i[archive new index create taken_orders]
   before_action :authenticate_user!
 
   def new
@@ -26,9 +26,7 @@ class OrdersController < ApplicationController
       .paginate(page: params[:page])
   end
 
-  def show
-    @order_driver = User.find_by(id: @order.driver_id)
-  end
+  def show; end
 
   def update
     if @order.update(order_params)
@@ -38,24 +36,30 @@ class OrdersController < ApplicationController
     end
   end
 
+  def destroy
+    @order.destroy
+    redirect_to orders_path
+  end
+
+  def archive
+    @archived_orders = Order.archived_for(current_user).paginate(page: params[:page])
+  end
+
   def change_status
-    @order.update(status: params[:status].to_i, driver_id: params[:driver_id])
-    if params[:status] == '0'
-      flash[:warning] = I18n.t('common.you_refused_order')
+    @order.update(status: params[:status], driver_id: params[:driver_id])
+    if @order.taken?
+      flash[:notice] = I18n.t('common.you_take_order')
+    elsif @order.delivered?
+      flash[:warning] = I18n.t('common.add_to_archive')
     else
-      flash[:notice] = I18n.t('common.you_taken_order')
+      flash[:warning] = I18n.t('common.you_refused_order')
     end
     redirect_back(fallback_location: root_path)
   end
 
   def taken_orders
-    @taken_orders = Order.taken_for_driver(current_user)
-      .order(date: :asc).paginate(page: params[:page])
-  end
-
-  def destroy
-    @order.destroy
-    redirect_to orders_path
+    @taken_orders = Order.taken_by_driver(current_user).order(date: :asc)
+      .paginate(page: params[:page])
   end
 
   private

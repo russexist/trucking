@@ -1,0 +1,71 @@
+<script>
+  function DisplayRouteAndDistance() {
+    var directionsService = new google.maps.DirectionsService;
+    var directionsDisplay = new google.maps.DirectionsRenderer;
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 9,
+      center: {lat: 49.0, lng: 32.0}
+    });
+    directionsDisplay.setMap(map);
+    var onChangeHandler = function() {
+      calculateAndDisplayRoute(directionsService, directionsDisplay);
+    };
+    onChangeHandler();
+
+    var bounds = new google.maps.LatLngBounds;
+    var markersArray = [];
+    var origin1 = '<%= @order.start %>';
+    var destinationA = '<%= @order.destination %>';
+    var geocoder = new google.maps.Geocoder;
+    var service = new google.maps.DistanceMatrixService;
+
+    service.getDistanceMatrix({
+      origins: [origin1],
+      destinations: [destinationA],
+      travelMode: 'DRIVING',
+      unitSystem: google.maps.UnitSystem.METRIC
+    }, function(response, status) {
+      if (status !== 'OK') {
+        alert('Error was: ' +  status);
+      } else {
+        var originList = response.originAddresses;
+        var destinationList = response.destinationAddresses;
+        var outputDiv = document.getElementById('output');
+        outputDiv.innerHTML = '';
+        deleteMarkersDistance(markersArray);
+        for (var i = 0; i < originList.length; i++) {
+          var results = response.rows[i].elements;
+          distance = results[0].distance.text;
+          time = results[0].duration.text;
+          outputDiv.innerHTML += '<span>' + '<%= t('.distance') %>: ' + results[0].distance.text + '</span>' +
+          '<span>' + '<%= t('.time_in_road') %>: ' +  results[0].duration.text + '</span>';
+        }
+      }
+    });
+  }
+
+  function calculateAndDisplayRoute(directionsService, directionsDisplay) {
+    directionsService.route({
+      origin: '<%= @order.start %>',
+      destination: '<%= @order.destination %>',
+      travelMode: 'DRIVING'
+    }, function(response, status) {
+      if (status === 'OK') {
+        directionsDisplay.setDirections(response);
+      } else {
+        window.alert('Directions request failed due to ' +  status);
+      }
+    });
+  }
+
+  function deleteMarkersDistance(markersArray) {
+    for (var i = 0; i < markersArray.length; i++) {
+      markersArray[i].setMap(null);
+    }
+    markersArray = [];
+  }
+</script>
+
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjgTe57M-Jmvs1PfRM-a5xHQy9XTrTUlw&callback=DisplayRouteAndDistance">
+</script>

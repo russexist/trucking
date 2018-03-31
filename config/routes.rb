@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   scope '(:locale)', locale: /#{I18n.available_locales.join("|")}/ do
     devise_for :users
 
+    get '/archive',       to: 'orders#archive'
     get '/change_status', to: 'orders#change_status'
     get 'mailbox/inbox',  to: 'mailbox#inbox', as: :mailbox_inbox
     get 'mailbox/sent',   to: 'mailbox#sent',  as: :mailbox_sent
@@ -12,7 +13,6 @@ Rails.application.routes.draw do
     get '/taken_orders',  to: 'orders#taken_orders'
 
     resources :avatars, except: %i[index show]
-    resources :archive_orders, only: %i[create destroy index show]
     resources :conversations do
       member do
         post :reply

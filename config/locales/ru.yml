@@ -1,13 +1,4 @@
 ru:
-  archive_orders:
-    add_to_archive: Заказ перемещен в архив
-    delete: Заказ был удален
-    show:
-      archive: Архив
-    index:
-      archive: Архив
-      no_orders: Архив пуст
-
   avatars:
     crop:
       save: Сохранить
@@ -20,7 +11,8 @@ ru:
       title: Загрузите свою фотографию
 
   common:
-    archive: Архив заказов
+    add_to_archive: Заказ перемещен в архив
+    archive: Архив
     back: Назад
     confirm: Вы уверенны?
     conversations: Сообщения
@@ -45,7 +37,7 @@ ru:
     taken_orders: Принятые заказы
     to: Куда
     user_taken_order: Заказ принял
-    you_taken_order: Вы приняли заказ
+    you_take_order: Вы приняли заказ
     you_refused_order: Вы отказались от заказа
 
   helpers:
@@ -53,6 +45,9 @@ ru:
     uah: ' грн'
 
   orders:
+    archive:
+      no_orders: Архив пуст
+      title: Архив
     create: Заказ успешно создан
     delete: Заказ был удален
     edit:
@@ -82,29 +77,28 @@ ru:
       your_orders: Ваши заказы
     new:
       title: Новый заказ
+    route_and_distance:
+      distance: Расстояние
+      time_in_road: Примерное время в пути
     show:
       comment: Комментарий
       date: Дата
       destination_point: Куда
-      distance: Расстояние
-      new_button: Новый заказ
       price: Цена
       starting_point: Откуда
       status: Статус
-      time_in_road: Примерное время в пути
       weight: Вес груза
     taken_orders:
       date: Дата
       destination_point: Конечная точка
-      new_button: Новый заказ
       no_orders: Нет принятых заказов
       starting_point: Начальная точка
       status: Статус
       price: Цена
 
   status:
-    new: Новый
     delivered: Доставлен
+    new: Новый
     taken: Принят
 
   will_paginate:
