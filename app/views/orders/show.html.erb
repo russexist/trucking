@@ -1,6 +1,6 @@
 <div class="jumbotron">
   <p class="lead">
-    <% if current_user.driver %>
+    <% if current_user.driver? %>
       <p class="text-center">
         <b>Заказчик: <%= link_to @order.user.full_name, profile_path(id: @order.user) %></b><hr>
       </p>
@@ -15,24 +15,26 @@
   <p><%= t('.status') %>: <%= status_i18n(@order.status) %></p>
   <p><%= t('.comment') %>: <%= @order.comment %></p>
 
-  <% if @order_driver.present? && current_user.driver.eql?(false) %>
-    <p>
-      <%= t('common.user_taken_order') %>:
-      <%= link_to @order_driver.full_name, profile_path(id: @order_driver) %>
-    </p>
+  <% if @order.driver.present? && current_user.not_driver? %>
+    <p><%= t('common.user_taken_order') %>:
+      <%= link_to @order.driver.full_name, profile_path(id: @order.driver) %></p>
   <% end %>
 
   <p class="lead">
-    <% if current_user.driver %>
+    <% if current_user.driver? %>
       <% if @order.taken? %>
-        <%= link_to t('common.delivered'), archive_orders_path(order_id: @order, status: 2, driver_id: current_user), method: :post, class: "btn btn-info" %>
-        <%= link_to t('common.refuse'), change_status_path(id: @order, status: 0, driver_id: nil), class: "btn btn-info" %>
+        <%= link_to t('common.delivered'), change_status_path(id: @order,
+              status: 'delivered', driver_id: current_user), class: "btn btn-info" %>
+        <%= link_to t('common.refuse'), change_status_path(id: @order,
+              status: 'new_order', driver_id: nil), class: "btn btn-info" %>
       <% else %>
-        <%= link_to t('common.take_order'), change_status_path(id: @order, status: 1, driver_id: current_user), class: "btn btn-info" %>
+        <%= link_to t('common.take_order'), change_status_path(id: @order,
+              status: 'taken', driver_id: current_user), class: "btn btn-info" unless @order.delivered? %>
       <% end %>
     <% else %>
       <%= link_to t('common.edit'), edit_order_path(@order), class: "btn btn-info" %>
-      <%= link_to t('common.delete'), order_path(@order), method: :delete, data: { confirm: t('common.confirm') }, class: "btn btn-info" %>
+      <%= link_to t('common.delete'), order_path(@order), method: :delete,
+            data: { confirm: t('common.confirm') }, class: "btn btn-info" %>
     <% end %>
   </p>
 
@@ -43,74 +45,4 @@
   </div>
 </div>
 
-<script>
-  function DisplayRouteAndDistance() {
-    var directionsService = new google.maps.DirectionsService;
-    var directionsDisplay = new google.maps.DirectionsRenderer;
-    var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 9,
-      center: {lat: 49.0, lng: 32.0}
-    });
-    directionsDisplay.setMap(map);
-    var onChangeHandler = function() {
-      calculateAndDisplayRoute(directionsService, directionsDisplay);
-    };
-    onChangeHandler();
-
-    var bounds = new google.maps.LatLngBounds;
-    var markersArray = [];
-    var origin1 = '<%= @order.start %>';
-    var destinationA = '<%= @order.destination %>';
-    var geocoder = new google.maps.Geocoder;
-    var service = new google.maps.DistanceMatrixService;
-
-    service.getDistanceMatrix({
-      origins: [origin1],
-      destinations: [destinationA],
-      travelMode: 'DRIVING',
-      unitSystem: google.maps.UnitSystem.METRIC
-    }, function(response, status) {
-      if (status !== 'OK') {
-        alert('Error was: ' +  status);
-      } else {
-        var originList = response.originAddresses;
-        var destinationList = response.destinationAddresses;
-        var outputDiv = document.getElementById('output');
-        outputDiv.innerHTML = '';
-        deleteMarkersDistance(markersArray);
-        for (var i = 0; i < originList.length; i++) {
-          var results = response.rows[i].elements;
-          distance = results[0].distance.text;
-          time = results[0].duration.text;
-          outputDiv.innerHTML += '<span>' + '<%= t('.distance') %>: ' + results[0].distance.text + '</span>' +
-          '<span>' + '<%= t('.time_in_road') %>: ' +  results[0].duration.text + '</span>';
-        }
-      }
-    });
-  }
-
-  function calculateAndDisplayRoute(directionsService, directionsDisplay) {
-    directionsService.route({
-      origin: '<%= @order.start %>',
-      destination: '<%= @order.destination %>',
-      travelMode: 'DRIVING'
-    }, function(response, status) {
-      if (status === 'OK') {
-        directionsDisplay.setDirections(response);
-      } else {
-        window.alert('Directions request failed due to ' +  status);
-      }
-    });
-  }
-
-  function deleteMarkersDistance(markersArray) {
-    for (var i = 0; i < markersArray.length; i++) {
-      markersArray[i].setMap(null);
-    }
-    markersArray = [];
-  }
-</script>
-
-<script async defer
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjgTe57M-Jmvs1PfRM-a5xHQy9XTrTUlw&callback=DisplayRouteAndDistance">
-</script>
+<%= render 'route_and_distance' %>

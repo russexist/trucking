@@ -17,7 +17,7 @@
         <td><%= format_price(order.price) %></td>
         <td style="color: green"><%= status_i18n(order.status) %></td>
         <td><%= link_to t('common.show'), order, class: "btn btn-light" %></td>
-        <td><%= link_to t('common.refuse'), change_status_path(id: order, status: 0, driver_id: nil), class: "btn btn-light" %></td>
+        <td><%= link_to t('common.refuse'), change_status_path(id: order, status: 'new_order', driver_id: nil), class: "btn btn-light" %></td>
       </tr>
     <% end %>
   </table>

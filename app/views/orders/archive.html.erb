@@ -1,5 +1,5 @@
-<% if @archive_orders.present? %>
-  <h2 class="text-center"><%= t('.archive') %></h2>
+<% if @archived_orders.present? %>
+  <h2 class="text-center"><%= t('.title') %></h2>
   <table class="table">
     <tr>
       <th><%= t('orders.index.starting_point') %></th>
@@ -9,18 +9,14 @@
       <th><%= t('orders.index.status') %></th>
       <th colspan="2"></th>
     </tr>
-    <% @archive_orders.each do |order| %>
+    <% @archived_orders.each do |order| %>
       <tr>
-        <td><%= order.start_point %></td>
-        <td><%= order.destination_point %></td>
+        <td><%= order.start %></td>
+        <td><%= order.destination%></td>
         <td><%= order.format_date %></td>
         <td><%= format_price(order.price) %></td>
         <td style="color: green"><%= status_i18n(order.status) %></td>
         <td><%= link_to t('common.show'), order, class: "btn btn-light" %></td>
-        <td><%= link_to t('common.delete'), archive_order_path(order),
-                          method: :delete,
-                          data: { confirm: t('common.confirm') },
-                          class: "btn btn-light" if current_user.driver %></td>
       </tr>
     <% end %>
   </table>
@@ -28,4 +24,4 @@
   <h2 class="text-center"><%= t('.no_orders') %></h2>
 <% end %>
 
-<%= will_paginate @archive_orders %>
+<%= will_paginate @archived_orders %>
