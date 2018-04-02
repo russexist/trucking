@@ -2,7 +2,7 @@
   <p class="lead">
     <% if current_user.driver? %>
       <p class="text-center">
-        <b>Заказчик: <%= link_to @order.user.full_name, profile_path(id: @order.user) %></b><hr>
+        <b>Заказчик: <%= link_to @order.user.full_name, user_path(@order.user) %></b><hr>
       </p>
     <% end %>
     <p><b><%= t('.starting_point') %>: </b><%= @order.start %></p>
@@ -17,7 +17,7 @@
 
   <% if @order.driver.present? && current_user.not_driver? %>
     <p><%= t('common.user_taken_order') %>:
-      <%= link_to @order.driver.full_name, profile_path(id: @order.driver) %></p>
+      <%= link_to @order.driver.full_name, user_path(@order.driver) %></p>
   <% end %>
 
   <p class="lead">

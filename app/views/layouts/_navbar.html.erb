@@ -26,12 +26,18 @@
       <% end %>
     </ul>
 
+    <ul class="navbar-nav mr-right mr-3">
+      <li class="nav-item">
+        <i class="fa fa-bell fa-lg fa-inverse"></i><span class="badge badge-pill badge-info">4</span>
+      </li>
+    </ul>
+
     <ul class="navbar-nav mr-right">
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <%= I18n.locale.upcase %> <%= image_tag "#{I18n.locale}.png", width: '20' if  File.file? "app/assets/images/#{I18n.locale}.png" %>
         </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <div class="dropdown-menu dropdown-links" aria-labelledby="navbarDropdown">
           <%= link_to locale: :en do %>
             Eng
             <%= image_tag "en.png", width: '20' if  File.file? "app/assets/images/en.png" %>
@@ -50,7 +56,7 @@
       </li>
       <% if user_signed_in? %>
         <li class="nav-item">
-          <%= link_to current_user.first_name, profile_path, class: "nav-link mr-sm-2" %>
+          <%= link_to current_user.first_name, user_path(current_user), class: "nav-link mr-sm-2" %>
         </li>
         <li class="nav-item">
           <%= link_to t('common.sign_out'), destroy_user_session_path, method: :delete, class: "btn btn-outline-danger" %>

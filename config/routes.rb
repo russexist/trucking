@@ -9,7 +9,6 @@ Rails.application.routes.draw do
     get 'mailbox/inbox',  to: 'mailbox#inbox', as: :mailbox_inbox
     get 'mailbox/sent',   to: 'mailbox#sent',  as: :mailbox_sent
     get 'mailbox/trash',  to: 'mailbox#trash', as: :mailbox_trash
-    get '/profile',       to: 'application#profile'
     get '/taken_orders',  to: 'orders#taken_orders'
 
     resources :avatars, except: %i[index show]
@@ -21,6 +20,9 @@ Rails.application.routes.draw do
       end
     end
     resources :orders
+    resources :users, only: :show do
+      resources :reviews
+    end
 
     root 'orders#index'
   end

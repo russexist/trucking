@@ -42,7 +42,8 @@ class OrdersController < ApplicationController
   end
 
   def archive
-    @archived_orders = Order.archived_for(current_user).paginate(page: params[:page])
+    @archived_orders = Order.archived_for_user(current_user)
+      .paginate(page: params[:page])
   end
 
   def change_status
@@ -50,7 +51,7 @@ class OrdersController < ApplicationController
     if @order.taken?
       flash[:notice] = I18n.t('common.you_take_order')
     elsif @order.delivered?
-      flash[:warning] = I18n.t('common.add_to_archive')
+      flash[:notice] = I18n.t('common.add_to_archive')
     else
       flash[:warning] = I18n.t('common.you_refused_order')
     end

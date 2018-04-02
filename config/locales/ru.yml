@@ -27,7 +27,6 @@ ru:
     history: История заказов
     home_page: На главную
     log_in: Войти
-    profile_title: Профиль пользователя
     refuse: Отказаться
     save: Сохранить
     show: Просмотреть
@@ -96,10 +95,29 @@ ru:
       status: Статус
       price: Цена
 
+  reviews:
+    create: Отзыв успешно добавлен!
+    destroy: Отзыв удален!
+
   status:
     delivered: Доставлен
     new: Новый
     taken: Принят
+
+  users:
+    review_form:
+      comment: Комментарий
+      placeholder: Напишите свой отзыв...
+      rating:
+        bad: Плохой
+        excellent: Отличный
+        fine: Нормальный
+        good: Хороший
+        so-so: Так себе
+      send: Отправить
+      title: Оставить отзыв
+    show:
+      title: Профиль пользователя
 
   will_paginate:
     next_label: '>'

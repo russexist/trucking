@@ -15,7 +15,7 @@
     <% end %>
   <% end %>
 </table>
+<%= will_paginate %>
 <div class="text-center">
    <%= link_to t('.new_order'), new_order_path, class: "btn btn-info" if current_user.not_driver? %>
 </div>
-<%= will_paginate %>
