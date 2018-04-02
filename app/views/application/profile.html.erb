@@ -15,3 +15,13 @@
 <p>Phone: <%= @user.phone %></p>
 <p>Email: <%= @user.email %></p>
 <%= link_to t('common.edit_profile'), edit_user_registration_path, class: "btn btn-info" if @user == current_user %>
+
+<hr>
+<% @user.comments.each do |comment| %>
+  <%= comment.user.first_name %><br>
+  <%= comment.rating %><br>
+  <%= comment.body %>
+  <hr>
+<% end %>
+
+<%= render 'comment_form' %>

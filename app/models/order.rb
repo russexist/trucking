@@ -6,7 +6,7 @@ class Order < ApplicationRecord
   belongs_to :driver, class_name: 'User', optional: true
   belongs_to :user
 
-  scope :archived_for, ->(user) { where(status: 2, driver: user) }
+  scope :archived_for_user, ->(user) { where(status: 2, driver: user) }
   scope :taken_by_driver, ->(user) { where(status: 1, driver: user) }
 
   validates :date, :destination, :price, :start, :weight, presence: true

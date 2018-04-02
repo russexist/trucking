@@ -15,7 +15,7 @@ class AvatarsController < ApplicationController
       if params[:avatar][:image].present?
         render 'crop'
       else
-        redirect_to profile_path
+        redirect_to user_path(current_user)
       end
     else
       render 'new'
@@ -29,7 +29,7 @@ class AvatarsController < ApplicationController
       if params[:avatar][:image].present?
         render 'crop'
       else
-        redirect_to profile_path
+        redirect_to user_path(current_user)
       end
     else
       render 'edit'

@@ -10,30 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180314160142) do
+ActiveRecord::Schema.define(version: 20180401114001) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "archive_orders", force: :cascade do |t|
-    t.integer "price"
-    t.integer "weight"
-    t.text "comment"
-    t.integer "user_id"
-    t.integer "status"
-    t.integer "driver_id"
-    t.datetime "date"
-    t.string "start_point"
-    t.string "destination_point"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "avatars", force: :cascade do |t|
     t.string "image"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.text "body"
+    t.integer "rating", default: 0
+    t.integer "subject_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "mailboxer_conversation_opt_outs", id: :serial, force: :cascade do |t|
@@ -104,6 +100,16 @@ ActiveRecord::Schema.define(version: 20180314160142) do
     t.integer "status", default: 0
   end
 
+  create_table "reviews", force: :cascade do |t|
+    t.text "body"
+    t.bigint "user_id"
+    t.integer "rating", default: 0
+    t.integer "driver_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "first_name", default: "", null: false
@@ -125,7 +131,9 @@ ActiveRecord::Schema.define(version: 20180314160142) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "comments", "users"
   add_foreign_key "mailboxer_conversation_opt_outs", "mailboxer_conversations", column: "conversation_id", name: "mb_opt_outs_on_conversations_id"
   add_foreign_key "mailboxer_notifications", "mailboxer_conversations", column: "conversation_id", name: "notifications_on_conversation_id"
   add_foreign_key "mailboxer_receipts", "mailboxer_notifications", column: "notification_id", name: "receipts_on_notification_id"
+  add_foreign_key "reviews", "users"
 end
