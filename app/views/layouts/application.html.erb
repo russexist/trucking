@@ -4,6 +4,7 @@
     <title>Trucking</title>
     <%= csrf_meta_tags %>
 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="<%= image_path("favicon.ico") %>" rel="shortcut icon" />
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_link_tag    "//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" %>
@@ -14,15 +15,20 @@
   <body>
     <%= render 'layouts/navbar' %>
 
-    <div class="container">
-      <% flash.each do |key, value| %>
-        <div class="text-center <%= flas_class(key) %>" role="alert">
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">&times;</button>
-          <%= value %>
-        </div>
-      <% end %>
+    <div class="wrapper">
+        <div class="container">
+          <% flash.each do |key, value| %>
+            <div class="text-center <%= flas_class(key) %>" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">&times;</button>
+              <%= value %>
+            </div>
+          <% end %>
 
-      <%= yield %>
+          <%= yield %>
+
+        </div>
     </div>
+
+    <%= render 'layouts/footer' %>
   </body>
 </html>

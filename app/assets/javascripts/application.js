@@ -23,6 +23,16 @@
 
 var ready;
 ready = function() {
+  $(document).ready(function($) {
+    $(window).on('scroll', function() {
+      if ($(window).scrollTop() + $(window).height() > $('.wrapper').outerHeight()) {
+        $('body').addClass('tight');
+      } else {
+        $('body').removeClass('tight');
+      }
+    });
+  });
+
   $("#datepicker").datepicker({
     minDate: 0,
     dateFormat: "dd/mm/yy",
@@ -34,6 +44,7 @@ ready = function() {
   var currentFs, nextFs, previousFs;
   var left, opacity, scale;
   var animating;
+  var width = 33.3
 
   $(".next").click(function(){
     if(animating) return false;
@@ -41,6 +52,13 @@ ready = function() {
 
     currentFs = $(this).parent();
     nextFs = $(this).parent().next();
+
+    if (width == 33.3)
+      width = width * 2;
+    else {
+      width = 100;
+    }
+    $('.progress-bar').css('width', width+'%');
 
     nextFs.show();
     $('.active').next().addClass('active');
@@ -68,6 +86,15 @@ ready = function() {
 
     currentFs = $(this).parent();
     previousFs = $(this).parent().prev();
+
+    if (width == 100)
+      width = 66.6;
+    else {
+      if (width == 66.6) {
+        width = width/2;
+      }
+    }
+    $('.progress-bar').css('width', width+'%');
 
     previousFs.show();
 
