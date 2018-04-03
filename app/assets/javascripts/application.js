@@ -33,6 +33,18 @@ ready = function() {
     });
   });
 
+  $('#flash_wrapper').hide()
+  $(document).ready(function() {
+    $('#flash_wrapper').fadeIn('slow',function(){
+      $('#flash_wrapper').show();
+    });
+    setTimeout(function(){
+      $('#flash_wrapper').fadeOut('slow', function() {
+        $(this).remove();
+      });
+    }, 4000);
+  });
+
   $("#datepicker").datepicker({
     minDate: 0,
     dateFormat: "dd/mm/yy",
