@@ -1,0 +1,9 @@
+<% if @order.taken? %>
+  <%= link_to t('common.delivered'), change_status_path(id: @order,
+        status: 'delivered', driver_id: current_user), class: "btn btn-info" %>
+  <%= link_to t('common.refuse'), change_status_path(id: @order,
+        status: 'new_order', driver_id: nil), class: "btn btn-info" %>
+<% else %>
+  <%= link_to t('common.take_order'), change_status_path(id: @order,
+        status: 'taken', driver_id: current_user), class: "btn btn-info" unless @order.delivered? %>
+<% end %>

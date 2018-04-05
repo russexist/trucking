@@ -1,29 +1,32 @@
-<tr>
-  <th><%= t('orders.index.starting_point') %></th>
-  <th><%= t('orders.index.destination_point') %></th>
-  <th><%= t('orders.index.date') %></th>
-  <th><%= t('orders.index.price') %></th>
-  <th><%= t('orders.index.status') %></th>
-  <th colspan="2"></th>
-</tr>
-
-<% orders.each do |order| %>
+<% if orders.present? %>
+  <h2 class="text-center"><%= f_title %></h2>
   <tr>
-    <td><%= order.start %></td>
-    <td><%= order.destination %></td>
-    <td><%= order.format_date %></td>
-    <td class="col-md"><%= format_price(order.price) %></td>
-    <td style="color: green"><%= status_i18n(order.status) %></td>
-    <td><%= link_to t('common.show'), order, class: "btn btn-light" %></td>
-    <td>
-      <% unless current_user.driver %>
+    <th><%= t('orders.index.starting_point') %></th>
+    <th><%= t('orders.index.destination_point') %></th>
+    <th><%= t('orders.index.date') %></th>
+    <th><%= t('orders.index.price') %></th>
+    <th><%= t('orders.index.status') %></th>
+    <th colspan="2"></th>
+  </tr>
+
+  <% orders.each do |order| %>
+    <tr>
+      <td><%= order.start %></td>
+      <td><%= order.destination %></td>
+      <td><%= order.format_date %></td>
+      <td class="col-md"><%= format_price(order.price) %></td>
+      <td style="color: green"><%= status_i18n(order.status) %></td>
+      <td><%= link_to t('common.show'), order, class: "btn btn-light" %></td>
+      <td>
         <%= link_to order_path(order), method: :delete,
                                        data: { confirm: t('common.confirm') },
                                        title: t('common.delete'),
                                        class: "btn btn-light" do %>
           &times
-        <% end %>
-      <% end %>
-    </td>
-  </tr>
+        <% end  unless current_user.driver?  %>
+      </td>
+    </tr>
+  <% end %>
+<% else %>
+  <h2 class="text-center"><%= s_title %></h2>
 <% end %>
