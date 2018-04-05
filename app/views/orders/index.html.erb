@@ -1,21 +1,13 @@
 <table class="table table-hover">
   <% if current_user.driver? %>
-    <% if @orders.new_order.present? %>
-      <h2 class="text-center"><%= t('.available') %></h2>
-      <%= render 'orders', orders: @orders.new_order %>
-    <% else %>
-      <h2 class="text-center"><%= t('.no_driver_orders') %></h2>
-    <% end %>
+    <%= render 'orders', orders: @orders, f_title: t('.available'), s_title: t('.no_driver_orders') %>
   <% else %>
-    <% if @user_orders.present? %>
-      <h2 class="text-center"><%= t('.your_orders') %></h2>
-      <%= render 'orders', orders: @user_orders %>
-    <% else %>
-      <h2 class="text-center"><%= t('.no_user_orders') %></h2>
-    <% end %>
+    <%= render 'orders', orders: @user_orders, f_title: t('.your_orders'), s_title: t('.no_user_orders') %>
   <% end %>
 </table>
+
 <%= will_paginate %>
+
 <div class="text-center">
-   <%= link_to t('.new_order'), new_order_path, class: "btn btn-info" if current_user.not_driver? %>
+   <%= link_to t('.new_order'), new_order_path, class: "btn btn-info" unless current_user.driver? %>
 </div>

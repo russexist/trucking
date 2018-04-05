@@ -5,14 +5,14 @@
         <b>Заказчик: <%= link_to @order.user.full_name, user_path(@order.user) %></b><hr>
       </p>
     <% end %>
-    <p><b><%= t('.starting_point') %>: </b><%= @order.start %></p>
+    <p><b><%= t('.starting_point') %>:    </b><%= @order.start %></p>
     <p><b><%= t('.destination_point') %>: </b><%= @order.destination %></p>
   </p>
   <hr class="my-4">
-  <p><%= t('.price') %>: <%= format_price(@order.price) %></p>
-  <p><%= t('.date') %>: <%= @order.format_date %></p>
-  <p><%= t('.weight') %>: <%= format_weight(@order.weight) %></p>
-  <p><%= t('.status') %>: <%= status_i18n(@order.status) %></p>
+  <p><%= t('.price') %>:   <%= format_price(@order.price) %></p>
+  <p><%= t('.date') %>:    <%= @order.format_date %></p>
+  <p><%= t('.weight') %>:  <%= format_weight(@order.weight) %></p>
+  <p><%= t('.status') %>:  <%= status_i18n(@order.status) %></p>
   <p><%= t('.comment') %>: <%= @order.comment %></p>
 
   <% if @order.driver.present? && current_user.not_driver? %>
@@ -22,19 +22,10 @@
 
   <p class="lead">
     <% if current_user.driver? %>
-      <% if @order.taken? %>
-        <%= link_to t('common.delivered'), change_status_path(id: @order,
-              status: 'delivered', driver_id: current_user), class: "btn btn-info" %>
-        <%= link_to t('common.refuse'), change_status_path(id: @order,
-              status: 'new_order', driver_id: nil), class: "btn btn-info" %>
-      <% else %>
-        <%= link_to t('common.take_order'), change_status_path(id: @order,
-              status: 'taken', driver_id: current_user), class: "btn btn-info" unless @order.delivered? %>
-      <% end %>
+      <%= render 'driver_control_links' %>
     <% else %>
       <%= link_to t('common.edit'), edit_order_path(@order), class: "btn btn-info" %>
-      <%= link_to t('common.delete'), order_path(@order), method: :delete,
-            data: { confirm: t('common.confirm') }, class: "btn btn-info" %>
+      <%= link_to t('common.delete'), order_path(@order), method: :delete, data: { confirm: t('common.confirm') }, class: "btn btn-info" %>
     <% end %>
   </p>
 

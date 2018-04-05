@@ -1,7 +1,7 @@
 #Український переклад для https://github.com/plataformatec/devise/tree/v4.2.0
 #Інші переклади на http://github.com/plataformatec/devise/wiki/I18n
 
-uk:
+ua:
   devise:
     confirmations:
       confirmed: "Ваш обліковий запис було успішно підтверджено."
@@ -55,8 +55,14 @@ uk:
       signed_out: "Вихід успішний."
       already_signed_out: "Вихід успішний."
       new:
+        remember_me: "Запам'ятати мене"
+        sign_in: 'Увійти'
         title: 'Вхід'
-        log_in: 'Увійти'
+    shared:
+      links:
+        forgot_password: Забули пароль?
+        sign_in: 'Увійти'
+        sign_up: 'Зареєструватися'
     unlocks:
       send_instructions: "Протягом декількох хвилин на Ваш email буде надіслано інструкції з розблокування облікового запису."
       send_paranoid_instructions: "Якщо ваш обліковий запис існує, то ви отримаєте повідомлення електронної пошти з інструкціями, як розблокувати його протягом декількох хвилин."

@@ -10,9 +10,9 @@ class OrdersController < ApplicationController
 
   def create
     @order = current_user.orders.new(order_params)
+
     if @order.save
-      flash[:notice] = t('orders.create')
-      redirect_to @order
+      redirect_to @order, notice: t('orders.create')
     else
       render 'new'
     end
@@ -21,7 +21,7 @@ class OrdersController < ApplicationController
   def edit; end
 
   def index
-    @orders = Order.all.order(created_at: :desc).paginate(page: params[:page])
+    @orders = Order.new_order.order(created_at: :desc).paginate(page: params[:page])
     @user_orders = current_user.orders.order(created_at: :desc)
       .paginate(page: params[:page])
   end
@@ -49,11 +49,11 @@ class OrdersController < ApplicationController
   def change_status
     @order.update(status: params[:status], driver_id: params[:driver_id])
     if @order.taken?
-      flash[:notice] = I18n.t('common.you_take_order')
+      flash[:notice] = t('common.you_take_order')
     elsif @order.delivered?
-      flash[:notice] = I18n.t('common.add_to_archive')
+      flash[:warning] = t('common.add_to_archive')
     else
-      flash[:warning] = I18n.t('common.you_refused_order')
+      flash[:alert] = t('common.you_refused_order')
     end
     redirect_back(fallback_location: root_path)
   end
