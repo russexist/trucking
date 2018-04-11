@@ -24,6 +24,7 @@ ru:
     errors: При заполении формы возникли ошибки
     history: История заказов
     home_page: На главную
+    no_notify: Нет новых уведомлений!
     refuse: Отказаться
     save: Сохранить
     show: Просмотреть
@@ -65,7 +66,13 @@ ru:
     archive:
       no_orders: Архив пуст
       title: Архив
-    create: Заказ успешно создан
+    change_status:
+      delivered: доставил Ваш заказ!
+      refused: отказался от Вашего заказа!
+      taken: принял Ваш заказ!
+    create:
+      created: добавил новый заказ! Успейте взять его первым!
+    created: Заказ успешно создан
     delete: Заказ был удален
     edit:
       title: Редактировать заказ
@@ -112,6 +119,12 @@ ru:
       starting_point: Начальная точка
       status: Статус
       price: Цена
+
+  notifications:
+    index:
+      notifications_none: Нет уведомлений
+      title: Ваши уведомления
+    show_all: Показать все
 
   reviews:
     create: Отзыв успешно добавлен!

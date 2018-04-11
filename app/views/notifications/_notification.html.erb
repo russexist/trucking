@@ -1,0 +1,12 @@
+<tr>
+  <td>
+    <%= link_to order_path(notification.notifiable.id) do %>
+      <%= notification.actor.full_name %> <%= notification.action %>
+    <% end%>
+  </td>
+  <td>
+    <%= link_to notification_path(notification), method: :delete, title: t('common.delete') do %>
+      <%= fa_icon 'times' %>
+    <% end %>
+  </td>
+</tr>

@@ -2,14 +2,14 @@
 
 class AvatarsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_avatar, except: %i[new create]
-  
+  before_action :set_avatar, except: %i[create new]
+
   def new
     @avatar = Avatar.new
   end
 
   def create
-    @avatar = Avatar.new(avatar_params.merge(user: current_user))
+    @avatar = current_user.build_avatar(avatar_params)
 
     if @avatar.save
       if params[:avatar][:image].present?

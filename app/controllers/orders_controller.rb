@@ -2,7 +2,7 @@
 
 class OrdersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_order, except: %i[archive new index create taken_orders]
+  before_action :set_order, except: %i[archive create index new taken_orders]
 
   def new
     @order = Order.new
@@ -12,7 +12,10 @@ class OrdersController < ApplicationController
     @order = current_user.orders.new(order_params)
 
     if @order.save
-      redirect_to @order, notice: t('orders.create')
+      User.drivers.each do |user|
+        @order.create_notification(user, current_user, t('.created'))
+      end
+      redirect_to @order, notice: t('orders.created')
     else
       render 'new'
     end
@@ -47,13 +50,16 @@ class OrdersController < ApplicationController
   end
 
   def change_status
-    @order.update(status: params[:status], driver_id: params[:driver_id])
+    @order.update!(status: params[:status], driver_id: params[:driver_id])
     if @order.taken?
       flash[:notice] = t('common.you_take_order')
+      @order.create_notification(@order.user, current_user, t('.taken'))
     elsif @order.delivered?
       flash[:warning] = t('common.add_to_archive')
+      @order.create_notification(@order.user, current_user, t('.delivered'))
     else
       flash[:alert] = t('common.you_refused_order')
+      @order.create_notification(@order.user, current_user, t('.refused'))
     end
     redirect_back(fallback_location: root_path)
   end

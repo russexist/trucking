@@ -16,7 +16,7 @@
   <p><%= t('.comment') %>: <%= @order.comment %></p>
 
   <% if @order.driver.present? && current_user.not_driver? %>
-    <p><%= t('common.user_taken_order') %>:
+    <p><b><%= t('common.user_taken_order') %></b> :
       <%= link_to @order.driver.full_name, user_path(@order.driver) %></p>
   <% end %>
 

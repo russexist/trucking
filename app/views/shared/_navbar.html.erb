@@ -26,18 +26,27 @@
       <% end %>
     </ul>
 
-    <ul class="navbar-nav mr-right mr-3">
-      <li class="nav-item">
-        <%= fa_icon 'bell', class: "fa-lg fa-inverse" %><span class="badge badge-pill badge-info">4</span>
-      </li>
-    </ul>
+    <% if user_signed_in? %>
+      <ul class="navbar-nav mr-right mr-3">
+        <li class="nav-item dropdown" data-behavior="notifications">
+          <a class="nav-link dropdown-toggle" href="#" data-behavior="notification-links" id="notificationDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <%= fa_icon 'bell', class: "fa-lg fa-inverse" %><span class="badge badge-pill badge-info" data-behavior="unread-count">0</span>
+          </a>
+            <div class="dropdown-menu fix-nav" aria-labelledby="notificationDropdown" data-behavior="notification-items">
+              <a class='dropdown-item'><b><%= t('common.no_notify') %></b></a>
+              <div class="dropdown-divider"></div>
+              <%= link_to t('notifications.show_all'), notifications_path, class: "dropdown-item link-style" %>
+            </div>
+        </li>
+      </ul>
+    <% end %>
 
     <ul class="navbar-nav mr-right">
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <%= I18n.locale.upcase %> <%= image_tag "#{I18n.locale}.png", width: '20' if  File.file? "app/assets/images/#{I18n.locale}.png" %>
         </a>
-        <div class="dropdown-menu dropdown-links" aria-labelledby="navbarDropdown">
+        <div class="dropdown-menu dropdown-links" aria-labelledby="languageDropdown">
           <%= link_to locale: :en do %>
             Eng
             <%= image_tag "en.png", width: '20' if  File.file? "app/assets/images/en.png" %>
