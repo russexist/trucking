@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class ReviewsController < ApplicationController
+  before_action :authenticate_user!
+
   def create
     driver = User.find(params[:user_id])
     @review = current_user.reviews.create(review_params.merge(driver: driver))

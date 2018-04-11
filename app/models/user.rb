@@ -1,11 +1,14 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
-  has_many :reviews, dependent: :destroy
-  has_many :orders,  dependent: :nullify
-  has_one  :avatar,  dependent: :destroy
+  has_many :notifications, dependent: :destroy, foreign_key: :recipient_id
+  has_many :reviews,       dependent: :destroy
+  has_many :orders,        dependent: :nullify
+  has_one  :avatar,        dependent: :destroy
 
   delegate :image, to: :avatar, allow_nil: true
+
+  scope :drivers, -> { where(driver: true) }
 
   acts_as_messageable
 

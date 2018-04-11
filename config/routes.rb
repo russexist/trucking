@@ -13,9 +13,12 @@ Rails.application.routes.draw do
     resources :avatars, except: %i[index show]
     resources :conversations do
       member do
-        post :reply
         delete :destroy_message
+        post :reply
       end
+    end
+    resources :notifications, only: %i[destroy index] do
+      post :mark_as_read, on: :collection
     end
     resources :orders
     resources :users, only: :show do

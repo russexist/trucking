@@ -2,9 +2,7 @@
 
 module ConversationsHelper
   def recipient(conversation)
-    recipients = conversation.recipients
-    recipients.delete(conversation.originator)
-    recipients.first
+    conversation.recipients.reject { |user| user == current_user }.first
   end
 
   def unread?(conversation)

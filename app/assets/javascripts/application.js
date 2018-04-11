@@ -42,7 +42,7 @@ ready = function() {
       $('#flash_wrapper').fadeOut('slow', function() {
         $(this).remove();
       });
-    }, 4000);
+    }, 3000);
   });
 
   $("#datepicker").datepicker({

@@ -1,0 +1,14 @@
+<div class="notification-container">
+  <% if @notifications.present? %>
+    <h1 class="text-center"><%= t('.title') %></h1>
+    <table class="table table-hover">
+      <tr>
+        <th><%= fa_icon 'bell' %></th>
+        <th><%= fa_icon 'trash' %></th>
+      </tr>
+      <%= render @notifications %>
+    </table>
+  <% else %>
+    <h1 class="text-center"><%= t('.notifications_none') %></h1>
+  <% end %>
+</div>
