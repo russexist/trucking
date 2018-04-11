@@ -22,16 +22,6 @@ ActiveRecord::Schema.define(version: 20180401114001) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "comments", force: :cascade do |t|
-    t.text "body"
-    t.integer "rating", default: 0
-    t.integer "subject_id"
-    t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_comments_on_user_id"
-  end
-
   create_table "mailboxer_conversation_opt_outs", id: :serial, force: :cascade do |t|
     t.string "unsubscriber_type"
     t.integer "unsubscriber_id"
@@ -96,7 +86,7 @@ ActiveRecord::Schema.define(version: 20180401114001) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "driver_id"
-    t.datetime "date"
+    t.date "date"
     t.integer "status", default: 0
   end
 
@@ -131,7 +121,6 @@ ActiveRecord::Schema.define(version: 20180401114001) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "comments", "users"
   add_foreign_key "mailboxer_conversation_opt_outs", "mailboxer_conversations", column: "conversation_id", name: "mb_opt_outs_on_conversations_id"
   add_foreign_key "mailboxer_notifications", "mailboxer_conversations", column: "conversation_id", name: "notifications_on_conversation_id"
   add_foreign_key "mailboxer_receipts", "mailboxer_notifications", column: "notification_id", name: "receipts_on_notification_id"

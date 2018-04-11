@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 class AvatarsController < ApplicationController
-  before_action :set_avatar, except: %i[new create]
   before_action :authenticate_user!
-
+  before_action :set_avatar, except: %i[new create]
+  
   def new
     @avatar = Avatar.new
   end

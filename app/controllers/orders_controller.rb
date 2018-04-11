@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class OrdersController < ApplicationController
-  before_action :set_order, except: %i[archive new index create taken_orders]
   before_action :authenticate_user!
+  before_action :set_order, except: %i[archive new index create taken_orders]
 
   def new
     @order = Order.new
