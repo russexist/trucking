@@ -7,9 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="<%= image_path("favicon.ico") %>" rel="shortcut icon" />
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= stylesheet_link_tag    "//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" %>
+    <%= stylesheet_link_tag    '//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag "https://code.jquery.com/ui/1.12.1/jquery-ui.js" %>
+    <%= javascript_include_tag 'https://code.jquery.com/ui/1.12.1/jquery-ui.js' %>
   </head>
 
   <body>
@@ -20,7 +20,7 @@
       </div>
     <% end %>
 
-    <%= render 'layouts/navbar' %>
+    <%= render 'shared/navbar' %>
 
     <div class="wrapper">
       <div class="container">
@@ -28,6 +28,6 @@
       </div>
     </div>
 
-    <%= render 'layouts/footer' %>
+    <%= render 'shared/footer' %>
   </body>
 </html>

@@ -1,16 +1,9 @@
 <h2><%= t('.title') %></h2>
 <hr>
 
-<% if @user.avatar.present? %>
-  <%= image_tag @user.avatar.image.url(:thumb), class: "img-thumbnail" %><br>
-  <% if @user == current_user %>
-    <%= link_to 'delete avatar', avatar_path(@user.avatar), method: :delete %> |
-    <%= link_to 'change avatar', edit_avatar_path(@user.avatar) %>
-  <% end %>
-<% else %>
-  <%= image_tag "noavatar.png", width: '250', class: "img-thumbnail" %><br>
-  <%= link_to 'add avatar', new_avatar_path if @user == current_user %>
-<% end %>
+<% user_photo(@user) %><br>
+<%= render 'avatar_control_links' %><br>
+<%= link_to 'message', new_conversation_path(user_id: @user.id), class: "btn btn-success" unless @user == current_user %>
 
 <p>Name: <%= @user.first_name %></p>
 <p>Last name: <%= @user.last_name %></p>
@@ -18,13 +11,13 @@
 <p>Email: <%= @user.email %></p>
 <%= link_to t('common.edit_profile'), edit_user_registration_path, class: "btn btn-info" if @user == current_user %>
 
-USER Rating: <%= rating_for_user(@user) %>
+USER Rating: <% rating_for_user(@user) %>
 
 <hr>
 <% @reviews.for_driver(@user).each do |review| %>
   author:<%= review.user.full_name %><br>
   body:<%= review.body %><br>
-  rating:<%= show_rating(review.rating) %>
+  rating:<% show_rating(review.rating) %>
   <%= link_to 'delete', user_review_path(@user, review), method: :delete if review.user == current_user %>
   <hr>
 <% end %>

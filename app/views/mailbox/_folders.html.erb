@@ -1,15 +1,11 @@
-<div id="list-example" class="list-group">
+<div class="list-group">
   <%= link_to mailbox_inbox_path, class: "list-group-item list-group-item-action #{active_page(:inbox)}" do %>
     <span class="badge badge-light pull-right"><%= unread_messages_count %></span>
     <em class="fa fa-inbox fa-lg"></em>
-    <span>Inbox</span>
+    <span><%= t('.inbox') %></span>
   <% end %>
-  <%= link_to mailbox_sent_path, class: "list-group-item list-group-item-action #{active_page(:sent)}" do %>
+  <%= link_to mailbox_sentbox_path, class: "list-group-item list-group-item-action #{active_page(:sentbox)}" do %>
     <em class="fa fa-paper-plane-o fa-lg"></em>
-    <span>Sent</span>
-  <% end %>
-  <%= link_to mailbox_trash_path, class: "list-group-item list-group-item-action #{active_page(:trash)}" do %>
-    <em class="fa fa-trash-o fa-lg"></em>
-    <span>Trash</span>
+    <span><%= t('.sentbox') %></span>
   <% end %>
 </div>

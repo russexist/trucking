@@ -1,1 +1,2 @@
-<%= render partial: 'mailbox/folder_view', locals: { is_conversation: false, messages: @inbox } %>
+<h1 class="text-center"><%= t('.title') %></h1>
+<%= render 'mailbox/folder_view', messages: @inbox %>

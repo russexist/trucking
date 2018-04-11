@@ -2,6 +2,21 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.conversations{
-  margin: 5px 0;
+.conversations{ margin: 5px 0; }
+.conversation{
+  margin: 5px;
+  float: left;
+}
+.conversation-timestamp{
+  float: right;
+  font-size: 12px;
+}
+.delete{
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin: 20px;
+}
+.unread{
+  background-color: #f6fbfc!important;
 }

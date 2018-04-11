@@ -141,8 +141,8 @@ body {
 }
 
 .wrapper {
-  padding: 30px 0 90px 0;
-  min-height: 100vh;
+  padding: 40px 0 120px 0;
+  min-height: 120vh;
   transform-origin: center bottom 0px;
   transition: all 0.5s ease 0s;
   box-shadow: 0px 22px 54px rgba(0, 0, 0, 0.5);
@@ -310,7 +310,7 @@ body.tight .wrapper {
 }
 
 #myFooter .instagram:hover i{
-  border-radius: 30px;
+  border-radius: 50%;
   background: linear-gradient(45deg, #f9ed32, #ee2a7b, #002aff);
 }
 

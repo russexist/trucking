@@ -4,41 +4,41 @@ class ConversationsController < ApplicationController
   before_action :authenticate_user!
 
   def new
-    @recipients = User.all - [current_user]
+    @user = User.find(params[:user_id])
   end
 
   def create
-    recipients = User.where(id: conversation_params[:recipients])
-    conversation = current_user.send_message(recipients, conversation_params[:body], recipients).conversation
-    flash[:success] = 'You are was successfully sent!'
-    redirect_to conversation_path(conversation)
+    recipient = User.find(conversation_params[:recipient])
+    receipt = current_user.send_message(recipient, conversation_params[:body], recipient)
+    redirect_to conversation_path(receipt.conversation)
   end
 
   def show
-    @receipts = conversation.receipts_for(current_user).order(:created_at)
+    @receipts = conversation.receipts_for(current_user)
+      .order(:created_at).where(deleted: false)
     conversation.mark_as_read(current_user)
+  end
+
+  def destroy
+    conversation.mark_as_deleted(current_user)
+    redirect_to mailbox_inbox_path
+  end
+
+  def destroy_message
+    message = Mailboxer::Message.find(params[:msg_id])
+    current_user.mark_as_deleted message
+    redirect_back(fallback_location: root_path)
   end
 
   def reply
     current_user.reply_to_conversation(conversation, message_params[:body])
-    flash[:notice] = 'Your reply message was successfully sent!'
     redirect_to conversation_path(conversation)
-  end
-
-  def trash
-    conversation.move_to_trash(current_user)
-    redirect_to mailbox_inbox_path
-  end
-
-  def untrash
-    conversation.untrash(current_user)
-    redirect_to mailbox_inbox_path
   end
 
   private
 
   def conversation_params
-    params.require(:conversation).permit(:body, :subject, recipients: [])
+    params.require(:conversation).permit(:body, :subject, :recipient)
   end
 
   def message_params

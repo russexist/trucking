@@ -8,13 +8,8 @@ class MailboxController < ApplicationController
     @active = :inbox
   end
 
-  def sent
-    @sent = mailbox.sentbox
-    @active = :sent
-  end
-
-  def trash
-    @trash = mailbox.trash
-    @active = :trash
+  def sentbox
+    @sentbox = mailbox.sentbox
+    @active = :sentbox
   end
 end
