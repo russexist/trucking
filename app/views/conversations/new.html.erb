@@ -1,1 +1,11 @@
-<%= render partial: 'mailbox/folder_view', locals: { is_conversation: true } %>
+<h1 class="text-center"><%= t('.title') %></h1>
+<hr>
+
+<div class="text-center">
+  <% user_photo(@user, 80) %>
+  <%= @user.full_name %>
+</div>
+
+<div class="form-container">
+  <%= render 'form' %>
+</div>

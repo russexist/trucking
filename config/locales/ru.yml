@@ -36,9 +36,30 @@ ru:
     you_take_order: Вы приняли заказ
     you_refused_order: Вы отказались от заказа
 
+  conversations:
+    form:
+      message: Сообщение
+      placeholder: Введите сообщение...
+      send: Отправить
+    new:
+      title: Новое сообщение
+    show:
+      delete_conversation: Удалить всю переписку
+
   helpers:
     weight: ' кг'
     uah: ' грн'
+
+  mailbox:
+    folders:
+      inbox: Входящие
+      sentbox: Отправленные
+    folder_view:
+      no_message: Пока нет сообщений!
+    inbox:
+      title: Входящие сообщения
+    sentbox:
+      title: Отправленные сообщения
 
   orders:
     archive:

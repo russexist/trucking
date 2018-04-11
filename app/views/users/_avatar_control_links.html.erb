@@ -1,0 +1,6 @@
+<% if @user.photo? && @user == current_user %>
+  <%= link_to 'delete avatar', avatar_path(@user.avatar), method: :delete %> |
+  <%= link_to 'change avatar', edit_avatar_path(@user.avatar) %>
+<% else %>
+  <%= link_to 'add avatar', new_avatar_path if @user == current_user %>
+<% end %>

@@ -1,12 +1,10 @@
-<div id="list-example" class="list-group conversations">
-  <%= link_to conversation_path(conversation), class: "list-group-item list-group-item-action" do %>
-
+<div class="list-group conversations">
+  <%= link_to conversation_path(conversation), class: "#{unread?(conversation)} list-group-item list-group-item-action" do %>
     <% if conversation.originator == current_user %>
-      <%= render 'conversations/conversation_body', user: conversation.recipients.first, conversation: conversation %>
+      <%= render 'conversations/conversation_body', user: recipient(conversation), conversation: conversation %>
     <% else %>
       <%= render 'conversations/conversation_body', user: conversation.originator, conversation: conversation %>
     <% end %>
-
-    <%= (truncate conversation.last_message.body, length: 145) %>
+    <%= (truncate conversation.last_message.body, length: 75) %>
   <% end %>
 </div>

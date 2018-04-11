@@ -18,11 +18,10 @@
       <td style="color: green"><%= status_i18n(order.status) %></td>
       <td><%= link_to t('common.show'), order, class: "btn btn-light" %></td>
       <td>
-        <%= link_to order_path(order), method: :delete,
-                                       data: { confirm: t('common.confirm') },
-                                       title: t('common.delete'),
-                                       class: "btn btn-light" do %>
-          &times
+        <%= link_to order_path(order),
+                      method: :delete, data: { confirm: t('common.confirm') },
+                      title: t('common.delete'), class: "btn btn-light" do %>
+          <%= fa_icon 'times' %>
         <% end  unless current_user.driver?  %>
       </td>
     </tr>
