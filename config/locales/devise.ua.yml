@@ -57,6 +57,7 @@ ua:
       new:
         remember_me: "Запам'ятати мене"
         sign_in: 'Увійти'
+        sign_in_with: 'Увійти через: '
         title: 'Вхід'
     shared:
       links:

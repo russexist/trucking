@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  scope '(:locale)', locale: /#{I18n.available_locales.join("|")}/ do
-    devise_for :users
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
+  scope '(:locale)', locale: /#{I18n.available_locales.join("|")}/ do
     get 'archive',         to: 'orders#archive'
     get 'change_status',   to: 'orders#change_status'
     get 'mailbox/inbox',   to: 'mailbox#inbox'

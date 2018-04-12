@@ -58,6 +58,7 @@ en:
       new:
         remember_me: 'Remember me'
         sign_in: 'Sign In'
+        sign_in_with: 'Sign in with: '
         title: 'Sign In'
     shared:
       links:

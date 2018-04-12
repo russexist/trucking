@@ -18,6 +18,12 @@
  @import "bootstrap";
  @import "font-awesome";
 
+
+.sign-in{
+  img{ vertical-align: top; }
+  a:hover{ text-decoration: none; }
+}
+
  // flash notification
  .alert{
    position: absolute;

@@ -39,7 +39,7 @@
     <fieldset>
       <h2 class="fs-title"><%= t('.detail') %></h2>
       <div class="form-container fieldset">
-        <%= f.text_field :date, autocomplete: "off", class: "form-control", id: "datepicker", placeholder: t('.date') %>
+        <%= f.date_field :date, autocomplete: "off", class: "form-control", id: "datepicker", placeholder: t('.date') %>
         <%= f.number_field :price, class: "form-control", placeholder: t('.price') %>
         <%= f.number_field :weight, class: "form-control", placeholder: t('.weight') %>
         <%= f.text_area :comment, class: "form-control", placeholder: t('.comment') %>
