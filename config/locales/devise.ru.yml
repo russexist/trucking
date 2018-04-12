@@ -59,6 +59,7 @@ ru:
       new:
         remember_me: 'Запомнить меня'
         sign_in: 'Войти'
+        sign_in_with: 'Войти через: '
         title: 'Вход'
     shared:
       links:

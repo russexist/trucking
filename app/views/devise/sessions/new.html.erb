@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-sm-4 col-sm-offset-4" style="margin: 0 auto;">
+  <div class="col-sm-6 col-sm-offset-4 sign-in-form">
     <h1 class="text-center"><%= t('.title') %></h1>
     <hr>
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
@@ -22,8 +22,21 @@
           <%= f.submit t('.sign_in'), class: "btn btn-info btn-block btn-lg" %>
       </div>
     <% end %>
-      <div class="text-center">
-        <%= render "devise/shared/links" %>
-      </div>
+
+    <div class="text-center sign-in">
+      <%- if devise_mapping.omniauthable? %>
+        <h4><%= t('.sign_in_with') %></h4>
+        <%= link_to user_facebook_omniauth_authorize_path, title: 'Facebook' do %>
+          <%= image_tag "fb.png", width: 66, class: "sign-in" %>
+        <% end %>
+        <%= link_to user_google_oauth2_omniauth_authorize_path, title: 'Google' do %>
+          <%= image_tag "google.png", width: 60, class: "sign-in" %>
+        <% end %>
+      <% end -%>
     </div>
+
+    <div class="text-center">
+      <%= render "devise/shared/links" %>
+    </div>
+  </div>
 </div>

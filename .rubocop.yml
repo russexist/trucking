@@ -20,7 +20,7 @@ Metrics/MethodLength:
 
 Metrics/AbcSize:
   Enabled: false
-  
+
 Rails:
   Enabled: true
 
@@ -35,6 +35,9 @@ Style/BlockComments:
     - 'spec/spec_helper.rb'
 
 Style/Documentation:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
   Enabled: false
 
 Layout/ExtraSpacing:
