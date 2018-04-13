@@ -4,7 +4,7 @@
   </div>
   <b><%= user.full_name %></b>
   <small class="conversation-timestamp">
-    <%=  conversation.last_message.created_at.strftime("%b %d, %Y, %I:%M %P") %>
+    <%=  conversation.last_message.created_at.strftime("%b %d, %Y, %H:%M") %>
   </small>
 </h4>
 <% unless conversation.last_message.sender == user %>

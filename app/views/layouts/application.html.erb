@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Trucking</title>
+    <title>Trucking | <%= (yield :title).present? ? (yield :title) : t('title.main_title') %></title>
+
     <%= csrf_meta_tags %>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">

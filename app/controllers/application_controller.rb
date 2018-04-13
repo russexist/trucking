@@ -13,10 +13,6 @@ class ApplicationController < ActionController::Base
     { locale: I18n.locale }.merge options
   end
 
-  def profile
-    @user = User.find_by(id: params[:id]) || current_user
-  end
-
   def set_locale
     I18n.locale = params[:locale] || I18n.default_locale
   end

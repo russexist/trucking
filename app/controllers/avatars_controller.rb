@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class AvatarsController < ApplicationController
-  before_action :authenticate_user!
   before_action :set_avatar, except: %i[create new]
 
   def new
@@ -12,13 +11,9 @@ class AvatarsController < ApplicationController
     @avatar = current_user.build_avatar(avatar_params)
 
     if @avatar.save
-      if params[:avatar][:image].present?
-        render 'crop'
-      else
-        redirect_to user_path(current_user)
-      end
+      crop_image
     else
-      render 'new'
+      render :new
     end
   end
 
@@ -26,19 +21,23 @@ class AvatarsController < ApplicationController
 
   def update
     if @avatar.update(avatar_params)
-      if params[:avatar][:image].present?
-        render 'crop'
-      else
-        redirect_to user_path(current_user)
-      end
+      crop_image
     else
-      render 'edit'
+      render :edit
     end
   end
 
   def destroy
     @avatar.destroy
     redirect_back(fallback_location: root_path)
+  end
+
+  def crop_image
+    if params[:avatar][:image].present?
+      render :crop
+    else
+      redirect_to user_path(current_user)
+    end
   end
 
   private

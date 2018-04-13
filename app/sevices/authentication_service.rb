@@ -8,9 +8,13 @@ module AuthenticationService
       user.password = Devise.friendly_token[0, 20]
       user.first_name = auth.info.first_name || first_name(auth)
       user.last_name = auth.info.last_name || last_name(auth)
-      user.build_avatar
+      buid_avatar(user)
       user.avatar.remote_image_url = auth.info.image
     end
+  end
+
+  def self.buid_avatar(user)
+    user.build_avatar
   end
 
   def self.first_name(auth)

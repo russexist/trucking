@@ -93,13 +93,19 @@ ru:
     index:
       available: Доступные заказы
       date: Дата
+      delivered: Доставленные
+      delivered_none: Доставленных заказов нет
       destination_point: Конечная точка
+      new: Новые
       new_order: Новый заказ
+      new_none: Новых заказов нет
       no_driver_orders: Нет доступных заказов
       no_user_orders: У вас еще нет заказов, но никогда не поздно это исправить :)
       price: Цена
       starting_point: Начальная точка
       status: Статус
+      taken: Принятые
+      taken_none: Принятых заказов нет
       your_orders: Ваши заказы
     new:
       title: Новый заказ
@@ -136,6 +142,24 @@ ru:
     delivered: Доставлен
     new: Новый
     taken: Принят
+
+  title:
+    archive: Архив
+    crop_avatar: Обрезка изображения
+    edit_avatar: Редактировать аватар
+    edit_order: Редактировать заказ
+    edit_user: Редактировать пользователя
+    inbox_messages: Входящие сообщения
+    main_title: Биржа грузоперевозок
+    new_avatar: Загрузите изображение
+    new_message: Новое сообшение
+    new_order: Новый заказ
+    notifications: Уведомления
+    profile: Профиль пользователя
+    sentbox_messages: Отправленные сообщения
+    sign_in: Вход
+    sign_up: Регистрация пользователя
+    taken_orders: Принятые заказы
 
   users:
     review_form:

@@ -1,11 +1,10 @@
 # frozen_string_literal: true
 
 class NotificationsController < ApplicationController
-  before_action :authenticate_user!
   before_action :set_notifications, except: :destroy
 
   def index
-    @notifications = Notification.where(recipient: current_user).paginate(page: params[:page])
+    @notifications = Notification.for_user(current_user).paginate(page: params[:page])
   end
 
   def destroy
@@ -21,6 +20,6 @@ class NotificationsController < ApplicationController
   private
 
   def set_notifications
-    @uread_notifications = Notification.where(recipient: current_user).unread
+    @uread_notifications = Notification.for_user(current_user).unread
   end
 end

@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class OrdersController < ApplicationController
-  before_action :authenticate_user!
-  before_action :set_order, except: %i[archive create index new taken_orders]
+  before_action :counter, only: %i[delivered index taken]
+  before_action :set_order, only: %i[change_status edit show update destroy]
 
   def new
     @order = Order.new
@@ -17,16 +17,17 @@ class OrdersController < ApplicationController
       end
       redirect_to @order, notice: t('orders.created')
     else
-      render 'new'
+      render :new
     end
   end
 
   def edit; end
 
   def index
+    @active = :index
     @orders = Order.new_order.order(created_at: :desc).paginate(page: params[:page])
-    @user_orders = current_user.orders.order(created_at: :desc)
-      .paginate(page: params[:page])
+
+    @user_orders = current_user.orders.new_order.paginate(page: params[:page])
   end
 
   def show; end
@@ -50,7 +51,8 @@ class OrdersController < ApplicationController
   end
 
   def change_status
-    @order.update!(status: params[:status], driver_id: params[:driver_id])
+    @order.update(status: params[:status], driver_id: params[:driver_id])
+
     if @order.taken?
       flash[:notice] = t('common.you_take_order')
       @order.create_notification(@order.user, current_user, t('.taken'))
@@ -61,7 +63,18 @@ class OrdersController < ApplicationController
       flash[:alert] = t('common.you_refused_order')
       @order.create_notification(@order.user, current_user, t('.refused'))
     end
+
     redirect_back(fallback_location: root_path)
+  end
+
+  def delivered
+    @active = :delivered
+    @orders = Order.delivered.paginate(page: params[:page])
+  end
+
+  def taken
+    @active = :taken
+    @orders = Order.taken.paginate(page: params[:page])
   end
 
   def taken_orders
@@ -70,6 +83,10 @@ class OrdersController < ApplicationController
   end
 
   private
+
+  def counter
+    @count = current_user.orders.count
+  end
 
   def order_params
     params.require(:order).permit(:comment, :destination, :date, :price, :start, :weight)
