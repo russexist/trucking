@@ -1,0 +1,13 @@
+<% @reviews.for_driver(@user).each do |review| %>
+  <div class="profile">
+    <b><%= review.user.full_name %></b>
+    <% show_rating(review.rating) %>
+    <%= link_to user_review_path(@user, review), method: :delete, title: t('common.delete'), class: "pull-right" do %>
+      <%= fa_icon 'times' %>
+    <% end if review.user == current_user %>
+    <hr>
+    <%= review.body %><br>
+  </div>
+<% end %>
+
+<%= will_paginate @reviews.for_driver(@user) %>
