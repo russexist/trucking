@@ -3,6 +3,6 @@
 class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
-    @reviews = Review.all
+    @reviews = Review.all.paginate(page: params[:page])
   end
 end

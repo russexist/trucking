@@ -6,6 +6,7 @@ AllCops:
     - 'vendor/**/*'
     - 'config/environments/*'
     - 'config/environment.rb'
+    - 'app/controllers/notifications_controller.rb'
   TargetRubyVersion: 2.4
 
 Metrics/BlockLength:

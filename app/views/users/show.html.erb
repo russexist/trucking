@@ -1,27 +1,34 @@
 <% provide(:title, t('title.profile')) %>
 
-<h2><%= t('.title') %></h2>
-<hr>
-
-<% user_photo(@user) %><br>
-<%= render 'avatar_control_links' %><br>
-<%= link_to 'message', new_conversation_path(user_id: @user.id), class: "btn btn-success" unless @user == current_user %>
-
-<p>Name: <%= @user.first_name %></p>
-<p>Last name: <%= @user.last_name %></p>
-<p>Phone: <%= @user.phone %></p>
-<p>Email: <%= @user.email %></p>
-<%= link_to t('common.edit_profile'), edit_user_registration_path, class: "btn btn-info" if @user == current_user %>
-
-USER Rating: <% rating_for_user(@user) %>
-
-<hr>
-<% @reviews.for_driver(@user).each do |review| %>
-  author:<%= review.user.full_name %><br>
-  body:<%= review.body %><br>
-  rating:<% show_rating(review.rating) %>
-  <%= link_to 'delete', user_review_path(@user, review), method: :delete if review.user == current_user %>
+<div class="profile">
+  <h2 class="text-center"><%= @user.full_name %></h2>
   <hr>
-<% end %>
+
+  <div class="modal-body">
+    <center>
+      <% user_photo(@user) %><br>
+      <%= render 'avatar_control_links' %><br>
+      <%= t('.rating') %>:
+      <% rating_for_user(@user) %>
+      <hr>
+    <center>
+      <p>
+        <%= t('.phone') %>:
+        <%= @user.phone %>
+      </p>
+      <p>
+        <%= t('.email') %>:
+        <%= @user.email %>
+      </p>
+      <% if @user == current_user %>
+        <%= link_to t('common.edit_profile'), edit_user_registration_path, class: "btn btn-info"  %>
+      <% else %>
+        <%= link_to t('.message'), new_conversation_path(user_id: @user.id), class: "btn btn-success" %>
+      <% end %>
+    </center>
+  </div>
+</div>
+
+<%= render 'reviews' %>
 
 <%= render 'review_form' unless @user == current_user %>
