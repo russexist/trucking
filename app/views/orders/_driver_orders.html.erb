@@ -1,29 +1,26 @@
-<% provide(:title, t('title.archive')) %>
-
-<% if @archived_orders.present? %>
-  <h2 class="text-center"><%= t('.title') %></h2>
-  <table class="table">
+<table class="table table-hover">
+  <% if orders.present? %>
+    <h2 class="text-center"><%= t('orders.index.available') %></h2>
     <tr>
       <th><%= t('orders.index.starting_point') %></th>
       <th><%= t('orders.index.destination_point') %></th>
       <th><%= t('orders.index.date') %></th>
-      <th class="col-md"><%= t('orders.index.price') %></th>
+      <th><%= t('orders.index.price') %></th>
       <th><%= t('orders.index.status') %></th>
       <th colspan="2"></th>
     </tr>
-    <% @archived_orders.each do |order| %>
+
+    <% orders.each do |order| %>
       <tr>
         <td><%= order.start %></td>
-        <td><%= order.destination%></td>
+        <td><%= order.destination %></td>
         <td><%= order.format_date %></td>
-        <td><%= format_price(order.price) %></td>
+        <td class="col-md"><%= format_price(order.price) %></td>
         <td style="color: green"><%= status_i18n(order.status) %></td>
         <td><%= link_to t('common.show'), order, class: "btn btn-light" %></td>
       </tr>
     <% end %>
-  </table>
-<% else %>
-  <h2 class="text-center"><%= t('.no_orders') %></h2>
-<% end %>
-
-<%= will_paginate @archived_orders %>
+  <% else %>
+    <h2 class="text-center"><%= t('orders.index.no_driver_orders') %></h2>
+  <% end %>
+</table>

@@ -2,16 +2,22 @@
 
 require 'rails_helper'
 
-# Specs in this file have access to a helper object that includes
-# the ConversationsHelper. For example:
-#
-# describe ConversationsHelper do
-#   describe "string concat" do
-#     it "concats two strings with spaces" do
-#       expect(helper.concat_strings("this","that")).to eq("this that")
-#     end
-#   end
-# end
 RSpec.describe ConversationsHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let!(:user) do
+    User.create(email: '1@1.com', first_name: 'Ruha',
+                last_name: 'Oliinyk', password: '123123')
+  end
+  let!(:fake_user) do
+    User.create(email: '2@1.com', first_name: 'Egor',
+                last_name: 'Zawgor', password: '123123')
+  end
+
+  before { user.send_message(fake_user, 'Hi', 'subject') }
+
+  describe '.recipient' do
+    it 'finds conversations recipient' do
+      recipient = user.mailbox.conversations.first.recipients.reject { |u| u == user }.first
+      expect(recipient).to eq(fake_user)
+    end
+  end
 end

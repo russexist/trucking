@@ -4,6 +4,7 @@ class User < ApplicationRecord
   has_many :notifications, dependent: :destroy, foreign_key: :recipient_id
   has_many :reviews,       dependent: :destroy
   has_many :orders,        dependent: :nullify
+
   has_one  :avatar,        dependent: :destroy
 
   delegate :image, to: :avatar, allow_nil: true
@@ -20,9 +21,9 @@ class User < ApplicationRecord
 
   def full_name
     "#{first_name} #{last_name}"
-  end
+  end #decorator
 
-  def mailboxer_email(_oject)
+  def mailboxer_email(_object)
     email
   end
 

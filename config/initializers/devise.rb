@@ -257,7 +257,7 @@ Devise.setup do |config|
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
   config.omniauth :facebook, ENV['FACEBOOK_APP_ID'], ENV['FACEBOOK_APP_SECRET'],
     image_size: { width: 250 },
-    callback_url: 'http://trucking.flu.cc/users/auth/facebook/callback'
+    callback_url: 'http://35.196.23.57/users/auth/facebook/callback'
 
   config.omniauth :google_oauth2, ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET'],
     callback_url: 'http://trucking.flu.cc/users/auth/google_oauth2/callback'

@@ -6,7 +6,7 @@
           <% user_photo(receipt.message.sender, 66) %>
         </div>
         <b><%= link_to receipt.message.sender.first_name, user_path(receipt.message.sender) %></b><br>
-        <small><%= receipt.message.created_at.strftime("%b %d, %Y at %I:%M%p") %></small>
+        <small><%= receipt.message.created_at.strftime("%b %d, %Y at %H:%M") %></small>
         <%= link_to destroy_message_conversation_path(conversation, msg_id: receipt.message),
                       method: :delete, title: t('common.delete'), class: "btn btn-outline-danger delete" do %>
           <%= fa_icon 'times' %>

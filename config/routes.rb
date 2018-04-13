@@ -6,8 +6,10 @@ Rails.application.routes.draw do
   scope '(:locale)', locale: /#{I18n.available_locales.join("|")}/ do
     get 'archive',         to: 'orders#archive'
     get 'change_status',   to: 'orders#change_status'
+    get 'delivered',       to: 'orders#delivered'
     get 'mailbox/inbox',   to: 'mailbox#inbox'
     get 'mailbox/sentbox', to: 'mailbox#sentbox'
+    get 'taken',           to: 'orders#taken'
     get 'taken_orders',    to: 'orders#taken_orders'
 
     resources :avatars, except: %i[index show]
