@@ -2,10 +2,13 @@ AllCops:
   Exclude:
     - 'bin/*'
     - 'db/schema.rb'
+    - 'db/seeds.rb'
     - 'db/migrate/*'
     - 'vendor/**/*'
     - 'config/environments/*'
+    - 'config/initializers/*'
     - 'config/environment.rb'
+    - 'config/routes.rb'
     - 'app/controllers/notifications_controller.rb'
   TargetRubyVersion: 2.4
 

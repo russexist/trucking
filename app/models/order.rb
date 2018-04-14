@@ -15,12 +15,7 @@ class Order < ApplicationRecord
 
   self.per_page = 15
 
-  def create_notification(recipient, actor, action)
-    Notification.create!(recipient: recipient, actor: actor,
-                         action: action, notifiable: self)
-  end # use decorator
-
   def format_date
     date.strftime('%d/%m/%Y')
-  end # helper
+  end
 end
