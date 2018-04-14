@@ -17,7 +17,6 @@
 //= require jquery3
 //= require jquery_ujs
 //= require jcrop
-//= require chosen-jquery
 //= require bootstrap
 //= require_tree .
 

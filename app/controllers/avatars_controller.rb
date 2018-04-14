@@ -32,18 +32,18 @@ class AvatarsController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
 
+  private
+
+  def avatar_params
+    params.require(:avatar).permit(:image, :crop_x, :crop_y, :crop_w, :crop_h)
+  end
+
   def crop_image
     if params[:avatar][:image].present?
       render :crop
     else
       redirect_to user_path(current_user)
     end
-  end
-
-  private
-
-  def avatar_params
-    params.require(:avatar).permit(:image, :crop_x, :crop_y, :crop_w, :crop_h)
   end
 
   def set_avatar

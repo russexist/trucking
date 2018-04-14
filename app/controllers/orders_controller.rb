@@ -9,7 +9,7 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = current_user.orders.new(order_params)
+    @order = current_user.orders.new(order_params).decorate
 
     if @order.save
       User.drivers.each do |user|
@@ -36,7 +36,7 @@ class OrdersController < ApplicationController
     if @order.update(order_params)
       redirect_to @order
     else
-      render 'edit'
+      render :edit
     end
   end
 
@@ -93,6 +93,6 @@ class OrdersController < ApplicationController
   end
 
   def set_order
-    @order = Order.find(params[:id])
+    @order = Order.find(params[:id]).decorate
   end
 end
