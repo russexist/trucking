@@ -1,13 +1,25 @@
 ru:
   activerecord:
     models:
-      order: Заказ
+      order: Заказы
+      review: Отзывы
+      user: Пользователи
     attributes:
       order:
         comment: Комментарий
         date: Дата
         destination: Куда
+        driver: Водитель
         start: Откуда
         status: Статус заказа
         price: Цена
         weight: Вес груза
+        user: Заказчик
+      review:
+        body: Отзыв
+        rating: Рейтинг
+      user:
+        first_name: Имя
+        last_name: Фамилия
+        phone: Телефон
+        driver: Водитель?
