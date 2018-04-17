@@ -1,14 +1,14 @@
 <div class="index-list-group text-center">
   <%= link_to orders_path, class: "index-list-group-item #{active_page(:index)}" do %>
-    <em class="fa fa-inbox fa-lg"></em>
+    <em class="fa fa-plus-square fa-lg"></em>
     <span><%= t('orders.index.new') %></span>
   <% end %>
   <%= link_to taken_path, class: "index-list-group-item #{active_page(:taken)}" do %>
-    <em class="fa fa-paper-plane-o fa-lg"></em>
+    <em class="fa fa-thumb-tack fa-lg"></em>
     <span><%= t('orders.index.taken') %></span>
   <% end %>
   <%= link_to delivered_path, class: "index-list-group-item #{active_page(:delivered)}" do %>
-    <em class="fa fa-inbox fa-lg"></em>
+    <em class="fa fa-truck fa-lg"></em>
     <span><%= t('orders.index.delivered') %></span>
   <% end %>
 </div>
