@@ -1,0 +1,320 @@
+uk:
+  active_admin:
+    dashboard: "Панель керування"
+    dashboard_welcome:
+      welcome: "Ласкаво просимо до Active Admin. Це стандартна сторінка керування сайтом."
+      call_to_action: "Щоб додати сюди що-небудь, зазирніть у 'app/admin/dashboard.rb'"
+    view: "Переглянути"
+    edit: "Змінити"
+    delete: "Видалити"
+    delete_confirmation: "Ви впевнені, що хочете це видалити?"
+    new_model: "Створити %{model}"
+    edit_model: "Змінити %{model}"
+    delete_model: "Видалити %{model}"
+    details: "%{model} детальніше"
+    cancel: "Скасувати"
+    empty: "Пусто"
+    previous: "Поперед."
+    next: "Наст."
+    download: "Завантаження:"
+    has_many_new: "Додати %{model}"
+    has_many_delete: "Прибрати"
+    has_many_remove: "Видалити"
+    filters:
+      buttons:
+        filter: "Фільтрувати"
+        clear: "Очистити"
+      predicates:
+        contains: "Містить"
+        equals: "="
+        starts_with: "Починається з"
+        ends_with: "Закінчується"
+        greater_than: "більше"
+        less_than: "менше"
+    search_status:
+      headline: "Статус пошуку:"
+      current_scope: "Область:"
+      current_filters: "Поточний фільтр:"
+      no_current_filters: "Жоден"
+    status_tag:
+      "yes": "Так"
+      "no": "Ні"
+    main_content: "Створіть %{model}#main_content для відображення вмісту."
+    logout: "Вийти"
+    powered_by: "Powered by %{active_admin} %{version}"
+    sidebars:
+      filters: "Фільтри"
+      search_status: "Статус пошуку"
+    pagination:
+      empty: "%{model} не знайдено"
+      one: "Результат: <b>1</b> %{model}"
+      one_page: "Результат: <b>%{n}</b> %{model}"
+      multiple: "Результат: %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> з <b>%{total}</b>"
+      multiple_without_total: "Результат: %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
+      entry:
+        one: "запис"
+        few: "записи"
+        many: "записів"
+        other: "записів"
+    any: "Будь-який"
+    blank_slate:
+      content: "Поки-що немає %{resource_name}."
+      link: "Створити"
+    dropdown_actions:
+      button_label: "Oперації"
+    batch_actions:
+      button_label: "Групові операції"
+      default_confirmation: "Ви справді бажаєте це зробити?"
+      delete_confirmation: "Ви впевнені, що хочете видалити %{plural_model}?"
+      succesfully_destroyed:
+        one: "Успішно видалено: 1 %{model}"
+        few: "Успішно видалено: %{count} %{plural_model}"
+        many: "Успішно видалено: %{count} %{plural_model}"
+        other: "Успішно видалено: %{count} %{plural_model}"
+      selection_toggle_explanation: "(Скасувати все / Зняти виділення)"
+      action_label: "%{title} вибране"
+      labels:
+        destroy: "Видалити"
+    comments:
+      resource_type: "Тип ресурса"
+      author_type: "Тип автора"
+      body: "Текст"
+      author: "Автор"
+      add: "Додати Коментар"
+      resource: "Ресурс"
+      no_comments_yet: "Поки-що немає коментарів."
+      author_missing: "Анонім"
+      title_content: "Коментарі (%{count})"
+      errors:
+        empty_text: "Коментар не збережено, текст не повинен бути пустим."
+    devise:
+      username:
+        title: "Ім'я користувача"
+      email:
+        title: "Електронна пошта"
+      subdomain:
+        title: "Піддомен"
+      password:
+        title: "Пароль"
+      sign_up:
+        title: "Зареєструватися"
+        submit: "Зареєструватися"
+      login:
+        title: "Вхід"
+        remember_me: "Запам'ятати мене"
+        submit: "Увійти"
+      reset_password:
+        title: "Забули пароль?"
+        submit: "Скинути пароль"
+      change_password:
+        title: "Зміна паролю"
+        submit: "Змінити пароль"
+      unlock:
+        title: "Відправити повторно інструкції з розблокування"
+        submit: "Відправити повторно інструкції з розблокування"
+      resend_confirmation_instructions:
+        title: "Відправити повторно листа з активацією"
+        submit: "Відправити повторно листа з активацією"
+      links:
+        sign_up: "Зареєструватись"
+        sign_in: "Увійти"
+        forgot_your_password: "Забули пароль?"
+        sign_in_with_omniauth_provider: "Увійти з допомогою %{provider}"
+        resend_unlock_instructions: "Повторна відправка інструкцій розблокування"
+        resend_confirmation_instructions: "Повторна відправка інструкцій підтвердження"
+    unsupported_browser:
+      headline: "Зверніть, будь-ласка, увагу, що ActiveAdmin більше не підтримує Internet Explorer 8 версії і нижче"
+      recommendation: "Ми рекомендуємо оновити версію вашого браузеру (<a href=\"http://windows.microsoft.com/ie\">Internet Explorer</a>, <a href=\"https://chrome.google.com/\">Google Chrome</a>, або <a href=\"https://mozilla.org/firefox/\">Firefox</a>)."
+      turn_off_compatibility_view: "Якщо ви використовуєте IE 9 і вище, переконайтесь, що <a href=\"https://support.microsoft.com/uk-ua/help/17471\">ви вимкнули опцію \"Перегляд в режимі сумісності\"</a>."
+    access_denied:
+      message: "Ви не авторизовані для виконання даної дії."
+    index_list:
+      table: "Таблиця"
+      block: "Список"
+      grid: "Сітка"
+      blog: "Блог"
+
+  avatars:
+    crop:
+      save: Зберегти
+      title: Обріжте фото
+    edit:
+      title: Змініть своє фото
+    form:
+      continue: Продовжити
+    new:
+      title: Завантажте свою фотографію
+
+  common:
+    add_to_archive: Замовлення переміщене в архів
+    archive: Архів
+    back: Назад
+    confirm: Ви впевнені?
+    conversations: Повідомлення
+    current_location: Ваше поточне місце розташування
+    delete: Видалити
+    delivered: Доставлено
+    edit: Редагувати
+    edit_profile: Редагувати профіль
+    errors: При заповненні форми виникли наступні помилки
+    history: Исторія замовлень
+    home_page: На головну
+    no_notify: Немає нових сповіщень!
+    omniauth:
+      error: Невідома помилка, спробуйте пізніше!
+    refuse: Відмовитись
+    save: Зберегти
+    show: Переглянути
+    sign_in: Увійти
+    sign_up: Зареєструватися
+    sign_out: Вийти
+    take_order: Приняти замовлення
+    taken_orders: Приняті замовлення
+    user_taken_order: Замовлення прийняв
+    you_take_order: Ви прийняли замовлення
+    you_refused_order: Ви відмовились від замовлення
+
+  conversations:
+    form:
+      message: Повідомлення
+      placeholder: Введіть повідомлення...
+      send: Відправити
+    new:
+      title: Нове повідомлення
+    show:
+      delete_conversation: Видилити всю переписку
+
+  helpers:
+    weight: ' кг'
+    uah: ' грн'
+
+  mailbox:
+    folders:
+      inbox: Вхідні повідомлення
+      sentbox: Відправлені
+    folder_view:
+      no_message: Повідомлень поки немає!
+    inbox:
+      title: Вхідні повідомлення
+    sentbox:
+      title: Відправлені повідомлення
+
+  orders:
+    archive:
+      no_orders: Архів пустий
+      title: Архів
+    change_status:
+      delivered: доставив Ваше замовлення!
+      refused: відмовився від вашого замовлення!
+      taken: прийняв Ваше замовлення!
+    create:
+      created: додав нове замовлення! Встигніть взяти його першим!
+    created: Замовлення успішно створене
+    delete: Замовлення було видалене
+    edit:
+      title: Редагувати замовлення
+    form:
+      back: Назад
+      comment: Тут Ви можете залишити свій коментарій (необов'язково)
+      date: ДД/ММ/РРРР
+      destination: Наприклад, Хрещатик 208, Київ
+      detail: Деталі замовлення
+      from: Вкажіть ЗВІДКИ потрібно забрати вантаж
+      next: Далі
+      price: Запропонуйте свою ціну (грн)
+      start: Наприклад, Енгельса 162, Черкаси
+      to: Вкажіть куди потрібно доставити вантаж
+      weight: Приблизна вага вантажу (кг)
+    index:
+      available: Доступні замовлення
+      date: Дата
+      delivered: Доставлені
+      delivered_none: Доставлених замовлень немає
+      destination_point: Кінцева точка
+      new: Нові
+      new_order: Нове замовлення
+      new_none: Нових замовлень немає
+      no_driver_orders: Немає доступних замовлень
+      no_user_orders: У Вас ще немає замовлень, але ніколи не пізно це виправити :)
+      price: Ціна
+      starting_point: Початкова точка
+      status: Статус
+      taken: Прийняті
+      taken_none: Прийнятих замовлень немає
+      your_orders: Ваші замовлення
+    new:
+      title: Нове замовлення
+    route_and_distance:
+      distance: Відстаьн
+      time_in_road: Приблизний час в дорозі
+    show:
+      comment: Коментар
+      date: Дата
+      destination_point: Куди
+      price: Ціна
+      starting_point: Звідки
+      status: Статус
+      weight: Вага вантажу
+    taken_orders:
+      date: Дата
+      destination_point: Кінцева точка
+      no_orders: Прийнятих замовлень немає
+      starting_point: Початкова точка
+      status: Статус
+      price: Ціна
+
+  notifications:
+    index:
+      notifications_none: Немає сповіщень
+      title: Ваші сповіщення
+    show_all: Показатм всі
+
+  reviews:
+    create: Відгук успішно додано!
+    destroy: Відгук видалено!
+
+  status:
+    delivered: Доставлений
+    new: Новий
+    taken: Прийнятий
+
+  title:
+    archive: Архів
+    crop_avatar: Обрізка зображення
+    edit_avatar: Редагувати аватар
+    edit_order: Редагувати замовлення
+    edit_user: Редагувати користувача
+    inbox_messages: Вхідні повідомлення
+    main_title: Біржа вантажоперевезень
+    new_avatar: Завантажте зображення
+    new_message: Нове повідомлення
+    new_order: Нове замовення
+    notifications: Сповіщення
+    profile: Профіль користувача
+    sentbox_messages: Відправлені повідомлення
+    sign_in: Вхід
+    sign_up: Регістрація користувача
+    taken_orders: Прийняті замовлення
+
+  users:
+    review_form:
+      comment: Коментар
+      placeholder: Залиште свій відгук...
+      rating:
+        bad: Поганий
+        excellent: Чудовий
+        fine: Нормальний
+        good: Хороший
+        so-so: Так собі
+      send: Відправити
+      title: Залишити відгук
+    show:
+      email: Email
+      message: Написати
+      phone: Телефон
+      rating: Рейтинг
+      title: Профіль користувача
+
+  will_paginate:
+    next_label: '>'
+    previous_label: '<'

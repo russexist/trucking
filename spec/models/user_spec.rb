@@ -16,4 +16,12 @@ RSpec.describe User, type: :model do
     it { is_expected.to validate_presence_of(:first_name) }
     it { is_expected.to validate_presence_of(:last_name) }
   end
+
+  context 'when full name' do
+    let(:user) do
+      User.create(first_name: 'Ruslan', last_name: 'Oliinyk', email: '1@2.ua')
+    end
+
+    it { expect(user.full_name).to eq('Ruslan Oliinyk') }
+  end
 end
