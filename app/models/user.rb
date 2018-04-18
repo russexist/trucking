@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
+  attr_accessor :otp_code_token
+
+  enum otp_module: { disabled: 0, enabled: 1 }, _prefix: true
+
   has_many :notifications, dependent: :destroy, foreign_key: :recipient_id
   has_many :reviews,       dependent: :destroy
   has_many :orders,        dependent: :nullify
@@ -14,6 +18,7 @@ class User < ApplicationRecord
   validates :email, :first_name, :last_name, presence: true
 
   acts_as_messageable
+  has_one_time_password
 
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,
     :trackable, :validatable, :omniauthable,

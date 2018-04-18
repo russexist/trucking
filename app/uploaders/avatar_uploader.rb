@@ -28,14 +28,6 @@ class AvatarUploader < CarrierWave::Uploader::Base
     process resize_to_fill: [240, 240]
   end
 
-  version :profile, from_version: :thumb do
-    process resize_to_fill: [35, 35]
-  end
-
-  version :preview, from_version: :thumb do
-    process resize_to_fill: [100, 100]
-  end
-
   version :large do
     process resize_to_limit(600, 600)
   end

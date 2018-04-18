@@ -273,6 +273,11 @@ ua:
     create: Відгук успішно додано!
     destroy: Відгук видалено!
 
+  shared:
+    navbar:
+      profile: Профіль
+      settings: Налаштування
+
   status:
     delivered: Доставлений
     new: Новий
