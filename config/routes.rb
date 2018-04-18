@@ -3,7 +3,8 @@
 Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks',
+                                    sessions: 'users/sessions' }
 
   scope '(:locale)', locale: /#{I18n.available_locales.join("|")}/ do
     get 'archive',         to: 'orders#archive'
@@ -25,7 +26,13 @@ Rails.application.routes.draw do
       post :mark_as_read, on: :collection
     end
     resources :orders
-    resources :users, only: :show do
+    resources :users do
+      member do
+        post :enable_multi_factor_authentication,
+          to: 'users/multi_factor_authentication#verify_enable'
+        post :disable_multi_factor_authentication,
+          to: 'users/multi_factor_authentication#verify_disabled'
+      end
       resources :reviews
     end
 

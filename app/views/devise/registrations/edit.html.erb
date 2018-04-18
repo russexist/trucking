@@ -54,15 +54,63 @@
 
       <div class="form-group">
         <%= f.submit t('.submit'), class: 'btn btn-lg btn-block btn-success' %>
+        <%= link_to "#{@user.otp_module_enabled? ? 'Disable' : 'Enable'} Two Factor Authentication", '#two_factor',
+                    data: { toggle: :modal }, class: 'btn btn-lg btn-block btn-info' %>
       </div>
     <% end %>
     <hr>
 
-    <h2>Cancel my account</h2>
+    <div class="text-center">
+      <h2>Cancel my account</h2>
 
-    <p>Unhappy? <%= button_to t('.cancel_account'), registration_path(resource_name), class: "btn btn-danger", data: { confirm: "Are you sure? You cannot undo this." }, method: :delete %></p>
+      <p>Unhappy? <%= button_to t('.cancel_account'), registration_path(resource_name), class: "btn btn-danger", data: { confirm: "Are you sure? You cannot undo this." }, method: :delete %></p>
+    </div>
 
-    <%= link_to "Back", :back %>
     <hr>
+
+    <div class="modal fade" id="two_factor" tabindex="-1" role="dialog" aria-labelledby="two_factor_title" aria-hidden="true">
+      <% url = @user.otp_module_enabled? ? disable_multi_factor_authentication_user_path(@user) :
+                                           enable_multi_factor_authentication_user_path(@user) %>
+      <%= form_for :multi_factor_authentication, url: url, html: { class: "form-inline" } do |f| %>
+      <div class="modal-dialog dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="two_factor_title"><%= @user.otp_module_enabled? ? 'Disable' : 'Enable' %> Two Factor Authenticaion</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <% unless @user.otp_module_enabled? %>
+              <% qr = RQRCode::QRCode.new(resource.provisioning_uri, size: 8, level: :h) %>
+              <table class="qr" align="center">
+                <% qr.modules.each_index do |x| %>
+                  <tr>
+                    <% qr.modules.each_index do |y| %>
+                      <% if qr.dark?(x,y) %>
+                        <td class="black"/>
+                      <% else %>
+                        <td class="white"/>
+                      <% end %>
+                    <% end %>
+                  </tr>
+                <% end %>
+              </table>
+              <hr>
+            <% end %>
+            <div class="form-group">
+              <div class="text-center">
+                <%= f.text_field :otp_code_token, placeholder: 'Verify Token', class: "form-control" %>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <%= f.submit 'Update', class: "btn btn-primary" %>
+          </div>
+        </div>
+      </div>
+      <% end %>
+    </div>
+
   </div>
 </div>

@@ -230,7 +230,7 @@ en:
       from: From
       next: Next
       price: Price(uah)
-      start: Example, Engelsa street, 162
+      start: Example, Cherkassy, Engelsa street, 162
       to: To
       weight: Weight (kg)
     index:
@@ -280,6 +280,11 @@ en:
   reviews:
     create: Review was successfully added!
     destroy: Review deleted!
+
+  shared:
+    navbar:
+      profile: Profile
+      settings: Settings
 
   status:
     delivered: Delivered

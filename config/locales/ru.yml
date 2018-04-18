@@ -278,6 +278,11 @@ ru:
     create: Отзыв успешно добавлен!
     destroy: Отзыв удален!
 
+  shared:
+    navbar:
+      profile: Профиль
+      settings: Настройки
+
   status:
     delivered: Доставлен
     new: Новый

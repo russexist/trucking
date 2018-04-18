@@ -42,7 +42,7 @@
     <% end %>
 
     <ul class="navbar-nav mr-right">
-      <li class="nav-item dropdown">
+      <li class="nav-item dropdown mr-3">
         <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <%= I18n.locale.upcase %> <%= image_tag "#{I18n.locale}.png", width: '20' if  File.file? "app/assets/images/#{I18n.locale}.png" %>
         </a>
@@ -64,11 +64,23 @@
         </div>
       </li>
       <% if user_signed_in? %>
-        <li class="nav-item">
-          <%= link_to current_user.first_name, user_path(current_user), class: "nav-link mr-sm-2" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to t('common.sign_out'), destroy_user_session_path, method: :delete, class: "btn btn-outline-danger" %>
+        <li class="nav-item dropdown">
+          <%= link_to user_path(current_user), class: "nav-link dropdown-toggle", id: "navbarDropdown", role: "button", data: { toggle: "dropdown" } do %>
+            <% user_photo(current_user, 28)%>
+            <%= current_user.first_name %>
+          <% end %>
+          <div class="dropdown-menu fix-nav" aria-labelledby="navbarDropdown">
+            <%= link_to user_path(current_user), class: "dropdown-item" do %>
+              <i class="fa fa-user" aria-hidden="true"> <%= t('.profile') %></i>
+            <% end %>
+            <%= link_to edit_user_registration_path, class: "dropdown-item" do %>
+              <i class="fa fa-wrench" aria-hidden="true"> <%= t('.settings') %></i>
+            <% end %>
+            <div class="dropdown-divider"></div>
+            <%= link_to destroy_user_session_path, method: :delete, class: "dropdown-item" do %>
+              <i class="fa fa-sign-out" aria-hidden="true"> <%= t('common.sign_out') %></i>
+            <% end %>
+          </div>
         </li>
       <% else %>
         <li class="nav-item">
@@ -78,6 +90,9 @@
           <%= link_to t('common.sign_up'), new_user_registration_path, class: "btn btn-outline-success" %>
         </li>
       <% end %>
+
+
+
     </ul>
   </div>
 </nav>

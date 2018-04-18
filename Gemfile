@@ -63,6 +63,7 @@ end
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 # my gems
+gem 'active_model_otp'
 gem 'activeadmin'
 gem 'bootstrap'
 gem 'carrierwave'
@@ -79,6 +80,7 @@ gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
 gem 'rails-assets-jcrop', source: 'https://rails-assets.org'
 gem 'rmagick'
+gem 'rqrcode'
 gem 'rspec-rails', '~> 3.7'
 gem 'russian'
 gem 'shoulda-matchers', '~> 3.1'

@@ -22,3 +22,26 @@
   padding: 20px 50px;
   margin-bottom: 20px;
 }
+
+// qr
+.qr{
+  border-width: 0;
+  border-style: none;
+  border-color: #0000ff;
+  border-collapse: collapse;
+}
+
+.qr td {
+  border-left: solid 10px #000;
+  padding: 0;
+  margin: 0;
+  width: 0px;
+  height: 10px;
+}
+
+.qr td.black { border-color: #000; }
+.qr td.white { border-color: #fff; }
+
+.dialog{
+  max-width: none!important;
+}
