@@ -1,0 +1,145 @@
+<script type="text/javascript">
+  var autocompleteFrom;
+  var autocompleteTo;
+  var mapFrom;
+  var mapTo;
+  var marker;
+  var markersFrom = [];
+  var markersTo = [];
+
+  var elemFrom = document.getElementById('from');
+  var inputFrom = $('#from');
+  var mapFrom = document.getElementById('map-from');
+
+  var elemTo = document.getElementById('to');
+  var inputTo = $('#to');
+  var mapTo = document.getElementById('map-to');
+
+  function start(){
+    initAutocomplete(elemFrom, inputFrom, mapFrom, markersFrom, mapFrom, autocompleteFrom);
+    initAutocomplete(elemTo, inputTo, mapTo, markersTo, mapTo, autocompleteTo);
+  }
+
+  function initAutocomplete(elem, input, userMap, markersArray, map, autocomplete) {
+    initMap();
+    var infoWindow = new google.maps.InfoWindow({map: map});
+
+    if (input.val().length > 0) {
+      console.log('dsfgsdvgdsfv');
+      var geocoder = new google.maps.Geocoder;
+      geocodeAddress(geocoder, input.val());
+    } else {
+      // Try HTML5 geolocation.
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+          var pos = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          };
+
+          addMarker(pos, '<%= I18n.t('common.current_location') %>');
+          map.setCenter(pos);
+          map.setZoom(15);
+        }, function() {
+          handleLocationError(true, infoWindow, map.getCenter());
+        });
+      } else {
+        // Browser doesn't support Geolocation
+        handleLocationError(false, infoWindow, map.getCenter());
+      }
+    }
+
+    function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+      infoWindow.setPosition(pos);
+      infoWindow.setContent(browserHasGeolocation ? 'The Geolocation service disabled.' : 'Error: Your browser doesn\'t support geolocation.');
+    }
+
+    autocomplete = new google.maps.places.Autocomplete(
+        /** @type {!HTMLInputElement} */(elem),
+        {types: ['geocode']});
+
+    autocomplete.addListener('place_changed', fillInAddress);
+
+    function addMarker(location, info) {
+      clearmarkersArray();
+
+      var infoWindow = new google.maps.InfoWindow({map: map});
+      var marker = new google.maps.Marker({
+        position: location,
+        map: map
+      });
+
+      markersArray.push(marker);
+      infoWindow.open(map, marker);
+      infoWindow.setContent(info);
+      console.log('marker added');
+    }
+
+    function clearmarkersArray() {
+      showmarkersArray(null);
+      markersArray = [];
+      console.log('markers array clear');
+    }
+
+    function fillInAddress() {
+      initMap();
+
+      var place = autocomplete.getPlace();
+
+      addMarker(place.geometry.location, place.formatted_address)
+      map.setCenter(place.geometry.location);
+      map.setZoom(15);
+      showmarkersArray(map);
+    }
+
+    function geocodeAddress(geocoder, address) {
+      geocoder.geocode({'address': address}, function(results, status) {
+        if (status === 'OK') {
+          addMarker(results[0].geometry.location, address);
+          map.setCenter(results[0].geometry.location);
+          map.setZoom(15);
+        } else {
+          alert('Geocode was not successful for the following reason: ' + status);
+        }
+      });
+    }
+
+    function geocodeLatLng(geocoder, location) {
+      geocoder.geocode({'location': location}, function(results, status) {
+        if (status === 'OK') {
+          if (results[0]) {
+            input.val(results[0].formatted_address);
+            addMarker(location, results[0].formatted_address);
+          } else {
+            window.alert('No results found');
+          }
+        } else {
+          window.alert('Geocoder failed due to: ' + status);
+        }
+      });
+    }
+
+    function initMap() {
+      var geocoder = new google.maps.Geocoder;
+      var pos = {
+        lat: <%= request.location.coordinates[0] %>,
+        lng: <%= request.location.coordinates[1] %>
+      }
+
+      map = new google.maps.Map(userMap, {
+        center: pos,
+        zoom: 8
+      });
+
+      map.addListener('click', function(event) {
+        geocodeLatLng(geocoder, event.latLng);
+      });
+    }
+
+    function showmarkersArray(map) {
+      markersArray.forEach(function(marker) {
+        marker.setMap(map);
+      });
+    }
+  }
+</script>
