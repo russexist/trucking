@@ -81,7 +81,7 @@
             </button>
           </div>
           <div class="modal-body">
-            <% unless @user.otp_module_enabled? %>
+            <% if @user.otp_module_disabled? %>
               <% qr = RQRCode::QRCode.new(resource.provisioning_uri, size: 8, level: :h) %>
               <table class="qr" align="center">
                 <% qr.modules.each_index do |x| %>

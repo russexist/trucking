@@ -20,18 +20,18 @@
     <fieldset>
       <h2 class="fs-title"><%= t('.from') %></h2>
       <div id="locationField" class="form-container">
-        <%= f.text_field :start, placeholder: t('.start'), id: "autocompleteFrom", class: "form-control" %>
+        <%= f.text_field :start, placeholder: t('.start'), id: "from", class: "form-control" %>
       </div>
-      <div id="mapFrom"></div>
+      <div id="map-from"></div>
       <input type="button" name="next" class="next action-button btn btn-success nxt_button" value='<%= t('.next') %>'/>
     </fieldset>
 
     <fieldset>
       <h2 class="fs-title"><%= t('.to') %></h2>
       <div id="locationField" class="form-container">
-        <%= f.text_field :destination, placeholder: t('.destination'), id: "autocompleteTo", class: "form-control" %>
+        <%= f.text_field :destination, placeholder: t('.destination'), id: "to", class: "form-control" %>
       </div>
-      <div id="mapTo"></div>
+      <div id="map-to"></div>
       <input type="button" name="previous" class="previous btn btn-outline-success action-button prev_button" value='<%= t('.back') %>' />
       <input type="button" name="next" class="next btn btn-success action-button nxt_button" value='<%= t('.next') %>' />
     </fieldset>
@@ -51,5 +51,7 @@
 <% end %>
 
 <script async defer
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjgTe57M-Jmvs1PfRM-a5xHQy9XTrTUlw&libraries=places&callback=initAutocomplete">
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjgTe57M-Jmvs1PfRM-a5xHQy9XTrTUlw&libraries=places&callback=start">
 </script>
+
+<%= render 'init_map' %>

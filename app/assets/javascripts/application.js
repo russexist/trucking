@@ -22,15 +22,6 @@
 
 var ready;
 ready = function() {
-  $(document).ready(function($) {
-    $(window).on('scroll', function() {
-      if ($(window).scrollTop() + $(window).height() > $('.wrapper').outerHeight()) {
-        $('body').addClass('tight');
-      } else {
-        $('body').removeClass('tight');
-      }
-    });
-  });
 
   $('#flash_wrapper').hide()
   $(document).ready(function() {
