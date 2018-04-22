@@ -17,10 +17,23 @@ RSpec.describe User, type: :model do
     it { is_expected.to validate_presence_of(:last_name) }
   end
 
-  describe '#full_name' do
-    let(:user) do
-      User.create(first_name: 'Ruslan', last_name: 'Oliinyk', email: '1@2.ua')
+  describe '.enum' do
+    it { is_expected.to define_enum_for(:otp_module).with(%i[disabled enabled]) }
+  end
+
+  context 'scope' do
+    let(:users) { create_list(:rand_user, 3) }
+    before(:each) do
+      users.last(2).map { |u| u.update(driver: true) }
     end
+
+    it 'should return drivers' do
+      expect(User.drivers.size).to eq(2)
+    end
+  end
+
+  describe 'function full_name' do
+    let(:user) { create(:user) }
 
     it 'should return user full name' do
       expect(user.full_name).to eq('Ruslan Oliinyk')

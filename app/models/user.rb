@@ -3,7 +3,7 @@
 class User < ApplicationRecord
   attr_accessor :otp_code_token
 
-  enum otp_module: { disabled: 0, enabled: 1 }, _prefix: true
+  enum otp_module: %i[disabled enabled], _prefix: true
 
   has_many :notifications, dependent: :destroy, foreign_key: :recipient_id
   has_many :reviews,       dependent: :destroy
@@ -28,6 +28,10 @@ class User < ApplicationRecord
     "#{first_name} #{last_name}"
   end
 
+  def photo?
+    avatar.present?
+  end
+
   def mailboxer_email(_object)
     email
   end
@@ -38,9 +42,5 @@ class User < ApplicationRecord
 
   def not_driver?
     driver.blank?
-  end
-
-  def photo?
-    avatar.present?
   end
 end

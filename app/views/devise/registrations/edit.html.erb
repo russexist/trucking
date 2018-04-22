@@ -54,7 +54,7 @@
 
       <div class="form-group">
         <%= f.submit t('.submit'), class: 'btn btn-lg btn-block btn-success' %>
-        <%= link_to "#{@user.otp_module_enabled? ? 'Disable' : 'Enable'} Two Factor Authentication", '#two_factor',
+        <%= link_to "#{@user.otp_module_enabled? ? t('tfa.form.disabled') : t('tfa.form.enabled')} #{t('tfa.form.tfa')}", '#two_factor',
                     data: { toggle: :modal }, class: 'btn btn-lg btn-block btn-info' %>
       </div>
     <% end %>
@@ -75,7 +75,7 @@
       <div class="modal-dialog dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="two_factor_title"><%= @user.otp_module_enabled? ? 'Disable' : 'Enable' %> Two Factor Authenticaion</h5>
+            <h5 class="modal-title" id="two_factor_title"><%= @user.otp_module_enabled? ? t('tfa.form.disabled') : t('tfa.form.enabled') %> <%= t('tfa.form.tfa') %></h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -100,12 +100,12 @@
             <% end %>
             <div class="form-group">
               <div class="text-center">
-                <%= f.text_field :otp_code_token, placeholder: 'Verify Token', class: "form-control" %>
+                <%= f.text_field :otp_code_token, placeholder: t('tfa.form.verify_token'), class: "form-control" %>
               </div>
             </div>
           </div>
           <div class="modal-footer">
-            <%= f.submit 'Update', class: "btn btn-primary" %>
+            <%= f.submit t('common.save'), class: "btn btn-primary" %>
           </div>
         </div>
       </div>

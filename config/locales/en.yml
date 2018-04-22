@@ -280,6 +280,7 @@ en:
   reviews:
     create: Review was successfully added!
     destroy: Review deleted!
+    error: "Field 'Review' must be competed!"
 
   shared:
     navbar:
@@ -308,6 +309,20 @@ en:
     sign_in: Sign in
     sign_up: Sign up
     taken_orders: Taken orders
+
+  tfa:
+    bad_credential: Bad Credentials Supplied (Token).
+    disabled: Two Factor Authentication Disabled!
+    enabled: Two Factor Authentication Enabled!
+    form:
+      disabled: Disable
+      enabled: Enable
+      tfa: Two Factor Authentication
+      verify_token: Verify token
+    needs_token: Your account needs to supply a token.
+    not_be_disabled: Two Factor Authentication could not be disabled!
+    not_be_enabled: Two Factor Authentication could not be enabled!
+    placeholder: Two Factor Authentication Token (optional)
 
   users:
     review_form:
