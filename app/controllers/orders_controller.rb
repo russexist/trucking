@@ -42,7 +42,7 @@ class OrdersController < ApplicationController
 
   def destroy
     @order.destroy
-    redirect_to orders_path
+    redirect_to orders_path, alert: t('orders.deleted')
   end
 
   def archive

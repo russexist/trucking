@@ -218,7 +218,7 @@ en:
     create:
       created: add new order!
     created: Order was successfully created
-    delete: Order was successfully deleted
+    deleted: Order was successfully deleted
     edit:
       title: Edit order
     form:
