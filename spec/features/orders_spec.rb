@@ -3,40 +3,56 @@
 require 'rails_helper'
 
 RSpec.feature 'Orders', type: :feature do
-  context 'create new order' do
-    let(:user) { create(:rand_user) }
-    let(:order) { create(:order, user: user) }
+  let(:user) { create(:user) }
+  let(:order) { create(:order, user: user) }
+
+  describe '#create' do
     before do
-      visit new_user_session_path
-
-      fill_in 'Email Address', with: user.email
-      fill_in 'Password', with: user.password
-
-      click_button I18n.t('devise.sessions.new.sign_in')
-    end
-
-    scenario 'should be successfull' do
+      sign_in(user)
       visit new_order_path
       expect(page).to have_content(I18n.t('orders.new.title'))
-
-      fill_in 'order[start]', with: order.start
-      fill_in 'order[destination]', with: order.destination
-      fill_in 'order[date]', with: order.date
-      fill_in 'order[price]', with: order.price
-      fill_in 'order[weight]', with: order.weight
-
-      click_button I18n.t('common.save')
-
-      expect(page).to have_content(I18n.t('orders.created'))
     end
 
-    scenario 'should fail' do
-      visit new_order_path
-      expect(page).to have_content(I18n.t('orders.new.title'))
+    context 'when data is valid' do
+      scenario 'creates order' do
+        fill_in 'order[start]', with: order.start
+        click_button I18n.t('orders.form.next')
+        fill_in 'order[destination]', with: order.destination
+        click_button I18n.t('orders.form.next')
+        fill_in 'order[date]', with: order.date
+        fill_in 'order[price]', with: order.price
+        fill_in 'order[weight]', with: order.weight
+        click_button I18n.t('common.save')
+        accept_alert
+        expect(page).to have_content(I18n.t('orders.created'))
+      end
+    end
 
-      click_button I18n.t('common.save')
+    context 'when data is invalid' do
+      scenario 'does not create order' do
+        fill_in 'order[start]', with: 'invalid data'
+        click_button I18n.t('orders.form.next')
+        fill_in 'order[destination]', with: 'invalid data'
+        click_button I18n.t('orders.form.next')
+        fill_in 'order[weight]', with: ' '
+        fill_in 'order[price]', with: ' '
+        click_button I18n.t('common.save')
+        accept_alert do
+          expect have_content('Geocode was not successful for the following reason: ZERO_RESULTS')
+        end
+      end
+    end
 
-      expect(page).to have_content(I18n.t('common.errors'))
+    context 'when data is empty' do
+      scenario 'does not create order' do
+        click_button I18n.t('orders.form.next')
+        fill_in 'order[destination]', with: ''
+        click_button I18n.t('orders.form.next')
+        fill_in 'order[weight]', with: ' '
+        fill_in 'order[price]', with: ' '
+        click_button I18n.t('common.save')
+        expect(page).to have_content(I18n.t('common.errors'))
+      end
     end
   end
 end

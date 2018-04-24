@@ -7,11 +7,11 @@ class ReviewsController < ApplicationController
 
     if @review.save
       flash[:notice] = t('reviews.create')
-      redirect_back(fallback_location: root_path)
     else
-      flash[:alert] = t('rebiews.error')
-      redirect_back(fallback_location: root_path)
+      flash[:alert] = t('reviews.error')
     end
+
+    redirect_back(fallback_location: root_path)
   end
 
   def destroy

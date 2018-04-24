@@ -3,8 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe ConversationsHelper, type: :helper do
-  let!(:user) { create(:rand_user) }
-  let!(:fake_user) { create(:rand_user) }
+  let!(:user) { create(:user) }
+  let!(:fake_user) { create(:user) }
 
   before { user.send_message(fake_user, 'Hi', 'subject') }
 

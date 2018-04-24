@@ -28,10 +28,6 @@ class User < ApplicationRecord
     "#{first_name} #{last_name}"
   end
 
-  def photo?
-    avatar.present?
-  end
-
   def mailboxer_email(_object)
     email
   end
@@ -42,5 +38,9 @@ class User < ApplicationRecord
 
   def not_driver?
     driver.blank?
+  end
+
+  def photo?
+    avatar.present?
   end
 end
