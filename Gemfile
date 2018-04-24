@@ -43,7 +43,6 @@ group :development, :test do
   gem 'faker', git: 'https://github.com/stympy/faker.git', branch: 'master'
   gem 'rubocop', require: false
   gem 'selenium-webdriver'
-  gem 'simplecov', require: false
 end
 
 group :development do
